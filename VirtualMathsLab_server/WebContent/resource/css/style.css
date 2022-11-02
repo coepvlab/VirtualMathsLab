@@ -1,0 +1,382 @@
+/* @font-face { */
+/*     font-family: 'ITO_glyphs'; */
+/*     src: url('fonts/ITO_glyphs.eot?3efi0w'); */
+/*     src: url('fonts/ITO_glyphs.eot?3efi0w#iefix') format('embedded-opentype'), url('fonts/ITO_glyphs.ttf?3efi0w') format('truetype'), url('fonts/ITO_glyphs.woff?3efi0w') format('woff'), url('fonts/ITO_glyphs.svg?3efi0w#ITO_glyphs') format('svg'); */
+/*     font-weight: normal; */
+/*     font-style: normal; */
+/* } */
+.tab-content {
+	 background-color: rgba(245, 245, 245, 0.6);
+	padding-bottom: 50px;
+}
+
+.nav {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	color: #fff;
+	padding: 10px;
+	background-color: #343148ff;
+	margin-bottom: 0;
+	list-style: none;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px
+		rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.nav-item a {
+	color: #fff;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+	color: #fff;
+	background-color: hsla(248, 10%, 68%, 0.8);
+}
+
+.error {
+	width: 100%;
+	margin-top: .25rem;
+	font-size: 80%;
+	color: #dc3545;
+}
+
+.error-text {
+	border: 1px solid red !important;
+}
+
+h1 {
+	padding-bottom: 10px;
+	border-bottom: 3px solid #343148ff;
+	text-align: center;
+	font-size: 26px;
+}
+
+h2 {
+	color: #6f0101;
+	padding-bottom: 10px;
+	text-align: center;
+	font-size: 29px;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+
+body {
+	background: url(resource/images/mathsbgn.jpg) ;
+	padding-top: 50px;
+	height: auto;
+}
+
+.form-horizontal {
+	margin: 10px 0;
+}
+
+#demo {
+	color: #570202;
+}
+
+h3 {
+	padding: 10px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	background-color: #343148ff;
+	margin: 10px 0;
+}
+
+.regLinkDiv h2 {
+	padding-bottom: 10px;
+	color: #343148;
+	margin: 10px 0;
+	font-weight: bold;
+	text-align: center;
+	font-size: 20px;
+}
+
+.regLinkDiv {
+	text-align: center;
+	padding: 10px;
+	background: #343148;
+	border-radius: 10px;
+}
+
+#studRegistraion h2 {
+	padding-bottom: 10px;
+	color: #343148;
+	margin: 10px 0;
+	font-weight: bold;
+	text-align: center;
+	font-size: 20px;
+}
+
+#studRegistraion a {
+	color: #012333;
+	font-weight: bold;
+	font-size: 16px;
+	text-decoration: underline;
+	margin: 0 5px
+}
+
+#teacherRegistraion h2 {
+	padding-bottom: 10px;
+	color: #343148;
+	margin: 10px 0;
+	font-weight: bold;
+	text-align: center;
+	font-size: 20px;
+}
+
+#teacherRegistraion a {
+	color: #012333;
+	font-weight: bold;
+	font-size: 16px;
+	text-decoration: underline;
+	margin: 0 5px
+}
+
+#IndMentorRegistraion h2 {
+	padding-bottom: 10px;
+	color: #343148;
+	margin: 10px 0;
+	font-weight: bold;
+	text-align: center;
+	font-size: 20px;
+}
+
+#IndMentorRegistraion a {
+	color: #343148;
+	font-weight: bold;
+	font-size: 16px;
+	text-decoration: underline;
+	margin: 0 5px
+}
+
+#contriRegisForm h2 {
+	padding-bottom: 10px;
+	color: #343148;
+	margin: 10px 0;
+	font-weight: bold;
+	text-align: center;
+	font-size: 20px;
+}
+
+
+
+#contriRegisForm a {
+	color: #343148;
+	font-weight: bold;
+	font-size: 16px;
+	text-decoration: underline;
+	margin: 0 5px
+}
+
+.regSignIn{background: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #343148;}
+/* .reque:after { content:" *";  color:red;} */
+@media screen and (max-width:768px) {
+	body {
+		padding-top: 10px;
+	}
+	
+	.footer {
+		font-size: 15px;
+		margin-top: 5px;
+		background-color: #343148ff;
+		position: relative;
+		width: 100%;
+		text-align: center;
+		color: #fff;
+		vertical-align: middle;
+		background-color: transprant;
+	}
+}
+
+@media screen and (max-width:468px) {
+	body {
+		padding-top: 10px;
+	}
+	
+}
+
+@media screen and (max-width:350px) {
+	body {
+		padding-top: 10px;
+	}
+	.nav1 ul {
+		margin: 0 15%;
+		width: 70%;
+	}
+	.t1-b1-padding {
+		padding: 10px;
+	}
+}
+
+/* [class^="icon-"], [class*=" icon-"] { */
+/*     use !important to prevent issues with browser extensions that change fonts */
+/*     font-family: 'ITO_glyphs' !important; */
+/*     speak: none; */
+/*     font-style: normal; */
+/*     font-weight: normal; */
+/*     font-variant: normal; */
+/*     text-transform: none; */
+/*     line-height: 1; */
+/*     Better Font Rendering =========== */
+/*     -webkit-font-smoothing: antialiased; */
+/*     -moz-osx-font-smoothing: grayscale; */
+/* } */
+
+/* .icon-archive:before { */
+/*     content: "\e901"; */
+/* } */
+
+/* .icon-delete-bin:before { */
+/*     content: "\e900"; */
+/* } */
+
+/* .icon-edit-group:before { */
+/*     content: "\e902"; */
+/* } */
+
+/* .icon-tick:before { */
+/*     content: "\e903"; */
+/* } */
+
+/* .icon-text-edit:before { */
+/*     content: "\e904"; */
+/* } */
+
+/* .icon-substract:before { */
+/*     content: "\e905"; */
+/* } */
+
+/* .icon-search:before { */
+/*     content: "\e906"; */
+/* } */
+
+/* .icon-right-navigation:before { */
+/*     content: "\e907"; */
+/* } */
+
+/* .icon-play:before { */
+/*     content: "\e908"; */
+/* } */
+
+/* .icon-pause:before { */
+/*     content: "\e909"; */
+/* } */
+
+/* .icon-left-navigation:before { */
+/*     content: "\e90a"; */
+/* } */
+
+/* .icon-clock:before { */
+/*     content: "\e90b"; */
+/* } */
+
+/* .icon-add:before { */
+/*     content: "\e90c"; */
+/* } */
+
+/* .icon-flag:before { */
+/*     content: "\e90d"; */
+/* } */
+
+/* .icon-eye:before { */
+/*     content: "\e90e"; */
+/* } */
+
+/* .icon-edit:before { */
+/*     content: "\e90f"; */
+/* } */
+
+/* .icon-down-arrow:before { */
+/*     content: "\e910"; */
+/* } */
+
+/* .icon-delete:before { */
+/*     content: "\e911"; */
+/* } */
+
+/* .icon-back:before { */
+/*     content: "\e912"; */
+/* } */
+
+/* .icon-arrow:before { */
+/*     content: "\e913"; */
+/* } */
+
+/* .icon-add2:before { */
+/*     content: "\e914"; */
+/* } */
+
+/* .panel-heading { */
+/*     padding: 0 */
+/* } */
+/* .panel-heading a { */
+/*     display: block; */
+/*     padding: 20px 10px; */
+/* } */
+/* .panel-heading a.collapsed { */
+/*     background: #fff */
+/* } */
+/* .panel-heading a { */
+/*     background: #f7f7f7; */
+/*     border-radius: 5px; */
+/* } */
+/* .panel-heading a:after { */
+/*     content: '-' */
+/* } */
+/* .panel-heading a.collapsed:after { */
+/*     content: '+' */
+/* } */
+/* .nav.nav-tabs li a, */
+/* .nav.nav-tabs li.active > a:hover, */
+/* .nav.nav-tabs li.active > a:active, */
+/* .nav.nav-tabs li.active > a:focus { */
+/*     border-bottom-width: 0px; */
+/*     outline: none; */
+/* } */
+/* .nav.nav-tabs li a { */
+/*     padding-top: 20px; */
+/*     padding-bottom: 20px; */
+/* } */
+/* .tab-pane { */
+/*     background: #fff; */
+/*     padding: 10px; */
+
+/*     margin-top: -1px; */
+/* } */
+/* #RanderQue */
+/* {border-radius: 5px; */
+/*     color: white !important; */
+/*     background-color: #012333 !important; */
+/*    padding:5px 10px;} */
+
+/* #MathPreview{width:100%; */
+/* height:auto; */
+/* padding:10px; */
+/* margin:5px 0; */
+/* border: 1px solid #ccc;} */
+
+/* /* used for sidebar tab/collapse*/
+*
+/
+/* @media (max-width: 991px) { */
+/*   .visible-tabs { */
+/*     display: none; */
+/*   } */
+/* } */
+
+/* @media (min-width: 992px) { */
+/*   .visible-tabs { */
+/*     display: block !important; */
+/*   } */
+/* } */
+
+/* @media (min-width: 992px) { */
+/*   .hidden-tabs { */
+/*     display: none !important; */
+/*   } */
+/* } */

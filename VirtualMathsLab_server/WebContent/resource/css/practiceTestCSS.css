@@ -1,0 +1,1095 @@
+
+/* loader css start */
+.overlay {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1111;
+    position: fixed;
+    background: rgb(255, 255, 255,0.6);
+/*     rgb(219 221 218 / 50%) */
+}
+
+
+}
+
+.overlay__inner {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.overlay__content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+       width: 89px;
+    height: 89px;
+    display: inline-block;
+    border-width: 19px;
+    border-color: rgba(52, 49, 72, 0.2);
+    border-top-color: #343148ff;
+    animation: spin 1s infinite linear;
+    border-radius: 100%;
+    border-style: solid;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading{    color: #212529;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 18px;}
+/* loader css end */
+
+.laoderimg{width: 50%;
+    margin: 12% 25%;
+    height: 50%;
+    z-index: 2;
+    opacity: 0.4;}
+.quesPanel {
+	padding: 6px;
+	border-radius: 17px;
+	border: 2px solid #a19faf;
+	background: #e3e2ea;
+	margin: 3px;
+	font-weight: bold;
+	color: #343148;
+	cursor:pointer;
+	display: inline-block;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+.studentDetails {
+		display: inline;
+		text-align: center;
+	}
+#AnswerPaperData thead {
+	background: #343a40;
+	padding: 10px;
+	text-align: center;
+	color: #fff;
+}
+#onSubmit{
+/* 	padding:28px 0; */
+	font-size:18px;
+}
+#topicDetails{
+	padding:10px 0;
+	text-align: center;
+}
+#topicDetails span {
+		background: #343148;
+		color: #fff;
+		padding: 7px;
+		overflow: hidden;
+		/* z-index: 1; */
+		display: inline-flex;
+		white-space: break-spaces;
+		margin: 0 9px 5px 9px;
+		border-radius: 11px;
+		font-size: 14px;
+		font-weight: bold;
+	}
+
+.QuePaperModel .modal-dialog {
+    max-width: 70%;
+}
+.SolutionModel .modal-dialog {
+    max-width: 90%;
+}
+.SolutionModel   thead{
+	background: #343a40;
+    padding: 10px;
+    text-align: left;
+    color: #fff;
+    }
+    .Qlable{
+    color: #343a40;
+   
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    }
+    .SolutionModel #MathPreview{color: #343a40;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;}
+   #ansCntDiv{text-align: center;}
+   #ansCntDiv span{
+    color: #fff;
+    margin:2px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius:20px;
+    }
+    
+    
+ h1 {
+    padding: 10px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #343148ff;
+    margin: 10px 0;
+}
+
+#instruction_div{width:90% ; margin:0 5%;}
+ #talkbubble {
+      width: 120px;
+      height: 80px;
+      background: red;
+      position: relative;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+    }
+    
+	#talkbubble:before {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		margin-top: 5px;
+		margin-left: -11px;
+		border-top: 13px solid transparent;
+		border-left: 11px solid #343148;
+		border-bottom: 13px solid transparent;
+	}
+.quesPanelchecked {
+	padding: 6px;
+	border-radius: 17px;
+	border: 2px solid #b4decb;
+	background: #6dcaa0;
+	margin: 3px;
+	font-weight: bold;
+	color: #343148;
+	display: inline-block;
+	-webkit-box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
+}
+
+.quesPanelnotchecked {
+	padding: 10px;
+	border-radius: 17px;
+	border: 2px solid #e6ccce;
+	background: #e6ccce;
+	margin: 3px;
+	font-weight: bold;
+	color: #343148;
+	display: inline-block;
+	-webkit-box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
+}
+
+.hidden {
+	display: none;
+}
+/* practice test css start */
+.practicetestheader {
+	background: #343148;
+	padding: 10px;
+	height: 115px;
+}
+
+.testlogo img {
+	background: #fff;
+	border: 4px solid #f8f8fb;
+	height: auto;
+	width: 115px;
+	padding: 3px;
+	position: relative;
+	z-index: 11111;
+	border-radius: 97px;
+	z-index: 11111;
+}
+
+.projectname {
+	padding: 5px 20px;
+	background: #343148;
+	color: #FFF;
+	position: relative;
+	font-size: 20px;
+	left: -9px;
+	top: -9px;
+	font-weight: bold;
+	margin-left: -16px;
+	z-index: 111;
+	
+	border-radius: 0 28px 28px 0;
+	border: 4px solid #f8f8fb;
+}
+
+.testType {
+	padding: 5px 20px;
+	background: #333;
+	color: #FFF;
+	position: relative;
+	font-size: 17px;
+	left: 105px;
+	top: -40px;
+	font-weight: bold;
+	margin-left: -16px;
+	z-index: 106;
+	
+	border-radius: 0 28px 28px 0;
+	border: 5px solid #9c98bb;
+}
+
+.Studentname {
+	padding: 2px 20px;
+	color: #FFF;
+	margin: 0 0 5px 0;
+	font-size: 18px;
+	text-align: center;
+	font-weight: bold;
+	/* margin-top: -7px; */
+	border-radius: 28px;
+}
+
+.topicname {
+	padding: 3px;
+	background: #343148;
+	color: #FFF;
+	margin: 5px 0 0 0;
+	font-size: 16px;
+	text-align: center;
+	font-weight: bold;
+/* 	border-radius: 28px 28px 0 0; */
+/* 	border: 5px solid #9c98bb; */
+	/* border-left: 5px solid #9c98bb;*/
+}
+
+.TopicTitle {
+	padding: 2px 20px;
+	background: #333;
+	color: #FFF;
+	margin: 0;
+	font-size: 15px;
+	text-align: center;
+	font-weight: bold;
+/* 	border-radius: 0 0 28px 28px; */
+/* 	border-right: 5px solid #9c98bb; */
+/* 	border-left: 5px solid #9c98bb; */
+/* 	border-bottom: 5px solid #9c98bb; */
+}
+
+#quesPannelDiv {
+	    padding: 0px;
+    height: auto;
+    white-space: nowrap;
+    overflow-y: scroll;
+    width: 100%;
+}
+#InfoPannelDiv {
+	 padding: 10px 10px 101px 10px;
+	height: auto;
+/* 	white-space: nowrap; */
+	overflow-y: scroll;
+	
+}
+#quesPannelDiv::-webkit-scrollbar {
+	width: 9px;
+	height: 10px;
+	background-color: #e3e2ea;
+}
+
+#quesPannelDiv::-webkit-scrollbar-thumb {
+	width: 9px;
+	height: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: #e3e2ea;
+}
+#InfoPannelDiv::-webkit-scrollbar {
+	width: 9px;
+	height: 10px;
+	background-color: #e3e2ea;
+}
+
+#InfoPannelDiv::-webkit-scrollbar-thumb {
+	width: 9px;
+	height: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: #e3e2ea;
+}
+#QuePaperHeader{
+	width: 100%;
+	padding: 5px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 15px;
+	color: #343148;
+	-webkit-box-shadow: inset 0 0 6px rgb(0 0 0/ 35%);
+	font-weight: bold;
+	text-align: center;
+	text-decoration: underline;}
+	
+	.QuePaperModelque {
+	font-size: 16px;
+	font-weight: bold;
+	border-bottom: 2px solid #edebeb;
+	padding: 10px;
+}
+
+#nextPrevButtonDiv {
+	position: fixed;
+	bottom: 0;
+	margin: 10px;
+}
+
+#switchtoPrevQuesSpan {
+	float: left;
+/* 	bottom: 10px; */
+/* 	position: fixed; */
+/* 	left: 10px; */
+margin-top: 10px;
+}
+
+#switchtoNextQuesSpan {
+	float: right;
+/* 	bottom: 10px; */
+/* 	position: fixed; */
+/* 	right: 10px; */
+margin-top: 10px;
+}
+
+#currQTxt{
+    margin: 10px ;
+    width:100%;
+}
+
+#qGrpNo {
+	background: #343148;
+	color: #fff;
+	height: 50px;
+	text-align: center;
+	font-size: 20px;
+	padding: 5px;
+	font-weight: bold;
+	border-radius: 10px;
+	font-size: 20px;
+}
+
+#imageSrc img {
+	width: 300px;
+    height: 300px;
+}
+
+#videoQuestionRef video {
+	width: 416px;
+	height: 237px;
+}
+
+.reffText {
+	font-size: 16px;
+	font-weight: bold;
+	color: #333;
+}
+
+.ErrerMsgI_V {
+	font-size: 13px;
+	font-weight: bold;
+	color: #bf6a6a;
+}
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    margin:5px;
+}
+section {
+	width: 100%;
+	padding: 5px 5px 10px 5px;
+	border-radius: 10px;
+	margin-top: 10px;
+	border: 2px solid #c1c8d0;
+}
+
+#quesText {
+	background: #e3e2ea;
+	padding: 10px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#options {
+	font-size: 15px;
+	font-weight: bold;
+	color: #666;
+}
+
+#submitBtn {
+    position: absolute;
+    font-weight: bold;
+    /* bottom: 8px; */
+    /* width: 100%; */
+    bottom: 20px;
+    /* margin: 0 40%;*/
+}
+
+td.details-control {
+	background: url('../images/details_open.png') no-repeat center center;
+	cursor: pointer;
+}
+
+tr.shown td.details-control {
+	background: url('../images/details_close.png') no-repeat center center;
+}
+
+
+#solutionDiv {
+	padding: 20px 0;
+	/* padding-left: 50px; */
+	width: 90%;
+	border: 1px solid #dee2e6;
+	margin: 1% 5%;
+}
+
+#solutionDiv .heading {
+	background: #343a40;
+	padding: 10px;
+	font-size: 18px;
+	font-weight:bold;
+	text-align: left;
+	color: #fff;
+}
+
+#solutionDiv .inners {
+	color: #343a40;
+	padding: 10px;
+	text-align: left;
+}
+
+#solutionDiv img {
+	width: 50%;
+	height: 50%;
+}
+
+#solutionDiv video {
+	width: 50%;
+	height: 50%;
+}
+
+#solutionDiv  audio {
+	width: 50%;
+	height: 50%;
+}
+
+
+#AnswerPaperData_length, #AnswerPaperData_filter{
+	display: none;
+}
+
+
+
+
+
+.FnameMobile, .topicMobile {
+	display: none
+}
+
+.TextQue {
+	-webkit-box-shadow: inset 0 0 7px rgb(0 0 0/ 24%);
+	padding: 10px;
+	border-radius: 10px;
+	margin: 5px 0;
+	background: #eaeaef;
+}
+
+.textOpt {
+	-webkit-box-shadow: inset 0 0 7px rgb(0 0 0/ 24%);
+	padding: 10px;
+	border-radius: 10px;
+	margin: 5px 0;
+}
+
+.hideFormBigscreen {
+		display: none;
+	}
+	.resultBtn{width: 70%;
+    margin: 0 15%; cursor:auto; }
+/* media screen css start  */
+@media screen and (max-width:1548px) and (min-width:1281px) {
+	.resultBtn{width: 90%;
+    margin: 0 5%; cursor:auto; }
+}
+@media screen and (max-width:1281px) and (min-width:872px) {
+	.topicname {
+    padding: 3px;
+    background: #343148;
+    color: #FFF;
+    margin: 5px 0 0 0;
+    font-size: 13px;
+    text-align: center;
+    font-weight: bold;
+/*     border-radius: 28px 28px 0 0; */
+/*     border: 5px solid #9c98bb; */
+    /* border-left: 5px solid #9c98bb; */
+}
+.TopicTitle {
+    padding: 2px 4px;
+    background: #333;
+    color: #FFF;
+    margin: 0;
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+/*     border-radius: 0 0 28px 28px; */
+/*     border-right: 5px solid #9c98bb; */
+/*     border-left: 5px solid #9c98bb; */
+/*     border-bottom: 5px solid #9c98bb; */
+}
+.testlogo img  {
+		background: #fff;
+		border: 4px solid #f8f8fb;
+		height: 97px;
+		width: auto;
+		padding: 3px;
+		position: relative;
+		border-radius: 97px;
+		z-index: 11111;}
+.Studentname {
+    padding: 2px 20px;
+    background: #918ead;
+    color: #FFF;
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    /* margin-top: -7px; */
+    border-radius: 28px;
+    border: 5px solid #cecdda;
+}
+.projectname {
+    padding: 10px 20px;
+    background: #343148;
+    color: #FFF;
+    position: relative;
+    font-size: 18px;
+    left: -9px;
+    top: -18px;
+    font-weight: bold;
+    margin-left: -16px;
+    z-index: 111;
+    /* margin-top: -7px; */
+    border-radius: 0 28px 28px 0;
+    border: 4px solid #f8f8fb;
+}
+.testType {
+    padding: 10px 20px;
+    background: #333;
+    color: #FFF;
+    position: relative;
+    font-size: 17px;
+    left: 120px;
+    top: -51px;
+    font-weight: bold;
+    margin-left: -16px;
+    z-index: 106;
+    /* margin-top: -7px; */
+    border-radius: 0 28px 28px 0;
+    border: 5px solid #9c98bb;
+}
+#currQTxt{
+    margin: 10px 40px;
+    width:100%;
+}
+.QuePaperModel .modal-dialog {
+    max-width: 80%;
+}
+.SolutionModel .modal-dialog {
+    max-width: 90%;
+}
+#topicDetails span {
+		background: #343148;
+		color: #fff;
+		padding: 7 px;
+		
+		overflow: hidden;
+		/* z-index: 1; */
+		display: inline-flex;
+		white-space: break-spaces;
+		margin: 3px 9px 5px 9px;
+		border-radius: 11px;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	#talkbubble:before {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		margin-top: 7px;
+		margin-left: -11px;
+		border-top: 13px solid transparent;
+		border-left: 11px solid #343148;
+		border-bottom: 13px solid transparent;
+	}
+	#ansCntDiv span {
+    width: 23%;
+    margin: 1%;
+    font-size: 15px;
+}
+#topicDetails {
+    padding: 0;
+    text-align: center;
+}
+.resultBtn{width: 90%;
+    margin: 0 5%; cursor:auto; }
+}
+
+@media screen and (max-width:871px) and (min-width:769px) {
+	.resultBtn{width: 90%;
+    margin: 0 5%; cursor:auto; }
+	.testlogo img {
+    background: #fff;
+    border: 4px solid #f8f8fb;
+    height: 101px;
+    width: 111px;
+    padding: 3px;
+    position: relative;
+    z-index: 11111;
+    border-radius: 97px;
+    z-index: 11111;
+}
+.projectname {
+    padding: 10px 20px;
+    background: #343148;
+    color: #FFF;
+    position: relative;
+    font-size: 14px;
+    left: -9px;
+    top: -18px;
+    font-weight: bold;
+    margin-left: -16px;
+    z-index: 111;
+    /* margin-top: -7px; */
+    border-radius: 0 28px 28px 0;
+    border: 4px solid #f8f8fb;
+}
+.testType {
+    padding: 10px 20px;
+    background: #333;
+    color: #FFF;
+    position: relative;
+    font-size: 13px;
+    left: 111px;
+    top: -47px;
+    font-weight: bold;
+    margin-left: -16px;
+    z-index: 106;
+    /* margin-top: -7px; */
+    border-radius: 0 28px 28px 0;
+    border: 5px solid #9c98bb;
+}
+.Studentname {
+    padding: 2px 20px;
+    background: #918ead;
+    color: #FFF;
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    /* margin-top: -7px; */
+    border-radius: 28px;
+    border: 5px solid #cecdda;
+}
+.topicname {
+    padding: 3px;
+    background: #343148;
+    color: #FFF;
+    margin: 5px 0 0 0;
+    font-size: 13px;
+    text-align: center;
+    font-weight: bold;
+/*     border-radius: 28px 28px 0 0; */
+/*     border: 5px solid #9c98bb; */
+    /* border-left: 5px solid #9c98bb; */
+}
+.TopicTitle {
+    padding: 2px 20px;
+    background: #333;
+    color: #FFF;
+    margin: 0;
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+/*     border-radius: 0 0 28px 28px; */
+/*     border-right: 5px solid #9c98bb; */
+/*     border-left: 5px solid #9c98bb; */
+/*     border-bottom: 5px solid #9c98bb; */
+}
+#switchtoPrevQuesSpan {
+	    bottom: 10px;
+    position: fixed;
+    left: 10px;
+    clear: left;
+    z-index: 1111;
+    margin-top: 0px;
+}
+
+#switchtoNextQuesSpan {
+	bottom: 10px;
+	position: fixed;
+	right: 10px;
+	 clear: right;
+    z-index: 1111;
+    margin-top: 0px;
+}
+#submitBtn {
+    position: fixed;
+    font-weight: bold;
+    bottom: 8px;
+    width: 32%;
+    margin: 0 30%;
+}
+.SolutionModel .modal-dialog {
+    max-width: 90%;
+}
+.QuePaperModel .modal-dialog {
+    max-width: 85%;
+}
+#topicDetails span {
+		background: #343148;
+		color: #fff;
+		padding: 7 px;
+		
+		overflow: hidden;
+		/* z-index: 1; */
+		display: inline-flex;
+		white-space: break-spaces;
+		margin: 3px 9px 5px 9px;
+		border-radius: 11px;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	#talkbubble:before {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		margin-top: 7px;
+		margin-left: -11px;
+		border-top: 13px solid transparent;
+		border-left: 11px solid #343148;
+		border-bottom: 13px solid transparent;
+	}
+	#ansCntDiv span {
+    width: 23%;
+    margin: 1%;
+    font-size: 15px;
+}
+#topicDetails {
+    padding: 5px;
+    margin:5px;
+    text-align: center;
+}
+}
+@media screen and (max-width:768px) and (min-width:375px) {
+	
+	.resultBtn{width: 90%;
+    margin: 0 5%; cursor:auto; }
+	#instruction_div{width:90% ;}
+	.practicetestheader {
+	background: #343148;
+	padding: 10px;
+	height: 115px;
+}
+
+#onSubmit{
+	padding:10px 0;
+	font-size:15px;
+}
+	.testlogo img {
+		background: #fff;
+		border: 4px solid #f8f8fb;
+		height: 75px;
+		width: 86px;
+		padding: 3px;
+		position: relative;
+		z-index: 11111;
+		border-radius: 97px;
+		z-index: 11111;
+	}
+	.projectname {
+		padding: 6px 20px;
+		background: #343148;
+		color: #FFF;
+		position: relative;
+		font-size: 14px;
+		left: -8px;
+		top: -12px;
+		font-weight: bold;
+		margin-left: -16px;
+		z-index: 111;
+		/* margin-top: -7px; */
+		border-radius: 0 28px 28px 0;
+		border: 4px solid #f8f8fb;
+	}
+	.testType {
+		padding: 4px 20px;
+		background: #333;
+		color: #FFF;
+		position: relative;
+		font-size: 12px;
+		left: 90px;
+		top: -34px;
+		font-weight: bold;
+		margin-left: -25px;
+		z-index: 106;
+		/* margin-top: -7px; */
+		border-radius: 0 28px 28px 0;
+		border: 5px solid #9c98bb;
+	}
+	#currQTxt {
+		margin: 5px;
+		width:100%;
+	}
+	#imageSrc img {
+		width: 237px;
+		height: 237px;
+	}
+	#videoQuestionRef video {
+		width: 100%;
+		height: 237px;
+	}
+	.hideFormobile {
+		display: none;
+		text-align:left;
+	}
+	.hideFormBigscreen {
+		display: inline;
+		text-align: left;
+		background: #343148;
+		color: #fff;
+		margin: 0 9px 5px 9px;
+		border-radius: 11px;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	.studentDetails {
+		display: none
+	}
+	.FnameMobile, .topicMobile {
+		display: inline;
+		color: #fff;
+		margin-top: -22px;
+		font-size: 13px;
+		font-weight: bold
+	}
+	#switchtoPrevQuesSpan {
+	    bottom: 10px;
+    position: fixed;
+    left: 10px;
+    clear: left;
+    z-index: 1111;
+    margin-top: 0px;
+}
+
+#switchtoNextQuesSpan {
+	bottom: 10px;
+	position: fixed;
+	right: 10px;
+	 clear: right;
+    z-index: 1111;
+    margin-top: 0px;
+}
+	#submitBtn {
+		position: fixed;
+    font-weight: bold;
+    bottom: 11px;
+    width: 61%;
+    margin: 0px 13%;
+	}
+	.SolutionModel .modal-dialog {
+    max-width: 90%;
+}
+.QuePaperModel .modal-dialog {
+    max-width: 90%;
+}
+
+#ansCntDiv span {
+		width: 48%;
+		margin: 1%;
+		font-size: 14px;
+	}
+	#topicDetails span {
+		background: #343148;
+		color: #fff;
+		padding: 7 px;
+		
+		overflow: hidden;
+		/* z-index: 1; */
+		display: inline-flex;
+		white-space: break-spaces;
+		margin: 3px 9px 5px 9px;
+		border-radius: 11px;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	#talkbubble:before {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		margin-top: 7px;
+		margin-left: -11px;
+		border-top: 13px solid transparent;
+		border-left: 11px solid #343148;
+		border-bottom: 13px solid transparent;
+	}
+	#topicDetails{
+	padding: 5px;
+    margin:5px;
+	text-align: center;
+}
+	}
+@media screen and (max-width:374px) and (min-width:200px) {
+	#instruction_div{width:90% ; }
+	.laoderimg {
+		width: 100%;
+		height: 100%;
+		z-index: 2;
+		opacity: 0.4;
+	}
+	#InfoPannelDiv {
+		padding: 10px 10px 101px 10px;
+		height: auto;
+		/*     white-space: nowrap; */
+		overflow-y: scroll;
+	}
+	.practicetestheader {
+	background: #343148;
+	padding: 10px;
+	height: auto;
+}
+.SolutionModel .modal-dialog {
+    max-width: 90%;
+}
+.QuePaperModel .modal-dialog {
+    max-width: 90%;
+}
+	.testlogo img {
+		background: #fff;
+		border: 4px solid #f8f8fb;
+		height: 75px;
+		width: 86px;
+		padding: 3px;
+		position: relative;
+		z-index: 11111;
+		border-radius: 97px;
+		z-index: 11111;
+	}
+	.projectname {
+    padding: 6px 10px 6px 20px;
+    background: #343148;
+    color: #FFF;
+    position: relative;
+    font-size: 12px;
+    left: -8px;
+    top: -12px;
+    font-weight: bold;
+    margin-left: -16px;
+    z-index: 111;
+    /* margin-top: -7px; */
+    border-radius: 0 28px 28px 0;
+    border: 4px solid #f8f8fb;
+}
+.testType {
+    padding: 6px 10px 6px 20px;
+    background: #333;
+    color: #FFF;
+    position: relative;
+    font-size: 12px;
+    left: 90px;
+    top: -36px;
+    font-weight: bold;
+    margin-left: -25px;
+    z-index: 106;
+    /* margin-top: -7px; */
+    border-radius: 0 28px 28px 0;
+    border: 5px solid #9c98bb;
+}
+#currQTxt {
+		margin: 5px;
+		width: 100%;
+	}
+	#imageSrc img {
+		width: 237px;
+		height: 237px;
+	}
+	#videoQuestionRef video {
+		width: 100%;
+		height: 237px;
+	}
+	.hideFormobile {
+		display: none;
+		text-align:left;
+	}
+	.hideFormBigscreen {
+		display: inline;
+		text-align: left;
+		background: #343148;
+		color: #fff;
+		margin: 0 9px 5px 9px;
+		border-radius: 11px;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	.studentDetails {
+		display: none
+	}
+	.FnameMobile, .topicMobile {
+		display: inline;
+		color: #fff;
+		margin-top: -22px;
+		font-size: 13px;
+		font-weight: bold
+	}
+	#switchtoPrevQuesSpan {
+	    bottom: 10px;
+    position: fixed;
+    left: 10px;
+    clear: left;
+    z-index: 1111;
+    margin-top: 0px;
+}
+
+#switchtoNextQuesSpan {
+	bottom: 10px;
+	position: fixed;
+	right: 10px;
+	 clear: right;
+    z-index: 1111;
+    margin-top: 0px;
+}
+#submitBtn {
+    position: fixed;
+    font-weight: bold;
+    bottom: 8px;
+    font-size: 12px;
+    width: 64%;
+    margin: 0 8%;
+}
+#ansCntDiv span{
+	width:98%;
+    margin:1%;
+    
+    }
+    #topicDetails {
+    padding: 5px;
+    margin:5px;
+    text-align: center;
+}
+}
+/* media screen css end  */
+/* practice test css end */

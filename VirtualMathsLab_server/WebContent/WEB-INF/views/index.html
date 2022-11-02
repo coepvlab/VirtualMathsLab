@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Define Problem</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../resource/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../resource/custom.css" rel="stylesheet">
+	<link href="../resource/css/style.css" rel="stylesheet">
+	<link href="../resource/css/dropzone.css" rel="stylesheet">
+
+	<style>
+.active>h4{
+color:white !important;
+}
+</style>
+
+
+<style type="text/css">
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error {
+  display: none;
+}
+
+@media screen and (max-width:768px)
+{ body{height:700px;}
+.col-xs-12{text-align:center;}
+
+}
+
+</style>
+
+<!-- <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script> -->
+<!-- <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css"> -->
+  </head>
+<body>
+  <nav class="navbar navbar-default navbar-bg-color">
+      <div class="container-fluid base-padding">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+		  <a class="navbar-brand logo-atnavbar-padding" href="#" ><img class="img-responsive" src="../resource/images/IntegreT_logo.png" /></a>
+          <a class="navbar-brand first-text-after-logo " href="#" style="width: 192px; margin-top: -11px;">Integrated technology (IT)<br />OLYMPIAD</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" style="height:5em !important">
+          <ul class="nav navbar-nav navbar-left">
+            <li class="active"><a href="javascript:com.coep.test.addProblem.assignProblem()"  class="add-problem"><b>ADD PROBLEM</b></a></li>
+            <li><a href="javascript:com.coep.test.questionBank.fetchPendingQuestion('pending')" class="ques-bank-DB-link"><b>QUESTION BANK DATABASE</b></a></li>
+
+          </ul>
+		  <a class="pull-right hidden-xs profile-pic-outer-block" href="#"><img class="profile-pic" src="../resource/images/dummy.png" title="Hi User"><span class="glyphicon glyphicon-menu-down"></span>
+      </a>
+		  <div class="pull-right hidden-xs hidden-sm profile-descri-outer-block" ><h3>Hi User</h3 ><h5 class="text-align-right">user cp</h5></div>
+
+		  <div class="pull-left hidden-lg hidden-md hidden-sm profile-descri-outer-block" >
+        <h3>Hi User</h3 ><h5 class="text-align-right">user cp</h5>
+      </div>
+      </div>
+		  <a class="pull-left hidden-lg hidden-md hidden-sm" href="#" style="color:white; letter-spacing:1px; padding-top:1em; padding-left:0em !important; padding-right:1em !important;">
+        <img src="resource/images/dummy.png" style="width:3em;border-radius:50%;box-shadow: 0.2px 0.2px 0.2px 0.2px;"><span class="glyphicon glyphicon-menu-down"></span></a>
+        </div>
+
+      <div class="child-menu child-menu-addproblem base-padding" align="center">
+   		<a href="javascript:com.coep.test.addProblem.assignProblem()" id="defineProblemLink"><h4 class="child-menu-links-color">Define Problem</h4></a>
+   		
+<!--    		 javascript:com.coep.test.questionBank.uploadByExcelSheet() -->
+		 <a href="javascript:com.coep.test.questionBank.uploadQuestionUsingExcelSheet()" id="excelSheetLink" >
+		 <h4 class="child-menu-links-color" style="padding-bottom:7px;margin-left:7em;">Excel Sheet</h4>
+		 </a>
+<!--    			<h4 class="child-menu-links-color" style="cursor:default">Assign Problem</h4> -->
+   	   </div>
+
+       <div class="child-menu child-menu-quesbank base-padding" >
+       <a href="javascript:com.coep.test.questionBank.fetchPendingQuestion('pending')" id="pendingProblemLink" ><h4 class="child-menu-links-color" style="padding-bottom:7px">Pending Problem</h4></a>
+       <a href="javascript:com.coep.test.questionBank.fetchPendingQuestion('approved')" id="approveProblemLink" ><h4 class="child-menu-links-color" style="padding-bottom:7px;margin-left:7em;">Approved Problem</h4></a>
+        </div>
+
+
+    </nav>
+
+    
+    
+     <div id="main-div" class="container-fluid base-padding" >
+<!--      <form action="/upload-target" class="dropzone"></form> -->
+     </div>
+     
+     
+     
+ <footer class="footer">
+  <div class="container-fluid base-padding">
+  <div class="row ">
+    <div class="col-md-12 ">
+                    <div class="col-md-6 col-xs-12 text-align-left">
+                        <h5>
+                            Virtual Maths Lab 2020
+                        </h5>
+                    </div>
+
+                    <div class="col-md-6 col-xs-12 text-align-right">
+                        <h5>
+                            By College of Engineering Pune 2020
+                        </h5>
+                    </div>
+    </div>
+                </div>
+  </div>
+ </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	 <script src="../resource/js/jquery-1.11.3.min.js"></script>
+    <script src="../resource/js/bootstrap.min.js"></script>
+    <script src="../resource/js/custom.js"></script>
+<!--       <script src="resource/js/dropzone.js"></script> -->
+    
+<!--     <script src="../resource/core/namespace.js"></script> -->
+<!--   <script src="../resource/src/addProblem.js"></script> -->
+<!--    <script src="../resource/src/questionBank.js"></script> -->
+<!--     <script src="../resource/core/ajaxMngr.js"></script> -->
+    
+   <!-- form validation js  -->
+	<script src="../resource/js/formvalidation.min.js"></script>
+  <script src="../resource/js/bootstrap-validation.min.js"></script>
+	<script>
+	/** Funtion to set class active **/
+	$(function() {
+  /** Active/inactive menu/submenus **/
+  $(".child-menu-quesbank").hide();
+  $("#defineProblemLink").addClass("active");
+
+    var corranscnt=1;
+    $( "#addCorrAns" ).click(function() {
+      corranscnt++;
+      $("#corrAnsDiv").append("<div id=\"corrAns"+corranscnt+"\" class=\"col-sm-10 col-sm-offset-2 left-spacing\" >"+
+      "<h2 style=\"color:#0ec173\">Correct Answer "+corranscnt+"</h2>"+
+      "<input type=\"text\" placeholder= \"Correct Answer "+corranscnt+"\" title=\"Correct Answer "+corranscnt+"\" class=\"form-control hasclear corr-ans\" />"+
+      "<span class=\"clearer glyphicon glyphicon-remove\" style=\"color:#0ec173;margin-bottom:1em;margin-left:-2em;\"></span>"+
+      "</div>")
+    });
+
+  var incanscnt=1;
+    $( "#addIncAns" ).click(function() {
+      incanscnt++;
+      $("#incAnsDiv").append("<div id=\"incAns"+incanscnt+"\" class=\"col-sm-10 col-sm-offset-2 left-spacing\" >"+
+      "<h2 style=\"color:#ff0000\">Incorrect Answer "+incanscnt+"</h2>"+
+      "<input type=\"text\" placeholder= \"Incorrect Answer "+incanscnt+"\" title=\"Incorrect Answer "+incanscnt+"\" class=\"form-control hasclear inc-ans\" />"+
+      "<span class=\"clearer glyphicon glyphicon-remove\" style=\"color:#ff0000;margin-bottom:1em;margin-left:-2em;\"></span>"+
+      "</div>")
+    });
+
+	$(".nav li").on("click", function() {
+    $(".nav li").removeClass("active");
+    $(this).addClass("active");
+  });
+
+  $(".child-menu a").on("click", function() {
+    $(".child-menu a").removeClass("active");
+    $(this).addClass("active");
+  });
+});
+
+  $(document).ready(function() {
+    $('#assignProblemBtn').click(function () {
+      $('#defineProblemForm').formValidation({
+          framework: 'bootstrap',
+          icon: {
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+          },
+          fields: {
+              problemtype: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The problem type is required '
+                      }
+                  }
+              },
+              problemquestion: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The problem question is required '
+                      },
+                      stringLength: {
+                        min: 6,
+                        max: 1500,
+                        message: 'The problem question must be greater than 6 and less than 1500 characters long'
+                    }
+                  }
+              }
+          }
+      });
+  });
+
+  $('select').on('change', function() {
+  $('.action-divs').hide();
+  if(this.value=='mca' || this.value=='aud' || this.value=='vid' || this.value=='img')
+  {
+    $('#otherAnsDiv').show();
+  }
+  else if(this.value=='tf')
+{
+    $('#truefalseDiv').show();
+}
+});
+});
+
+  </script>
+
+  </body>
+</html>

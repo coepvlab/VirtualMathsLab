@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title th:remove="all">This mail will be sent at successful
+	registration</title>
+	<style>
+	img{width :80px; height:80px; padding-right:10px; border-right:1px solid gray;margin-right: 16px;}
+body{padding-left:20px; text-align:justify; }
+a {
+	padding: 5px;
+    text-decoration: none;
+    background-color: #343148ff;
+    font-size: 16px;
+    margin: 20px 0;
+    border-radius: 10px;
+    letter-spacing: 1px;
+}
+a:hover {
+	color: #fff;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+h1 {
+	font-size: 20px;
+	color: rgb(129, 84, 4);
+}
+p{font-size: 15px;
+    font-weight: bold;
+    color: rgb(52, 49, 72);}
+h2 {
+	padding:0 0 0 20px;
+	margin:0 0 0 20px;
+	font-size: 15px;
+	color: rgb(129, 84, 4);
+}
+
+
+
+.wrapper {
+	margin :20px 20%;
+	padding: 20px;
+}
+
+.itoDiv {
+	font-size: 30px;
+	color: #343148ff;
+}
+
+@media screen and (min-width: 300px) and (max-width: 768px)
+{
+.wrapper {
+	margin :20px 0%;
+	padding: 5px;
+}
+}
+</style>
+</head>
+<body>
+
+
+
+
+
+<h1><i>Thank You for the registration</i></h1>
+<p><i> College of Engineering Pune (COEP)</i></p>
+<p><i>Welcome you at "Virtual Maths Lab 2020" an exciting mega Maths contest.</i></p>
+
+<p style="color: #343148ff;"><i>Your unique VirtualMathsLab_ID is "<span th:text="${userId}"></span>"</i>.
+You can login using <i>VirtualMathsLab_ID and password or registered email address and password.</i></p>
+		<p style=" color: #343148ff; font-family: medium">Click
+			on Verify here to activate your account and process to login</p>
+
+		<b><a style="color: #fff;" th:href="@{${link}}">Verify here!!!</a></b>
+
+<p>
+<br/>
+<img src="https://portal.coepvlab.ac.in/VirtualMathsLab/resource/images/VirtualMathsLabLogo.png" style="float:left;"/>
+<h2 style="margin-top:39px;"><i> Virtual Maths Lab 2020</i></h2>
+<h2 style=""><i> College of Engineering Pune (COEP)</i></h2>
+
+</p>
+
+
+<!-- <p> -->
+<!-- <center> -->
+<!-- <a th:href="@{${link}}" target="_blank" ><span th:text="@{${link}}"></span></a> -->
+<!-- </center> -->
+<!-- </p> -->
+
+
+
+
+</body>
+</html>

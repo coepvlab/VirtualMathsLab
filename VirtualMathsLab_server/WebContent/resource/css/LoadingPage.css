@@ -1,0 +1,132 @@
+@charset "utf-8";
+/* CSS Document */
+#header {
+	background-image: url("5.jpg");
+	background-color: #cccccc;
+	height: 500px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+nav {
+	border-radius: 30px;
+	margin-top: 30px;
+}
+
+#name {
+	font-size: 30px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#slogan {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+nav a {
+	padding: 5px;
+	background: #53595a;
+	color: #fff;
+	font-weight: bold;
+	margin: 0 1px;
+	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+nav a:hover {
+	background: darkslategray;
+	text-decoration: none
+}
+
+#header p {
+	text-align: center;
+	background-image: linear-gradient(to right, rgb(156 154 134/ 80%),
+		rgba(201, 232, 231, 0.8), rgb(156 154 134/ 80%));
+	padding: 36px 12px;
+	border-radius: 30px;
+	margin-top: 30px;
+	border: 6px solid rgb(0 0 0/ 8%);
+	box-shadow: 0 4px 8px 0 rgb(0 0 0/ 20%), 0 6px 20px 0 rgb(0 0 0/ 19%);
+}
+
+#header img {
+	width: 147px;
+	height: 139px;
+	padding: 4px;
+	border-radius: 46px;
+	border: 3px solid rgb(0 0 0/ 8%);
+	box-shadow: 0 4px 8px 0 rgb(0 0 0/ 20%), 0 6px 20px 0 rgb(0 0 0/ 19%);
+}
+
+#VMLBg {
+	margin-bottom: 10px;
+	padding: 30px;
+	background-size: cover;
+	border: 6px solid rgb(0 0 0/ 8%);
+	border-radius: 20px;
+}
+
+#VMLBg h1 {
+	text-align: center;
+	padding: 10px;
+	font-size: 21px;
+	font-weight: bold;
+	border-radius: 30px;
+	margin-top: -31px;
+	background-image: linear-gradient(to right, rgb(156 154 134/ 80%),
+		rgba(201, 232, 231, 0.8), rgb(156 154 134/ 80%));
+	border: 6px solid rgb(0 0 0/ 8%);
+	box-shadow: 0 4px 8px 0 rgb(0 0 0/ 20%), 0 6px 20px 0 rgb(0 0 0/ 19%);
+}
+
+#VMLBg li {
+	margin-bottom: 3px;
+	padding: 3px;
+	font-weight: 500;
+	font-size: 19px;
+}
+
+#VMLBg b {
+	margin-bottom: 3px;
+	padding: 10px 0;
+	font-weight: 500;
+	font-size: 20px;
+}
+
+#LeftSec {
+	box-shadow: 0 4px 8px 0 rgb(0 0 0/ 20%), 0 6px 20px 0 rgb(0 0 0/ 19%);
+	padding: 10px
+}
+
+footer {
+	font-weight: bold;
+	background: rgb(57 116 130/ 70%);
+	padding: 6px;
+	font-size: 15px;
+	border-top: 6px solid rgb(0 0 0/ 8%);
+	text-align: center;
+}
+
+.AddFloatforMobile {
+	display: none
+}
+
+.AddFloatforDesk {
+	display: inline;
+}
+
+@media screen and (max-width: 768px) and (min-width: 300px) {
+	#header {
+		margin-bottom: 50px;
+	}
+	.AddFloatforMobile {
+		display: inline
+	}
+	.AddFloatforDesk {
+		display: none;
+	}
+}

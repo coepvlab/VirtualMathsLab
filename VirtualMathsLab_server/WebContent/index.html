@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Add Question Group</title>
+<!-- Bootstrap core CSS -->
+<link href="resource/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="resource/css/latofonts.css" rel="stylesheet">
+<link href="resource/css/latostyle.css" rel="stylesheet">
+
+<link href='https://fonts.googleapis.com/css?family=Lato'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700'
+	rel='stylesheet' type='text/css'>
+<!-- Custom styles for this template -->
+<link href="resource/custom.css" rel="stylesheet">
+<link href="resource/css/style.css" rel="stylesheet">
+
+<script type="text/javascript">
+reload = function() {
+    location.reload();
+};
+
+</script>
+  </head>
+<body onload="com.coep.test.addProblem.getAllDeptsAndComplexityLevel();">
+
+
+	<nav class="navbar navbar-default navbar-bg-color">
+		<div class="container-fluid base-padding">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand logo-atnavbar-padding" href="#"><img
+					class="img-responsive" src="resource/images/IntegreT_logo.png" /></a>
+				<a class="navbar-brand first-text-after-logo " href="#">Integrated Technology (IT)<br />OLYMPIAD
+				</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse"
+				style="height: 5em !important">
+				<ul class="nav navbar-nav navbar-left">
+					 <li class="add-questions-li" class="custom-li-lbl"><a href="#" onclick = "reload()" class="custom-li-lbl"><h4>ADD QUESTIONS</h4></a></li>
+                    <li class="ques-bank-DB-link-li"><a href="javascript:com.coep.test.questionBank.fetchQuestionBank('Active')"class=" child-menu-links-color ques-bank-DB-link"><h4>QUESTION BANK DATABASE</h4></a></li>
+               
+				</ul>
+				<a class="pull-right hidden-xs profile-pic-outer-block" href="#">
+					<img class="profile-pic"  class="profile-pic" src="resource/images/dummy.png"
+					title="Hi User"><span class="icon-down-arrow-prof icon-down-arrow"></span>
+				</a>
+				<div
+					class="pull-right hidden-xs hidden-sm profile-descri-outer-block">
+					<h3>Hi User</h3>
+					<h5 class="text-align-right">user cp</h5>
+				</div>
+				
+			</div>
+			<a class="pull-left hidden-lg hidden-md hidden-sm profile-descri-outer-block-xs" " href="#">
+				<img src="resource/images/dummy.png" class="profile-pic"><span
+				class="icon-down-arrow-prof icon-down-arrow"></span>
+			</a>
+		</div>
+		
+		
+		<div class="child-menu child-menu-quesbank base-padding" >
+      <a href="javascript:com.coep.test.questionBank.fetchQuestionBank('Active')" id="activeQuestionsGroupLink"><h4 class="child-menu-links-color" style="padding-bottom:7px">Active Question Group</h4></a>
+          <a href="javascript:com.coep.test.questionBank.fetchQuestionBank('Archived')" id="archivedQuestionsGroupLink" ><h4 class="child-menu-links-color" style="padding-bottom:7px;margin-left:7em;">Archived Question Group</h4></a>
+        </div>
+	</nav>
+
+<div class="alert-box success" style="display: block;" align="center"></div>
+<div class="alert-box failure" style="display: block;" align="center"></div>
+
+<!--      <nav class="navbar navbar-default navbar-bg-color"> -->
+<!--       <div class="container-fluid base-padding"> -->
+<!--         <div class="navbar-header"> -->
+<!--           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> -->
+<!--             <span class="sr-only">Toggle navigation</span> -->
+<!--             <span class="icon-bar"></span> -->
+<!--             <span class="icon-bar"></span> -->
+<!--             <span class="icon-bar"></span> -->
+<!--           </button> -->
+<!-- 		  <a class="navbar-brand logo-atnavbar-padding" href="#" ><img class="img-responsive" src="images/IntegreT_logo.png" /></a> -->
+<!--           <a class="navbar-brand first-text-after-logo " href="#">Integra T<br />OLYMPIAD</a> -->
+<!--         </div> -->
+<!--         <div id="navbar" class="navbar-collapse collapse" style="height:5em !important"> -->
+<!--           <ul class="nav navbar-nav navbar-left"> -->
+<!--             <li class="add-problem-li"><a href="defineProblem.html"  class="add-problem"><b>ADD PROBLEM</b></a></li> -->
+<!--             <li class="ques-bank-DB-link-li"><a href="javascript:com.coep.test.questionBank.fetchQuestionBank('Active')" class="ques-bank-DB-link"><b>QUESTION BANK DATABASE</b></a></li> -->
+
+<!--           </ul> -->
+<!-- 		  <a class="pull-right hidden-xs profile-pic-outer-block" href="#"><img class="profile-pic" src="images/dummy.png" title="Hi User"><span class="icon-down-arrow-prof icon-down-arrow"></span> -->
+<!--       </a> -->
+<!-- 		  <div class="pull-right hidden-xs hidden-sm profile-descri-outer-block" ><h3>Hi User</h3 ><h5 class="text-align-right">user cp</h5></div> -->
+
+<!-- 		  <div class="pull-left hidden-lg hidden-md hidden-sm profile-descri-outer-block" > -->
+<!--         <h3>Hi User</h3 ><h5 class="text-align-right">user cp</h5> -->
+<!--       </div> -->
+<!--       </div> -->
+<!-- 		  <a class="pull-left hidden-lg hidden-md hidden-sm" href="#" style="color:white; letter-spacing:1px; padding-top:1em; padding-left:0em !important; padding-right:1em !important;"> -->
+<!--         <img src="images/dummy.png" style="width:3em;border-radius:50%;box-shadow: 0.2px 0.2px 0.2px 0.2px;"><span class="icon-down-arrow-prof icon-down-arrow"></span></a> -->
+<!--         </div> -->
+
+<!--       <div class="child-menu child-menu-addproblem base-padding" align="center"> -->
+<!--    		<a href="defineProblem.html" id="defineProblemLink"><h4 class="child-menu-links-color">Define Problem</h4></a> -->
+<!--    		<span class="glyphicon glyphicon-arrow-right arrow-right"></span> -->
+<!--    			<h4 class="child-menu-links-color" style="cursor:default">Assign Problem</h4> -->
+<!--    	   </div> -->
+
+<!--        <div class="child-menu child-menu-quesbank base-padding" > -->
+<!--       <a href="javascript:com.coep.test.questionBank.fetchQuestionBank('Active')" id="activeQuestionsGroupLink"><h4 class="child-menu-links-color" style="padding-bottom:7px">Active Question Group</h4></a> -->
+<!--           <a href="javascript:com.coep.test.questionBank.fetchQuestionBank('Archived')" id="archivedQuestionsGroupLink" ><h4 class="child-menu-links-color" style="padding-bottom:7px;margin-left:7em;">Archived Question Group</h4></a> -->
+<!--         </div> -->
+
+<!--     </nav> -->
+
+
+
+    <div id= "main-div" class="container-fluid base-padding" >
+   
+</div>
+
+<!-- Modal -->
+		<div class="modal fade" id="cdialog" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" style="margin-top:200px;" >
+				<div class="modal-content" style="border-radius:0px;">
+<!-- 					<div class="modal-header"> -->
+<!-- 						<button type="button" class="close" data-dismiss="modal" -->
+<!-- 							aria-hidden="true">&times;</button> -->
+<!-- <!-- 						<h4 class="modal-title" id="cModalLabel">Modal title</h4> --> 
+<!-- 					</div> -->
+					<div class="modal-body" id="cdlgBody">...</div>
+					<div class="modal-footer" id="cdlgFoot">
+						<button id='cfYes' type="button">Yes</button>
+						<button id='cfNo' type="button">No</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+     </div>
+  <footer class="footer">
+  <div class="container-fluid base-padding">
+  <div class="row ">
+    <div class="col-md-12 ">
+                    <div class="col-md-6 col-xs-12 text-align-left">
+                        <h5>
+                            Virtual Maths Lab 2020
+                        </h5>
+                    </div>
+
+                    <div class="col-md-6 col-xs-12 text-align-right">
+                        <h5>
+                            By College of Engineering Pune 2020
+                        </h5>
+                    </div>
+    </div>
+                </div>
+  </div>
+ </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	 <script src="resource/js/jquery-1.11.3.min.js"></script>
+    <script src="resource/js/bootstrap.min.js"></script>
+   
+    <script src="resource/js/custom.js"></script>
+    <script src="resource/js/addproblem.js"></script>
+    
+    
+    
+    <script src="resource/js/qbank.js"></script>
+      <script src="resource/core/namespace.js"></script>
+         <script src="resource/core/ajaxMngr.js"></script>
+<!--      <script src="resource/src/questionBank.js"></script> -->
+<script src="resource/src/newQuesBank.js"></script>
+      <script src="resource/src/addProblem.js"></script>
+      
+        <script src="resource/src/addQuestionGroup.js"></script>
+      
+   <!-- form validation js  -->
+	<script src="resource/js/formvalidation.min.js"></script>
+  <script src="resource/js/bootstrap-validation.min.js"></script>
+<!--   <script src="resource/js/audio.js"></script> -->
+	<script>
+	$(function() {
+		  // Sidebar toggle behavior
+		  $('#sidebarCollapse').on('click', function() {
+		    $('#sidebar, #content').toggleClass('active');
+		  });
+		});
+
+	
+	var isFileLinked = 0;//is file linked or not
+	/** Funtion to set class active **/
+	$(function() {
+  /** Active/inactive menu/submenus **/
+
+  $(".child-menu-quesbank").hide();
+  $(".add-questions-li").addClass("active");
+  $("#defineProblemLink").addClass("active");
+
+	$(".nav li").on("click", function() {
+    $(".nav li").removeClass("active");
+    $(this).addClass("active");
+  });
+	
+	//Initially hide the audio box
+// 	$("#audioSrc").hide();
+	var isLeftFrmValid = 0;
+	$("body").on('change', function(){
+	  if(!$("#saveToQuesGrpDraftBtn").is(':hidden') && isLeftFrmValid==1)
+	    {
+	      $("#moveToActiveBtn").show();
+	    }
+	    else{
+	      $("#moveToActiveBtn").hide();
+	    }
+	  
+// 	  if(player.offsetParent===null && player.paused==false)
+//       {
+//         player.pause();
+//         $("#play_pause").removeClass('icon-pause').addClass('icon-play');
+//       }
+	});
+	
+
+  $(".child-menu a").on("click", function() {
+    $(".child-menu a").removeClass("active");
+    $(this).addClass("active");
+  });
+});
+
+  $(document).ready(function() {
+    $('#assignProblemBtn').click(function () {
+      validateDefinePrbm();
+    });
+  $('#moveToDraftBtn').click(function () {
+      validateDefinePrbm();
+  });
+
+$("#MediaQuesDiv").hide();
+  $('select#probType').on('change', function() {
+    if(this.value!='aud' && this.value!='vid' && this.value!='img')
+    {
+     $("#nonMediaQuesDiv").show();
+      $("#MediaQuesDiv").hide();
+    }
+    else if(this.value=='aud')
+    {
+      $("#MediaQuesDiv").show();
+      $("#nonMediaQuesDiv").hide();
+    }
+    else if(this.value=='vid')
+    {
+      $("#MediaQuesDiv").show();
+      $("#nonMediaQuesDiv").hide();
+    }
+    else if(this.value=='img')
+    {
+    $("#MediaQuesDiv").show();
+    $("#nonMediaQuesDiv").hide();
+    }
+});
+
+  $('select#ansType').on('change', function() {
+  $('.action-divs').hide();
+  $('.action-divs').removeClass('activeanstype');
+
+    if(this.value=='mca')
+  {
+    $('#mcaDiv').addClass('activeanstype');
+    $('#mcaDiv').show();
+  }
+  else if(this.value=='fib')
+{
+    $('#fibDiv').addClass('activeanstype');
+    $('#fibDiv').show();
+    validateDefinePrbm();
+}
+else if(this.value=='mtp')
+{
+  $('#mtpDiv').addClass('activeanstype');
+  $('#mtpDiv').show();
+}
+  else if(this.value=='tf')
+{
+    $('#truefalseDiv').show();
+}
+});
+
+$('[data-toggle="tooltip"]').tooltip();
+});
+
+$('.tooltip-css').mouseleave(function(){
+    $(this).tooltip('hide');
+});
+
+$('#uploadModal').on('hidden.bs.modal', function () {
+    $('.tooltip-css').tooltip('remove');
+});
+
+var clickFlag = 0;
+function toggleSideBar()
+{
+    //$(".glyphicon-menu-left").click(function(){
+    if(clickFlag==0){
+        var counter=0;
+        $("#drawerIcon").attr('src','resource/images/rightarrow.PNG')
+        $("#drawerIcon").css('margin-left','-11%').css('position','fixed')
+        $(".drawericon-left").removeClass("drawericon-left").addClass("drawericon-right");
+        $('.container-fluid-body').css('padding-left','0');
+        var divWidth = $('#toggleSideBar').width();
+        $(".right-side").removeClass("col-md-8").addClass("col-md-8 col-md-pull-2");
+        // for(counter=0;counter<=divWidth;counter=counter+2)
+        // {
+        $('#toggleSideBar').css('left',(-divWidth-88));
+        //}
+        // if(counter>divWidth){
+        // $(".right-side").css("position","absolute");
+        // }
+
+        clickFlag = 1;
+    }else{
+        // $(".glyphicon-menu-right").click(function(){
+        $("#drawerIcon").css('margin-left','1%').css('position','relative')
+        $("#drawerIcon").attr('src','resource/images/leftarrow.PNG')
+        $(".right-side").removeClass("col-md-pull-2");
+        // $(".right-side").css("position","relative");
+        $('#toggleSideBar').css('left', '0');
+        $(".drawericon-right").removeClass("drawericon-right").addClass("drawericon-left");
+        $('.container-fluid-body').css('padding-left','4.5em');
+        var divWidth = $('#toggleSideBar').width();
+        clickFlag = 0;
+        // });
+    }
+}
+  </script>
+  </body>
+  
+  
+</html>

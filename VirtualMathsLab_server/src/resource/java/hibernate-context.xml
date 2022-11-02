@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/tx 
+   http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+
+	<!-- Load values of Properties to be replaced with -->
+	<!-- <context:property-placeholder location="/WEB-INF/database.properties" /> -->
+	
+
+	<!-- Declare a bean for mysql Connection using DBCP pooling DataSource -->
+	<!-- Requires commons-pool.jar and commons-dbcp.jar -->
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" -->
+<!-- 		destroy-method="close" p:driverClassName="${mysql.driverClassName}" -->
+<!-- 		p:url="${mysql.database.url}" p:username="${mysql.username}" -->
+<!-- 		p:password="${mysql.password}" /> -->
+
+	<!-- Declare a bean for mysql Connection using DriverManager DataSource -->
+<!-- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >  -->
+<!-- 	<property name="driverClassName" value="${mysql.driverClassName}" /> -->
+<!-- 	<property name="url" value="${mysql.database.url}" /> -->
+<!-- 	<property name="username" value="${mysql.username}" /> -->
+<!-- 	<property name="password" value="${mysql.password}" /> -->
+<!-- 	</bean> -->
+
+	<!-- Declare a c3p0 pooled mysql DataSource -->
+	<!-- Required com.springsource.com.mchange.v2.c3p0-0.9.1.2.jar c3p0 pooling-->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	destroy-method="close"
+	p:driverClass="${mysql.driverClassName}"
+	p:jdbcUrl="${mysql.database.url}"
+	p:user="${mysql.username}"
+	p:password="${mysql.password}"
+	p:acquireIncrement="1"
+	p:idleConnectionTestPeriod="180"
+	p:maxPoolSize="100"
+	p:maxStatements="50"
+	p:minPoolSize="10"
+	p:testConnectionOnCheckin="true"
+	p:maxIdleTimeExcessConnections="240" />
+	
+
+	
+	 <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+     p:dataSource-ref="dataSource"
+    
+     p:packagesToScan="in.ac.coep.entity">
+     
+     <property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		</bean>
+
+	<!-- Declare a transaction manager -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+
+
+	<!-- Enable annotation style of managing transactions -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans>

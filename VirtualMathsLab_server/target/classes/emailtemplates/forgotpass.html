@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Insert title here</title>
+
+
+<style type="text/css">
+h1 {
+	font-size: 20px;
+	color: rgb(129, 84, 4);
+}
+img{width :80px; height:80px; padding-right:10px; border-right:1px solid gray;margin-right: 16px;}
+body{padding-left:20px; text-align:justify; }
+h2 {
+	padding:0 0 0 20px;
+	margin:0 0 0 20px;
+	font-size: 15px;
+	color: rgb(129, 84, 4);
+}
+span {
+    white-space: nowrap;
+}
+p{font-size: 15px;
+    font-weight: bold;
+    color: rgb(52, 49, 72);}
+</style>
+</head>
+
+
+<body>
+
+<h1>
+<b>
+Dear <span th:text="${FirstName}"></span> <br/>
+</b>
+</h1>
+
+
+<p>Forget Password Request</p>
+	<p>
+		Your New System Generated Password is <b style="color: rgb(129, 84, 4);"><span th:text="${pwd}"></span></b>
+		<br />
+		Please Login with this now
+		
+	</p>
+	<p style="color:#f73838; font-size: 12px;">
+	 <i>(Note : This is system generated mail. Please do not
+			reply to this mail.)</i><br />
+	</p>
+
+<p>
+
+<img src="https://portal.coepvlab.ac.in/VirtualMathsLab/resource/images/VirtualMathsLabLogo.png" style="float:left;"/>
+<h2 style="margin-top:39px;"><i> Virtual Maths Lab 2020</i></h2>
+<h2 style=""><i> College of Engineering Pune (COEP)</i></h2>
+
+</p>
+
+
+</body>
+</html>
