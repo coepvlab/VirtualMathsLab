@@ -1,0 +1,54 @@
+	
+	.btn
+	{
+		background-color:grey;
+		border-color:grey;
+		radius:30px;
+		margin-bottom:10px;
+		margin-top:10px;
+	}
+	#colstyle
+	{
+		background-color:grey;
+		  border-radius: 10px;
+			margin-top:10px;
+			border-size:1px;
+	}
+	b.normal
+	{
+		color:#fff;
+		text-align: center;
+		
+	}
+	card.savestyle
+	{
+		background-color:#f2f2f2;
+	}
+	.card
+	{
+	box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+	.container-fluid
+	{
+		margin-bottom:10px;
+		margin-top:10px;
+		margin-right:10px;
+		margin-left:10px;
+	}
+	label
+	{
+		font-size:16px;
+	}
+	button
+	{
+		color:#fff;
+		border-radius: 10px;
+	}
+	card
+	{
+		background-color:#f2f2f2;
+	}
+	center
+	{
+		color:#fff;margin-top:10px;
+	}

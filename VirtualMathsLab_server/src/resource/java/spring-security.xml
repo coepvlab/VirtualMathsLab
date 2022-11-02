@@ -1,0 +1,55 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+            http://www.springframework.org/schema/security
+            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+
+	<global-method-security secured-annotations="enabled"
+		pre-post-annotations="enabled" />
+	<http auto-config="true" use-expressions="true">
+
+		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/home"
+			access="hasAnyRole('ADMIN','STUDENT','TEACHER','CONTRIBUTOR','PARENT','SUPERADMIN','MODERATOR')"></intercept-url>
+		<intercept-url pattern="/ChangePasswordLink"
+			access="hasAnyRole('ADMIN','STUDENT','TEACHER','CONTRIBUTOR','PARENT','SUPERADMIN','MODERATOR')"></intercept-url>
+		<intercept-url pattern="/api/test/create" access="permitAll"></intercept-url>
+		<intercept-url pattern="/api/test/user/create" access="permitAll"></intercept-url>
+		<intercept-url pattern="/force/logout" access="permitAll"></intercept-url>
+		<intercept-url pattern="/test" access="isAuthenticated()" />
+		<intercept-url pattern="/test" access="hasAnyRole('STUDENT')" />
+		<!-- <form-login login-page="/login" authentication-success-handler-ref="customAuthenticationHandler" -->
+		<!-- authentication-failure-url="/loginfailed" /> -->
+
+		<form-login login-page="/login" default-target-url="/home"
+			authentication-failure-url="/loginfailed" />
+		<logout invalidate-session="true" logout-success-url="/home"
+			delete-cookies="JSESSIONID" />
+
+		<!-- <custom-filter ref="checkExpiredSessions" before="PRE_AUTH_FILTER" 
+			/> -->
+		<custom-filter ref="noBrowserCacheFilter" after="LAST" />
+
+		<!-- <remember-me token-validity-seconds="864000" -->
+		<!-- token-repository-ref="tokenRepository" /> -->
+
+		<session-management
+			session-authentication-error-url="/denied" invalid-session-url="/login">
+			<concurrency-control max-sessions="1"
+				expired-url="/login" error-if-maximum-exceeded="true"
+				session-registry-alias="sessionRegistry" />
+		</session-management>
+	</http>
+
+	<authentication-manager>
+	<authentication-provider ref="customAuthenticationProvider" />
+	</authentication-manager>
+
+<!-- 	<authentication-manager> -->
+<!-- 		<authentication-provider user-service-ref="userDaoImpl"> -->
+<!-- 			<password-encoder ref="passwordEncoder" /> -->
+<!-- 		</authentication-provider> -->
+<!-- 	</authentication-manager> -->
+</beans:beans>
