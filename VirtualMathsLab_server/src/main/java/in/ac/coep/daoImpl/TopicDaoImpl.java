@@ -863,4 +863,43 @@ public class TopicDaoImpl implements TopicDao {
 		return topics;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Topic> getAllTopicDetails1() throws Exception {
+		// TODO Auto-generated method stub
+
+		Session session = null;
+		Transaction tx = null;
+
+		List<Topic> topics = null;
+		try {
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+
+			session.flush();
+			session.clear();
+
+			Criteria criteria = session.createCriteria(Topic.class);
+			criteria.add(Restrictions.eq("level", "01"));
+
+			topics = criteria.list();
+
+			LOGGER.debug("topic fetch successful");
+			session.flush();
+			session.clear();
+			tx.commit();
+			session.close();
+
+		} catch (HibernateException e) {
+			LOGGER.debug("topic fetch failed", e);
+			if (tx != null)
+				tx.rollback();
+			if (session != null && session.isOpen())
+				session.close();
+
+		}
+
+		return topics;
+	}
+
 }

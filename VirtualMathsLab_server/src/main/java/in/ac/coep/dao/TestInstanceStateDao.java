@@ -5,6 +5,8 @@ package in.ac.coep.dao;
 
 import java.util.List;
 
+import org.json.JSONObject;
+
 import in.ac.coep.entity.TestInstanceState;
 
 /**
@@ -55,11 +57,11 @@ public interface TestInstanceStateDao {
 
 	public List<TestInstanceState> getTestInstanceStateByUserIdAndTopicId(long userId, String topicId, long tetsTypeId) throws Exception;
 
-	public TestInstanceState getTestInstanceStateByUserIdandTestLevelAndTISID(long userId, long tISID)  throws Exception;
+	public TestInstanceState getTestInstanceStateByUserIdandTestLevelAndTISID(long userId, long tISID) throws Exception;
 
-	public List<TestInstanceState> getTestInstanceStateByUserIdAndtestLink(long userId, String urlCheck)  throws Exception;
+	public List<TestInstanceState> getTestInstanceStateByUserIdAndtestLink(long userId, String urlCheck) throws Exception;
 
-	public List<TestInstanceState> getTestInstanceStateByUserIdAndTestType(long userId, long practicetesttypeid)   throws Exception;
+	public List<TestInstanceState> getTestInstanceStateByUserIdAndTestType(long userId, long practicetesttypeid) throws Exception;
 
 	
 //	/**

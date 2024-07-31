@@ -40,18 +40,23 @@ public class Topic implements Serializable {
 	
 	private String redirectNo;  // in case of any change in topic no then we will assign new topic No to redirect.
 
+	private boolean status;
 	
 	public String getRedirectNo() {
 		return redirectNo;
 	}
 
-
-
 	public void setRedirectNo(String redirectNo) {
 		this.redirectNo = redirectNo;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
 
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 
 	@ManyToOne
 	@ForeignKey(name = "T_subjectId")

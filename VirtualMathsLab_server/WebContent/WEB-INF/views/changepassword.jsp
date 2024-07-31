@@ -357,7 +357,7 @@ h2 {
 					<!-- 					</div> -->
 					<br />
 					<!-- 					<div class="col-md-6 col-xs-12 text-align-right"> -->
-					By College of Engineering Pune 2020
+					By COEP Technological University
 					<!-- 					</div> -->
 				</div>
 			</div>

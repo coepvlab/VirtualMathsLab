@@ -20,6 +20,8 @@
 		<intercept-url pattern="/force/logout" access="permitAll"></intercept-url>
 		<intercept-url pattern="/test" access="isAuthenticated()" />
 		<intercept-url pattern="/test" access="hasAnyRole('STUDENT')" />
+		<intercept-url pattern="/othertest" access="isAuthenticated()" />
+		<intercept-url pattern="/othertest" access="hasAnyRole('CONTRIBUTOR','MODERATOR')" />
 		<!-- <form-login login-page="/login" authentication-success-handler-ref="customAuthenticationHandler" -->
 		<!-- authentication-failure-url="/loginfailed" /> -->
 

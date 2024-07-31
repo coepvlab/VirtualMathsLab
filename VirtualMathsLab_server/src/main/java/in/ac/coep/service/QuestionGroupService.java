@@ -76,6 +76,10 @@ public interface QuestionGroupService {
 	public JSONObject changeTimeForGivenVariationNo(String status, long[] topicID, long[] variationNum,
 			int[] difficultyLevel, int[] time)   throws Exception;
 
+	public JSONObject deleteArchiveQuestions() throws Exception;
+
+	public JSONObject fetchQuestionsGroupsForFilterFromMapping(String status, String topicNo)throws Exception;
+
 	
 	
 	

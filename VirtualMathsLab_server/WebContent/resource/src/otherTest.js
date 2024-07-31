@@ -1,10 +1,11 @@
 (function(OT, OTM, AM, MJ, AP, HM) {
 	
-	OT.baseURL = "http://localhost:8080/VirtualMathsLab/";
+//	OT.baseURL = "http://localhost:8080/VirtualMathsLab/";
 //	OT.baseURL = "https://portal.coepvlab.ac.in/VirtualMathsLab/"
 //	OT.baseURL = "http://192.168.1.35:8080/VirtualMathsLab/";
 //	OT.baseURL = "http://ec2-13-233-206-54.ap-south-1.compute.amazonaws.com:8080/VirtualMathsLab/";
 	
+	OT.baseURL = AP.baseURL;
 	
 	OT.subTestFlag = false;
 	OT.testInstanceVOArr = [];

@@ -517,11 +517,11 @@ font-weight:bold;
 			<div class="row ">
 				<div class="col-md-12 ">
 <!-- 					<div class="col-md-6 col-xs-12 text-align-left"> -->
-						Virtual Maths Lab 2020
+<!-- 						Virtual Maths Lab 2020 -->
 <!-- 					</div> -->
 <br/>
 <!-- 					<div class="col-md-6 col-xs-12 text-align-right"> -->
-						By College of Engineering Pune 2020
+						By COEP Technological University
 <!-- 					</div> -->
 				</div>
 			</div>

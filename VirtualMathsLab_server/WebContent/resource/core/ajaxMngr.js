@@ -2355,6 +2355,73 @@ AH.getCities = function(url, methodType, stateid){
 		});
 	};
 	
+	AH.demoCall = function(url, methodType) {
+		$.ajax({
+			type : methodType,
+			url : url,
+			dataType : 'json',
+			contentType : 'application/json',
+
+			success : function(data) {
+				if (data == null) {
+					showToast.show(data.msg,false);
+				} else {
+//					UP.renderAllStudentIdCardDetails(data);
+				}
+			},
+			error : function() {
+				alert("error");
+			}
+		});
+	}; 
+	
+	AH.deleteArchiveQuestionsFromDB = function(url, methodType) { 
+		$.ajax({
+			type : methodType,
+			url : url,
+			dataType : 'json',
+			contentType : 'application/json',
+
+			success : function(data) {
+				
+				if (data == null) {
+					showToast.show(data.msg, false);
+				} else {
+					showToast.show(data.msg, true);
+					$("#Loading").css("display", "none");
+//					location.reload();
+				}
+			},
+			error : function() {
+				alert("error");
+			}
+		});
+	};
+	
+	AH.updateTopicStatusByTID = function(url, methodType, tid, flag){
+		 
+		$.ajax({
+			type : methodType,
+			url : url,
+			data : "tid=" + tid + "&flag=" + flag,
+			dataType : 'json',
+			contentType : 'application/json',
+
+			success : function(data) {
+				
+				if (data == null) {
+					showToast.show(data.msg, false);
+				} else {
+					showToast.show(data.msg, true);
+					$("#Loading").css("display", "none");
+//					location.reload();
+				}
+			},
+			error : function() {
+				alert("error");
+			}
+		});
+	}
 	
 	 
 })(com.coep.test.ajaxHandler, com.coep.test.addProblem,

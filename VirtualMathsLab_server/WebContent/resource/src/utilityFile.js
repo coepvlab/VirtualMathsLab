@@ -260,14 +260,103 @@
 		console.log("moderator account");
 	}
 	
+	UF.demoCall = function(){
+//		console.log("Hey");
+
+		var uploadOptHtm = "<div id='loader'></div>";
+		
+		
+		
+		uploadOptHtm += '<div class="row">'
+					+ '<div class="col-xl-12 col-md-12 col-sm-12 id="uploadJavaFile>'
+						uploadOptHtm += '<h1>Upload JAVA File</h1>'
+							
+		uploadOptHtm += '<section class="section-preview " style="padding: 0 10px">'
+			+ '<div class="form-group row">'
+			+ '<input type="file" class="form-control col-xl-10 col-md-10 col-sm-12 " name="uploadJavaFile" id="uploadJavaFile" accept=".xls,.xlsx" title="Upload File">'
+			
+						uploadOptHtm += '<button title="UPLOAD FILE" id="uploadJavaFileBtn" class="btn btn-dark col-xl-2 col-md-2 col-sm-12 justify-content-center">UPLOAD FILE</button>'
+							
+		uploadOptHtm += '</div></section></div>'
+			
+			
+			+ '<div id="file_error" class="red-color"></div>'
+					+ '</div>'
+			
+			 + '<button title="UPLOAD FILE" id="demoBtn" class="btn btn-dark col-xl-2 col-md-2 col-sm-12 justify-content-center">Demo</button>'
+			 
+			$("#main-div").html(uploadOptHtm);
+
+			
+			$("#demoBtn").on("click", function(){
+				AH.demoCall(AP.baseURL+"utility/demoCall", "GET");
+			})
+	}
 	
+	UF.deleteArchiveQuestions = function(){
+		AH.deleteArchiveQuestionsFromDB(AP.baseURL+"questionGroups/archived/delete", "DELETE");
+	}
 	
+	UF.changeTopicStatusFlag = function(){
+		$.ajax({
+				type : "GET",
+				url : com.coep.test.addProblem.baseURL
+						+ "topic/api/get/home/topics",
+				dataType : 'json',
+				contentType : 'application/json',
+				success : function(data) {
+					UF.renderAllVerticals(data);
+				},
+				error : function() {
+				}
+
+			});
+	}
 	
-	
-	
-	
-	
-	
+	UF.renderAllVerticals = function(tpList){
+		var	html1 = '<div class="form-group step1 col-sm-12 col-md-12 col-lg-12 col-xl-12" >'
+					+ '<label class="col-xl-12 col-md-12 col-sm-12" for="selectTopic">Select Vertical <span class="marathi-text" >(श्रेणी निवडा)</span><i class="fa fa-asterisk " aria-hidden="true"></i></label>'
+					+ ' <select class=" form-control col-xl-12 col-md-12 col-sm-12 selectpicker" data-live-search="true"  id="selTopicForFilter11"   >'
+					html1 += '' + '  <option value="" id ="0">Select topic</option>'
+					for (var i = 0; i <tpList.topicData.length; i++) {
+						html1 += '' + '  <option value="' + tpList.topicData[i].TID
+							+ '" id ="' + tpList.topicData[i].TID + '" >'
+							+ tpList.topicData[i].TNO +" - "+ tpList.topicData[i].TN +"&nbsp;("+ tpList.topicData[i].TN1 + ') </option>'
+					}
+
+					html1 += ' </select>'
+							+ '<div id="error" class="invalid-feedback selectTopic">Please select vertical.</div>'
+							+ '</div>'	
+							+'<div class="form-group step1" id="variationDiv">'	
+							+ '<center><button id= "activateTopicBtn" type="submit" class="btn btn-success btnFont">Activate Vertical</button>'
+							+ '&emsp;<button id= "deactivateTopicBtn" type="submit" class="btn btn-danger btnFont">Deactivate Vertical</button></center>'
+							+ '</div>'
+							
+					$("#main-div").html(html1);
+					$('select').selectpicker();
+					
+					
+					$("#activateTopicBtn").on("click", function(){
+						 var tid = $("#selTopicForFilter11").find("option:selected").val();
+						if(tid != ""){
+							$("#error").css("display", "none");
+							AH.updateTopicStatusByTID(AP.baseURL + "utility/topic/status/change", "GET", tid, true);
+						}else { 
+							$("#error").css("display", "block");
+						}
+					})
+					
+					$("#deactivateTopicBtn").on("click", function(){
+						 var tid = $("#selTopicForFilter11").find("option:selected").val();
+						if(tid != ""){
+							$("#error").css("display", "none");
+							AH.updateTopicStatusByTID(AP.baseURL + "utility/topic/status/change", "GET", tid, false);
+						}else { 
+							$("#error").css("display", "block");
+						}
+					})
+					
+	}
 	
 	
 	

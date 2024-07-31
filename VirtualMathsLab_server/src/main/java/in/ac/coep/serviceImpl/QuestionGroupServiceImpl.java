@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -20,8 +21,10 @@ import in.ac.coep.constants.Constants;
 import in.ac.coep.dao.QuesGroupMediaLinksDao;
 import in.ac.coep.dao.QuestionDao;
 import in.ac.coep.dao.QuestionGroupDao;
+import in.ac.coep.dao.TestInstanceCompletionDao;
 import in.ac.coep.dao.TopicDao;
 import in.ac.coep.dao.UserDao;
+import in.ac.coep.dao.UtilityServiceDao;
 import in.ac.coep.entity.Answers;
 import in.ac.coep.entity.MediaType;
 import in.ac.coep.entity.QGComplexityLevel;
@@ -29,6 +32,7 @@ import in.ac.coep.entity.QuesGroupMediaLinks;
 import in.ac.coep.entity.Question;
 import in.ac.coep.entity.QuestionGroup;
 import in.ac.coep.entity.Subject;
+import in.ac.coep.entity.TestInstanceCompletion;
 import in.ac.coep.entity.Topic;
 import in.ac.coep.entity.User;
 import in.ac.coep.service.QuestionGroupService;
@@ -65,6 +69,9 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 	
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private TestInstanceCompletionDao completionDao;
 
 	
 	@Autowired
@@ -799,6 +806,7 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 				data.put("msg", Constants.quesGrpMsgActive);
 			} else {
 				questionGroup.setArchive(true);
+				questionGroup.setApproved(false);
 				questionGroupDao.modifyQuestionGroup(questionGroup);
 				data.put("done", true);
 				data.put("msg", Constants.quesGrpMsgArchive);
@@ -1170,6 +1178,7 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 					data.put("msg", Constants.quesGrpMsgActive);
 				} else {
 					questionGroup.setArchive(true);
+					questionGroup.setApproved(false);
 					questionGroupDao.modifyQuestionGroup(questionGroup);
 					data.put("done", true);
 					data.put("msg", Constants.quesGrpMsgArchive);
@@ -1179,12 +1188,35 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 				data.put("msg", "Unable to perform this operation now, please try later");
 			}
 		}
-
-		
-
 		return data;
 	}
 
+	@Override
+	public JSONObject deleteArchiveQuestions() throws Exception {
+		// TODO Auto-generated method stub
+		
+		JSONObject data = new JSONObject();
+		
+		System.out.println("DeleteArchiveQuestions Start : " + new Date(System.currentTimeMillis()));
+		List<QuestionGroup> qgList = questionGroupDao.getArchiveQuestions();
+		
+		if(!qgList.isEmpty()) {
+		
+			System.out.println(qgList.size());
+			for(QuestionGroup qg : qgList) {
+				data = deleteQuestionsGroupById(qg.getQuestionGroupId());
+			}
+			
+			data.put("done", true);
+			data.put("msg", qgList.size() + " Archive questions deleted successfully from database");
+		}else {
+			data.put("done", true);
+			data.put("msg", "No more archive questions");
+		}
+		System.out.println("DeleteArchiveQuestions End : " + new Date(System.currentTimeMillis()));
+		return data;
+	}
+	
 	@Override
 	public JSONObject deleteQuestionsGroupById(long questionGroupId) throws Exception {
 		// TODO Auto-generated method stub
@@ -1195,14 +1227,25 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 			
 			if (questionGroupId != 0) {
 				
-				QuestionGroup questionGroup = questionGroupDao.getQuestionGroupById(questionGroupId);
+				TestInstanceCompletion tic = questionGroupDao.getTestInstanceCompetionRecordByQuestionGroupId(questionGroupId);
 				
+				if(tic != null) {
+					completionDao.deleteTestInstanceCompletionRecord(tic);
+				}
+				
+				QuestionGroup questionGroup = questionGroupDao.getQuestionGroupById(questionGroupId);
+				QuesGroupMediaLinks qgml = quesGroupMediaLinksDao.getQGMedilLinkByMediaId(questionGroup.getQuesGroupMediaLinks().getQuesGroupMediaLinkId());
 				
 				if (questionGroup.getQuestions() != null) {
 					questionService.deleteAllQuestionByQuestionGroupId(questionGroup.getQuestionGroupId());
 				}
 				Thread.sleep(100);
 				questionGroupDao.deleteQuestionByQuestionGroup(questionGroup);
+				
+				Thread.sleep(100);
+				if(qgml != null) {
+					quesGroupMediaLinksDao.deleteQuesGroupMediaLink(qgml);
+				}
 				
 				data.put("done", true);
 				data.put("msg", "Question Group deleted sucessfully..");
@@ -2002,6 +2045,71 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 		return data;
 	}
 
+	@Override
+	public JSONObject fetchQuestionsGroupsForFilterFromMapping(String status, String topicNo) throws Exception {
+		// TODO Auto-generated method stub
+		
+		
+		JSONObject data = new JSONObject();
+			   
+//			   JSONArray topicArray = new JSONArray();
+
+//				List<QuestionGroup> topics = questionGroupDao.getAllQuestionGroupsFromQuesGroupMappingToApproveByStatus(status, topicNo);
+//				
+//				Set<Long> set =  new HashSet<>(); 
+//				if (!topics.isEmpty()) {
+//					
+//					JSONArray topicArr = new JSONArray();
+//				
+//					for (QuestionGroup questionGroup : topics) {
+//						
+//						Set<Topic> topic = questionGroup.getTopicSet();
+//						
+//						for (Topic topicss : topic) {
+//							JSONObject topicData = new JSONObject();
+//							
+//							topicData.put("TNO", topicss.getTopicNo());
+//							topicData.put("TID", topicss.getTopicId());
+//							topicData.put("TN", topicss.getTopicName());
+//							topicData.put("TN1", topicss.getTopicName1());
+//							topicArr.put(topicData);
+//							
+//							if (set.add(topicss.getTopicId())) {
+//								topicArray.put(topicData);
+//							}
+//							set.add(topicss.getTopicId());
+//						}
+//					}
+//					
+//					JSONArray sortedTopicArray = getSortedJsonArray(topicArray);
+//					data.put("topicData", sortedTopicArray);
+//				}
+			   
+			   JSONArray topicArr = new JSONArray();
+			   
+			   List<Topic> topicList = topicDao.getAllTopicByLikeFilterTopicNo(topicNo);
+			   
+			   for (Topic topicss : topicList) {
+					JSONObject topicData = new JSONObject();
+					
+					topicData.put("TNO", topicss.getTopicNo());
+					topicData.put("TID", topicss.getTopicId());
+					topicData.put("TN", topicss.getTopicName());
+					topicData.put("TN1", topicss.getTopicName1());
+					topicArr.put(topicData);
+					
+//					if (set.add(topicss.getTopicId())) {
+//						topicArray.put(topicData);
+//					}
+//					set.add(topicss.getTopicId());
+				}
+			   
+			    JSONArray sortedTopicArray = getSortedJsonArray(topicArr);
+				data.put("topicData", sortedTopicArray);
+		   
+		return data;
+	}
+	
 	@Override
 	public JSONObject changeTimeForGivenVariationNo(String status, long[] topicID, long[] variationNum,
 			int[] difficultyLevel, int[] time) throws Exception {

@@ -47,8 +47,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 		Md5Encryption encryption = new Md5Encryption();
 
-//			URL url = new URL("https://portal.coepvlab.ac.in/VirtualMathsLab/");
-//			URL url = new URL("http://localhost:8080/VirtualMathsLab/");
+
 
 		if(user.isEmailValidated() == false) {
 			throw new BadCredentialsException(

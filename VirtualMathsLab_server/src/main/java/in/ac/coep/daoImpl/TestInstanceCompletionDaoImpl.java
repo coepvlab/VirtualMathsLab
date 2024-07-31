@@ -355,4 +355,37 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 
 	}
 
+	@Override
+	public void deleteTestInstanceCompletionRecord(TestInstanceCompletion tic) throws Exception {
+		// TODO Auto-generated method stub
+
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+
+			session.flush();
+			session.clear();
+
+			session.delete(tic);
+
+			LOGGER.debug("TestInstanceCompletion deleted successful");
+			session.flush();
+			session.clear();
+			tx.commit();
+			session.close();
+
+		} catch (HibernateException e) {
+			LOGGER.error("TestInstanceCompletion deletion failed", e);
+			if (tx != null)
+				tx.rollback();
+			if (session != null && session.isOpen())
+				session.close();
+
+			throw new Exception(e);
+		}
+
+	}
+
 }

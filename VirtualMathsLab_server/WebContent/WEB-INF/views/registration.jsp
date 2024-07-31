@@ -1,21 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1" --%>
+<%-- 	pageEncoding="ISO-8859-1"%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="description" content="">
 <meta name="author" content="">
-
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Registration</title>
 <link rel="icon" href="resource/images/VirtualMathsLabLogo.png" />
-
-
 <!-- Bootstrap core CSS -->
 <link href="resource/css/toastr.css" rel="stylesheet"/>
 <link rel="stylesheet" href="resource/css/bootstrap4.5.2.min.css">
@@ -84,17 +79,70 @@ body{
 <!--           <li class="nav-item"> -->
 <!--             <a class="nav-link" data-toggle="pill" href="#parent" role="tab" aria-controls="pills-ostrich" aria-selected="false">Parent Registration</a> -->
 <!--           </li> -->
-          <li class="nav-item">
-            <a class="nav-link " data-toggle="pill" href="#Contributor" role="tab" aria-controls="pills-tropicbird" aria-selected="false">Contributor Registration</a>
-          </li>
+<!--           <li class="nav-item"> -->
+<!--             <a class="nav-link " data-toggle="pill" href="#Contributor" role="tab" aria-controls="pills-tropicbird" aria-selected="false">Contributor Registration</a> -->
+<!--           </li> -->
         </ul>
         <div class="tab-content mt-3">
-        <div class="tab-pane fade show active" id="reg" role="tabpanel" aria-labelledby="flamingo-tab">
+        <div class="tab-pane fade show active" id="reg" role="tabpanel" aria-labelledby="flamingo-tab" style="    background-color: #fff8dc57;">
        
-        <div class="col-sm-12 offset-md-4 col-md-4 offset-lg-4 col-lg-4  offset-xl-4 col-xl-4"><img class="img-responsive" src="resource/images/VirtualMathsLabLogo.png" style="width:80%; margin:0 10%;"><h2></h2></div>
-      <div class="regLinkDiv col-sm-12 offset-md-4 col-md-4 offset-lg-4 col-lg-4  offset-xl-4 col-xl-4"><h3 >Already Registered? </h3>
-						<h2 ><a href="login" title="SIGNIN" class="regSignIn">Sign In</a></h2>
-					</div>
+        <div class="col-sm-12 offset-md-4 col-md-4 offset-lg-4 col-lg-4  offset-xl-4 col-xl-4">
+        <img class="img-responsive" src="resource/images/VirtualMathsLabLogo.png" style="width:80%; margin:0 10%;">
+        </div>
+        <br>
+       <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-5 ">
+        
+<!-- 		       <div class="container"> -->
+		 
+		  <div class="card">
+		    <div class="card-header" style="background-color: #343148ff; padding: 0px;"> <h3>REGISTRATION AND LOGIN </h3></div>
+		    <div class="card-body" style="background-color: #f5e4d7;font-size: 20px; ">
+		    <ul>
+		    <li><b>One time registration till you complete the entire course content.</b></li>
+		 
+				<li><b>Registration as student, teacher, school or parents.</b></li>
+				<li><b>For teachers registration as teacher, contributor, moderator, expert.</b></li>
+				<li><b>Parents can also be a contributor.</b></li>
+				</ul>
+				</div> 
+
+		  </div>
+
+		 </div>
+		  <div class="col-sm-5 ">
+        
+<!-- 		       <div class="container"> -->
+		 
+		  <div class="card">
+		    <div class="card-header" style="background-color: #343148ff; padding: 0px;"> <h3>
+नोंदणी आणि लॉगिन
+		    </h3></div>
+		    <div class="card-body" style="background-color: #f5e4d7;font-size: 20px; ">
+		    <ul>
+		   
+		    <li>तुम्ही संपूर्ण अभ्यासक्रम पूर्ण करेपर्यंत एकदाच नोंदणी करा</
+		    </li>
+				<li>विद्यार्थी, शिक्षक, शाळा किंवा पालक म्हणून नोंदणी करू शकता.
+				</li>
+				<li>शिक्षक, योगदानकर्ता, नियामक, तज्ञ म्हणून शिक्षक नोंदणीसाठी करू शकतो.
+				</li>
+				<li>पालक देखील योगदान देऊ शकतात.
+				</li>
+				</ul>
+				</div> 
+
+		  </div>
+
+		 </div>
+		  <div class="col-sm-1">
+        </div>
+       </div>
+      <div class="regLinkDiv col-sm-12 offset-md-4 col-md-4 offset-lg-4 col-lg-4  offset-xl-4 col-xl-4" style="padding: 0px;"><h3 >Already Registered? </h3>
+						<h2 ><a href="login" title="SIGNIN" class="regSignIn">Sign In</a>&emsp;<a href="welcome" title="HOME" class="regSignIn">Home</a></h2>
+	 </div>
         </div>
         <div class="tab-pane fade show " id="student" role="tabpanel" aria-labelledby="flamingo-tab">
          

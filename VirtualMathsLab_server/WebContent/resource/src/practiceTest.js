@@ -1,9 +1,11 @@
 (function(PT, TM, AM, MJ, AP, HM) {
 	
-	PT.baseURL = "http://localhost:8080/VirtualMathsLab/";
+//	PT.baseURL = "http://localhost:8080/VirtualMathsLab/";
 //	PT.baseURL = "https://portal.coepvlab.ac.in/VirtualMathsLab/"
 //	PT.baseURL = "http://192.168.1.35:8080/VirtualMathsLab/";
 //	PT.baseURL = "http://ec2-13-233-206-54.ap-south-1.compute.amazonaws.com:8080/VirtualMathsLab/";
+	
+	PT.baseURL = AP.baseURL;
 	
 	PT.subTestFlag = false;
 	PT.testInstanceVOArr = [];
@@ -222,7 +224,7 @@
 	
 	
 	PT.startpracticeTest = function(testData, firstName) {
-		console.log(testData);
+		console.log("practiceTestHeading" + testData);
 		
 		PT.TESTDATA = testData;
 		PT.TISID = testData.TISID;
@@ -881,19 +883,16 @@
 			$("#videoQuestionRef").hide();
 			
 			var imgHtml = '<p class="reffText">With reference to below Images answer the following question</p>'
-			+'<div id="imageSrc" class="">'// 
-			+'<img src="'+PT.baseURL +'media/getImage?mediaID='+testData.data["TOPIC" + topicId][j].MED+'&questionGroupId='+testData.data["TOPIC" + topicId][j].QGID+'" id="imgQues" max-width="75%">' // class="ApproveQueImg" question images
-			+'</div>'
+//			+'<div id="imageSrc" class="">'// 
+			+'<img src="'+PT.baseURL +'media/getImage?mediaID='+testData.data["TOPIC" + topicId][j].MED+'&questionGroupId='+testData.data["TOPIC" + topicId][j].QGID+'" id="imgQues"  class="img-responsive" style="height: 100%;width: 100%;">' // class="ApproveQueImg" question images
+//			+'</div>'
 			
 			$("#imageQuestionRef").html(imgHtml);
 			$("#imageQuestionRef").show();
 //			$("#imgQues").attr("src", );
 			
 			$(".TextQue").removeClass("col-sm-12 col-md-12 col-lg-12 col-xl-12").addClass("col-sm-12 col-md-6 col-lg-7 col-xl-7");
-			
 		}
-		
-		
 	}
 	
 	
@@ -1160,7 +1159,7 @@
 		$("#pra-test-footer").hide();
 		$("#pra-test-main-div").html('');
 		
-		var candidateSummaryHtm = '<h1 style="font-size:22px;">CANDIDATE SUMMARY <span class="marathi-text" >( विद्यार्थीचा सारांश )</span></h1><div class="row"><div id="message" class="col-sm-12 col-md-12 col-lg-12 col-xl-12 " style="margin-top: 9px; text-align: center;">'
+		var candidateSummaryHtm = '<h1 style="font-size:22px;">CANDIDATE SUMMARY <span class="marathi-text" >( विद्यार्थीचा सारांश )</span></span><span style="float:right; background: #e0ebf5; padding: 3px; border-radius: 5px; color: #000408;"><a href="home"><i class="fa fa-home" aria-hidden="true"></i> HOME</a></span></h1><div class="row"><div id="message" class="col-sm-12 col-md-12 col-lg-12 col-xl-12 " style="margin-top: 9px; text-align: center;">'
 				+ ' <div id="onSubmit" class="alert alert-success cust-margin" role="alert" style=" "><B>&nbsp;&nbsp;Congratulation!! you have completed the test.<br/><span class="marathi-text" >( अभिनंदन!! तुम्ही चाचणी परीक्षा पूर्ण केली आहे. )</span></B></div>'
 //				+ ' <div id="timeOut" class="alert alert-warning cust-margin" role="alert" hidden><span class="glyphicon glyphicon-remove-circle  alert-warning "></span><B>&nbsp;&nbsp;Your session has timed out and your answers has been saved successfully..</B></div>'
 				+ ' </div>' 
@@ -1171,7 +1170,7 @@
 				+'<div class="row">'
 //				+'<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" id="topicDetails" style=""><span >TOPIC</span><b id="talkbubble"></b><span >'+topicNm[0]+'</span><b id="talkbubble"></b><span > '+topicNm[1]+'</span>'
 				+'<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 hideFormobile" id="topicDetails" style="" ><span >TOPIC</span><b id="talkbubble"></b><span >'+topicNm[0]+'</span><b id="talkbubble"></b><span > '+topicNm[1]+'</span></div>'
-				+'<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 hideFormBigscreen" id="topicDetails" style="text-align: left;" ><span >TOPIC <i class="fa fa-angle-double-right TopicArrow" aria-hidden="true"></i>'+topicNm[0]+' <i class="fa fa-angle-double-right TopicArrow" aria-hidden="true"></i> '+topicNm[1]+'</span></div>'
+				+'<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 hideFormBigscreen" id="topicDetails" style="text-align: left;" ><span >TOPIC <i class="fa fa-angle-double-right TopicArrow" aria-hidden="true"></i>'+topicNm[0]+' <i class="fa fa-angle-double-right TopicArrow" aria-hidden="true"></i> '+topicNm[1]+'</div>'
 				
 			candidateSummaryHtm +='</div>'
 //				+'</div>'

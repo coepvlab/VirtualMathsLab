@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,6 +41,20 @@ public class UtilityController {
 		}
 	}
 	
+	@RequestMapping(value = "/demoCall", method = RequestMethod.GET)
+	public @ResponseBody String getCall() {
+		
+		JSONObject data = new JSONObject();
+		try {
+			data = utilityService.getDataForDemoCall();
+			return data.toString();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	@RequestMapping(value = "/uploadQuesExcel", method = RequestMethod.POST)
     public @ResponseBody String uploadFileHandler(Authentication authentication, @RequestParam MultipartFile file, @RequestParam("flag") int flag) {
 	
@@ -49,6 +64,20 @@ public class UtilityController {
 			data = utilityService.uploadQuesByExcel(file, user, flag);
 			return data.toString();
 		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@RequestMapping(value = "/topic/status/change", method = RequestMethod.GET)
+	public @ResponseBody String updateTopicStatus(@RequestParam long tid, @RequestParam boolean flag) {
+		
+		JSONObject data = new JSONObject();
+		try {
+			data = utilityService.updateTopicStatusByTID(tid, flag);
+			return data.toString();
+			
+		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -68,5 +97,6 @@ public class UtilityController {
 //			return null;
 //		}
 //	}
+	
 	
 }

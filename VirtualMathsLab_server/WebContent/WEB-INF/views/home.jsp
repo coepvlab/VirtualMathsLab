@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VirtualMathsLab</title>
+<title>VirtualMathLab</title>
 <link rel="icon" href="resource/images/VirtualMathsLabLogo.png" />
 <link rel="stylesheet" href="resource/css/new-home.css" type="text/css">
 <link rel="stylesheet" href="resource/css/homePage.css" type="text/css">
@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="resource/css/googleFont.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="resource/css/dataTables.bootstrap4.min.css" type="text/css">
+<link rel="stylesheet" href="resource/css/dataTables.bootstrap4.min.css" type="text/css">
 <link rel="stylesheet" href="resource/css/buttons.bootstrap4.min.css" type="text/css">
 <!-- .........new css........ -->
 <link href="resource/css/toastr.css" rel="stylesheet"/>
@@ -52,6 +52,11 @@
 	padding: 0px;
 }
 
+.btnFont {
+	    font-weight: 700;
+}
+
+
 .mb-0>a {
 	display: block;
 	position: relative;
@@ -80,6 +85,12 @@
 		font-weight: 500;
 		font-family: monospace;
 	}
+		
+	.underdev{
+		color: #bb2f03;
+	    font-weight: bold;
+	}
+	
 	#main-div {
 		margin-top: 1px;
 	}
@@ -147,9 +158,9 @@
 	          <span class="sr-only">Toggle Menu</span>
 	        </button>
 			</div>
-				<div class="p-4 pt-5" >
+				<div class="p-2 pt-5" >
 		  		<div id="userdataDiv" class="">
-    <div class=""><img src="resource/images/profilePicImg.jpg" alt="..." style="width:80px; height:80px; margin-bottom: 5px;" class=" rounded-circle img-thumbnail shadow-sm" id="profPic">
+    <div class=""><img src="resource/images/profilePicImg.jpg" style="width:80px; height:80px; margin-bottom: 5px;" class=" rounded-circle img-thumbnail shadow-sm" id="profPic">
     
     <div class="image-upload" >
     <label for="uploadImage">
@@ -237,7 +248,7 @@
                 <s:authorize access="hasAnyRole('ADMIN','TEACHER','CONTRIBUTOR','MODERATOR')">
  		    <li > 
 		      <a href="javascript:com.coep.test.questionBank.getQuestionBankOfUser('Active')" class="CloseNav">
-		                
+		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
 		                Active Questions
 		            </a>
  		    </li>
@@ -246,7 +257,7 @@
 		    <s:authorize access="hasAnyRole('ADMIN','TEACHER','CONTRIBUTOR','MODERATOR')">
 		    <li >
 		      <a href="javascript:com.coep.test.questionBank.getQuestionBankOfUser('Archived')" class="CloseNav">
-		                
+		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
 		                Archived Questions
 		            </a>
 		    </li>
@@ -265,7 +276,7 @@
                 <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
  		   	 <li > 
 		      <a href="javascript:com.coep.test.questionBank.getAllQuestionsFromQuesBank('Active')" class="CloseNav">
-		                
+		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i> 
 		                Active Questions
 		            </a>
  		   	 </li> 
@@ -273,6 +284,7 @@
                 <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
 			   	 <li >
 			      <a href="javascript:com.coep.test.questionBank.getAllQuestionsFromQuesBank('Archived')" class="CloseNav">
+			                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
 			                Archived Questions
 			            </a>
 			   	 </li>
@@ -289,6 +301,33 @@
 			            </a>
 			    </li>
 			    </s:authorize>
+	
+		<s:authorize access="hasAnyRole('ADMIN')">
+			    <li >
+			      <a href="javascript:com.coep.test.utilityFile.changeTopicStatusFlag()" class="CloseNav">
+			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
+			                Activate Topic
+			            </a>
+			    </li>
+			    </s:authorize>	    
+			    
+<%-- 			     <s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!-- 			    <li > -->
+<!-- 			      <a href="javascript:com.coep.test.utilityFile.demoCall()" class="CloseNav"> -->
+<!-- 			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!-- 			                Demo -->
+<!-- 			            </a> -->
+<!-- 			    </li> -->
+<%-- 			    </s:authorize> --%>
+
+		 <s:authorize access="hasAnyRole('ADMIN')">
+			    <li >
+			      <a href="javascript:com.coep.test.utilityFile.deleteArchiveQuestions()" class="CloseNav">
+			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
+			                Delete Archives
+			            </a>
+			    </li>
+	    </s:authorize>
 			    
 			     <s:authorize access="hasAnyRole('ADMIN')">
 			    <li >
@@ -387,22 +426,23 @@
     
     <li id="Approvemenu">
 	            <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
-	            <a href="#ApproveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i> Question Approval</a>
+	            <a href="#ApproveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i>Moderate Question</a>
 	            <ul class="collapse list-unstyled" id="ApproveSubmenu">
                 <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
  		    <li > 
-		      <a href="javascript:com.coep.test.questionBank.getQuestionsToApprove('Non-Approved')" class="CloseNav">
-		                
-		                Non Approved Questions
+		      <a href="javascript:com.coep.test.questionBank.getTopicForQuestionsToApprove('Non-Approved')" class="CloseNav">
+		                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+		                Non Moderated Questions
 		            </a>
  		    </li>
 		    </s:authorize>
 		    
 		    <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
 		    <li >
-		      <a href="javascript:com.coep.test.questionBank.getQuestionsToApprove('Approved')" class="CloseNav">
-		                
-		                 Approved Questions
+<!-- 		      <a href="javascript:com.coep.test.questionBank.getQuestionsToApprove('Approved')" class="CloseNav"> -->
+		           <a href="javascript:com.coep.test.questionBank.getTopicForQuestionsToApprove('Approved')" class="CloseNav">     
+		                  <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+		                 Moderated Questions
 		            </a>
 		    </li>
 		    </s:authorize>
@@ -420,8 +460,8 @@
                 <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
  		    <li > 
 		      <a href="javascript:com.coep.test.questionBankModification.getQuestionsToApproveForModification('Non-Approved')" class="CloseNav">
-		                
-		                Non Approved Questions
+		                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+		                Non Moderated Questions
 		            </a>
  		    </li>
 		    </s:authorize>
@@ -429,8 +469,8 @@
 		    <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
 		    <li >
 		      <a href="javascript:com.coep.test.questionBankModification.getQuestionsToApproveForModification('Approved')" class="CloseNav">
-		                
-		                 Approved Questions
+		                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+		                 Moderated Questions
 		            </a>
 		    </li>
 		    </s:authorize>
@@ -557,8 +597,6 @@ $("#main-div").ready(function(){
     var roles = '<%=request.getAttribute("roles")%>';
 <%-- 		var itoStud = '<%=request.getAttribute("itoStud")%>'; --%>
 		
-// 	alert(roles.roles);
-		
 		Rdata = JSON.parse(roles);
 		
 //     console.log(com.coep.test.questionBank.topicDataForApprovedQues);
@@ -595,61 +633,58 @@ $("#main-div").ready(function(){
 </script>
 
 
-	<script type="text/javascript" type="text/javascript">
+<script type="text/javascript" type="text/javascript">
 $('#uploadImage').on("change" ,function() {
 	(document.getElementById("uploadImage").files.length > 0) ? isFileLinked = 1 : isFileLinked = 0;
 	checkLength(this, 'filetype');
 });
 
-
-
 var mediaId = "";
 checkLength = function(inputValue, param2) {
-inputVal = $(inputValue).val();
-inputVal = $.trim(inputVal);
-if (param2 == 'filetype') {
-if (isFileLinked == 1) {
-
-	var file = $('#uploadImage');
-
-	var filename = $.trim(file.val());
-
-	var formData = new FormData();
-	formData.append('file', $('input[type=file]')[0].files[0]);
-
-	if (filename != "" || filename.length != 0) {
-		if (filename != null || filename != undefined)
-
-			mediaId = MediaFileUplaod("media/profImage", "POST", formData);
+	inputVal = $(inputValue).val();
+	inputVal = $.trim(inputVal);
+	if (param2 == 'filetype') {
+		if (isFileLinked == 1) {
+		
+			var file = $('#uploadImage');
+		
+			var filename = $.trim(file.val());
+		
+			var formData = new FormData();
+			formData.append('file', $('input[type=file]')[0].files[0]);
+		
+			if (filename != "" || filename.length != 0) {
+				if (filename != null || filename != undefined)
+		
+					mediaId = MediaFileUplaod("media/profImage", "POST", formData);
+			}
+		}
 	}
-}
-}
 };
 
 MediaFileUplaod = function(url, methodType, formData) {
-$.ajax({
-url : url,
-type : methodType,
-data : formData,
-enctype : "multipart/form-data",
-processData : false,
-contentType : false,
-dataType : 'json',
-}).done(function(data) {
-
-if (data.done == false) {
-} else {
-	mediaId = data.URL;
-	$("#profPic").attr("src", "media/getProfImage?mediaID=" + data.URL);
+	$.ajax({
+	url : url,
+	type : methodType,
+	data : formData,
+	enctype : "multipart/form-data",
+	processData : false,
+	contentType : false,
+	dataType : 'json',
+	}).done(function(data) {
+	
+	if (data.done == false) {
+	} else {
+		mediaId = data.URL;
+		$("#profPic").attr("src", "media/getProfImage?mediaID=" + data.URL);
+		//UP.fetchUserProfile();
+	}
 	//UP.fetchUserProfile();
+	}).complete(function() {
+	});
+	
+	return mediaId;
 }
-//UP.fetchUserProfile();
-}).complete(function() {
-});
-
-return mediaId;
-}
-
 
 		<%-- var role = '<%=request.getAttribute("role")%>'; --%>
 		var url = '<%=request.getAttribute("URL")%>';
@@ -657,11 +692,6 @@ return mediaId;
 		var itoStud = '<%=request.getAttribute("itoStud")%>';
 		
 		var topicArray = '<%=request.getAttribute("TOPICARRAY")%>';
-		
-// 		console.log(topicArray);
-		
-// 		alert(topicArray);
-// 		alert(roles.roles);
 		
 		Rdata = JSON.parse(roles);
 		
@@ -672,7 +702,11 @@ return mediaId;
 		rolesHtm = '<b>ASSIGNED ROLES : </b> '
 			
 		for (var key in roleJson) {
-			rolesHtm += roleJson[key] +', '
+			if(key != Rdata.roles.length-1)
+				rolesHtm += roleJson[key] +', '
+			else{
+				rolesHtm += roleJson[key]
+			}
 		}
 		$(".assignedRoles").append(rolesHtm);
 		

@@ -71,6 +71,24 @@ public class TopicController {
 		}
 	}
 	
+	@RequestMapping(value = "/api/get/main/topics", method = RequestMethod.GET)
+	public @ResponseBody String getTopicsDetails1(Authentication authentication) {
+
+		LOGGER.info("get topics ....Start");
+		
+		User user = (User) authentication.getPrincipal();
+
+		JSONObject data = new JSONObject();
+		try {
+			
+			data = topicService.getLTopicsDetails1();
+			data.put("UID", user.getUserId());
+			return data.toString();
+		} catch (Exception e) {
+			LOGGER.error("get topics failed-", e);
+			return null;
+		}
+	}
 	
 	@RequestMapping(value = "/api/get/home/topics", method = RequestMethod.GET)
 	public @ResponseBody String getTopicsToHomePage(Authentication authentication) {

@@ -70,7 +70,7 @@ public class LoginController {
 				return "redirect:/home";
 			}
 		}else {
-			return "redirect:/login";
+			return "login";
 		}
 		return "login";
 	}

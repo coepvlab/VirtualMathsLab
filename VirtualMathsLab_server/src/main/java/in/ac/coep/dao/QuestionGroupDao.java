@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.JSONObject;
 
 import in.ac.coep.entity.QuestionGroup;
+import in.ac.coep.entity.TestInstanceCompletion;
 
 public interface QuestionGroupDao {
 	/**
@@ -101,6 +102,12 @@ public interface QuestionGroupDao {
 
 	public List<QuestionGroup> getAllApprovedQuestionGroupsByTopicIdAndVarNo(long topicId,
 			String varNo)  throws Exception;
+
+	public List<QuestionGroup> getArchiveQuestions() throws Exception;
+
+	public List<QuestionGroup> getAllQuestionGroupsFromQuesGroupMappingToApproveByStatus(String status, String topicNo)throws Exception;
+
+	public TestInstanceCompletion getTestInstanceCompetionRecordByQuestionGroupId(long questionGroupId)throws Exception;
 
 //	public List<QuestionGroup> getAllQuestionGroupsToApproveByStatusForFiler(String status)   throws Exception;
 

@@ -26,7 +26,7 @@
 	
 	HM.homePage = function(data, itoStud, topicArray) {
 		
-		console.log(data);
+//		console.log(data);
 		
 		 var tArray = [];
 		 tArray = topicArray.split(",");
@@ -40,7 +40,7 @@
 				dataType : 'json',
 				contentType : 'application/json',
 				success : function(data) {
-					console.log("data: "+data);
+//					console.log("data: "+data);
 					if (data.done == true) {
 						names +=  data.TN +"*"+data.TN1 +"*"+ data.TID +"!!";
 					}else{
@@ -70,31 +70,53 @@
 				
 			+'<hr class="mb-0">'
 			htm +='<div id="accordion" class="accordion md-accordion accordion-blocks">'// accordion div start
+//			console.log(data);
 				
 			for(var i = 0; i < data.topicData.length; i++){
-				htm +='  <div class="card">' // card div start
-				+'    <div class="card-header area" id="heading-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" >'
-				+'      <h5 class="mb-0">'
-				+'        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" aria-expanded="false" aria-controls="collapse-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" id="'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" onClick="getChild('+data.topicData[i].TID+',this.id,'+(i+1)+')">'
-				+'<i class="fa fa-book fas fa-2x  float-left book-color" aria-hidden="true"></i>'
-				+ '<span class=" topicName"> '+data.topicData[i].TN +' ('+ $.trim(data.topicData[i].TN1) +')</span>'
-				+'        </a>'
-				+'      </h5>'
-				+'    </div>'
-				+'    <div id="collapse-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" class="collapse"  data-parent="#accordion" aria-labelledby="heading-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" >' // collapse 1  start
-				+'      <div class="card-body" id="parentdiv-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" >' // card-body start
 				
-				+ (i+1) +" - "+ data.topicData[i].TN1
-				
-				+'  </div>' // card div end
-				+'    </div>'//collpase end
-				+'  </div>' // collapse 1 end
-				
+				if(data.topicData[i].status == true){
+					htm +='  <div class="card">' // card div start
+					+'    <div class="card-header area" id="heading-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" >'
+					+'      <h5 class="mb-0">'
+					+'        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" aria-expanded="false" aria-controls="collapse-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" id="'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" onClick="getChild('+data.topicData[i].TID+',this.id,'+(i+1)+')">'
+					+'<i class="fa fa-book fas fa-2x  float-left book-color" aria-hidden="true"></i>'
+					+ '<span class=" topicName"> '+data.topicData[i].TN +' ('+ $.trim(data.topicData[i].TN1) +')</span>'
+					+'        </a>'
+					+'      </h5>'
+					+'    </div>'
+					+'    <div id="collapse-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" class="collapse"  data-parent="#accordion" aria-labelledby="heading-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" >' // collapse 1  start
+					+'      <div class="card-body" id="parentdiv-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" >' // card-body start
+					+ (i+1) +" - "+ data.topicData[i].TN1
+					
+					+'  </div>' // card div end
+					+'    </div>'//collpase end
+					+'  </div>' // collapse 1 end
+				}else{
+					htm +='  <div class="card">' // card div start
+					+'    <div class="card-header area" id="heading-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" >'
+					+'      <h5 class="mb-0">'
+					+'        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" aria-expanded="false" aria-controls="collapse-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" id="'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" onClick="getChild('+data.topicData[i].TID+',this.id,'+(i+1)+')">'
+					+'<i class="fa fa-book fas fa-2x  float-left book-color" aria-hidden="true"></i>'
+					+ '<span class=" topicName"> '+data.topicData[i].TN +' ('+ $.trim(data.topicData[i].TN1) +')</span>'
+					+'        </a>'
+					+'      </h5>'
+					+'    </div>'
+					+'    <div id="collapse-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" class="collapse"  data-parent="#accordion" aria-labelledby="heading-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" >' // collapse 1  start
+//					+'      <div class="card-body" id="parentdiv-'+data.topicData[i].TID+'-'+data.topicData[i].LNO+'" >' // card-body start
+//					+ (i+1) +" - "+ data.topicData[i].TN1
+//					
+//					+'  </div>' // card div end
+
+					+ '<div class="card-body">' // card-body start
+					+ '<span class="underdev">Under development</span>'
+					+ '</div>' // card div end
+
+					+'    </div>'//collpase end
+					+'  </div>' // collapse 1 end
+				}
 			}
 			
 			htm +='</div>'// accordion div end
-			
-
 
 			$("#main-div").html(htm);
 			
@@ -160,13 +182,11 @@
 
 				}
 			});
-			
-			
 		}
 		
 		
 		HM.rendChildTopic = function(data, TopicId, parentId, index, itoStud) {
-			
+			console.log(data);
 			var childHtml = '';
 			
 //			if (itoStud != "ito@gmail.com" && HM.itoFlag == true) {
@@ -187,12 +207,12 @@
 						}else{
 							childHtml +=" "+ data.data[i].TN +" ("+ $.trim(data.data[i].TN1) +") "
 						}
-						
+					
 					childHtml +='</a>'
 						+'</h5>'
 						+'</div>'
 						
-						+'<div id="collapse-'+(i+1)+'-'+data.data[i].LNO+'" class="collapse" data-parent="#accordion-'+TopicId+'" aria-labelledby="heading-'+(i+1)+'-'+data.data[i].LNO+'">'
+						childHtml +='<div id="collapse-'+(i+1)+'-'+data.data[i].LNO+'" class="collapse" data-parent="#accordion-'+TopicId+'" aria-labelledby="heading-'+(i+1)+'-'+data.data[i].LNO+'">'
 						+' <div class="card-body" id="parentdiv-'+data.data[i].TID+'-'+data.data[i].LNO+'">'
 						+'<div class="row"><div class="col-xl-6 col-md-6 col-sm-12 topicTestDivStyle1">'
 						+ data.data[i].TN +' ('+ $.trim(data.data[i].TN1) +')'
@@ -200,8 +220,10 @@
 						+ '<div class="col-xl-6 col-md-6 col-sm-12 topicTestDivStyle2" >'
 						
 						if (data.data[i].RDNO != undefined) {
+//							childHtml += '<button id="mockEligibilityBtn" onClick="javascript:com.coep.test.home.checkEligibiglity('+data.data[i].TID+','+data.data[i].TNO+')" class="btn btn-primary" title="Start Mock Test"><span class="marathi-text" >मॉक टेस्टची पात्रता तपासा</span><br>Check for Mock Test Eligibility</button>'
 							childHtml += '<button type="button" class="btn btn-success" onClick="javascript:com.coep.test.home.createPracticeTest('+data.data[i].RDNO +',\''+data.data[i].RTN+'*'+''+data.data[i].RTN1+''+'\')" data-toggle="modal" data-target="#AlertMesConfirm-'+data.data[i].TID+'"   title="Start Practice Test"> <span class="marathi-text" >सराव सुरू करा</span><br>Start Practice Test</button>&nbsp;&nbsp;'
 						}else{
+//							childHtml += '<button id="mockEligibilityBtn" onClick="javascript:com.coep.test.home.checkEligibiglity('+data.data[i].TID+','+data.data[i].TNO+')" class="btn btn-primary" title="Start Mock Test"><span class="marathi-text" >मॉक टेस्टची पात्रता तपासा</span><br>Check for Mock Test Eligibility</button>'
 							childHtml += '<button type="button" class="btn btn-success" onClick="javascript:com.coep.test.home.createPracticeTest('+data.data[i].TID +',\''+data.data[i].TN+'*'+''+data.data[i].TN1+''+'\')" data-toggle="modal" data-target="#AlertMesConfirm-'+data.data[i].TID+'"   title="Start Practice Test"> <span class="marathi-text" >सराव सुरू करा</span><br>Start Practice Test</button>&nbsp;&nbsp;'	
 						}
 						
@@ -219,11 +241,27 @@
 				
 //					setTimeout(console.log(""), 1000); 
 					$("#Loading").css("display","none");
+					
 				}
 		}
 		
 	}
 	
+	HM.checkEligibiglity = function(topicId, topicNo) {
+		$.ajax({
+			type: "GET",
+			url : com.coep.test.addProblem.baseURL
+					+ "mockTest/generate/tag/"+topicId+"/"+topicNo,
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function(data) {
+				console.log(data);
+			},
+			error: function() {
+
+			}
+		});
+	}
 	
 	AM.confirmationFromHomePage = function(names, tArray) {
 

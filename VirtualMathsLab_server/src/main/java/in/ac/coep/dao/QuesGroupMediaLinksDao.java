@@ -17,4 +17,8 @@ public interface QuesGroupMediaLinksDao {
 	public QuesGroupMediaLinks getQGMedilLinkById(long quesGroupMediaLinkId)  throws Exception;
 
 	public void updateQuesGroupMediaLinks(QuesGroupMediaLinks quesGroupMediaLinks)  throws Exception;
+
+	public QuesGroupMediaLinks getQGMedilLinkByMediaId(long quesGroupMediaLinks)throws Exception;
+
+	public void deleteQuesGroupMediaLink(QuesGroupMediaLinks qgml)throws Exception;
 }
