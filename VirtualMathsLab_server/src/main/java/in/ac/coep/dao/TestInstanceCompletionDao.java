@@ -41,6 +41,8 @@ public interface TestInstanceCompletionDao {
 
 	public List<TestInstanceCompletion> fetchRecordsGroupByUserIdAndTISID(long userId, long tisId) throws Exception;
 
+	public void deleteTestInstanceCompletionRecord(TestInstanceCompletion tic)throws Exception;
+
 
 	
 	

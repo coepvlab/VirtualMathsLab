@@ -13,4 +13,8 @@ public interface UtilityService {
 
 	public JSONObject uploadJavaFile(MultipartFile file, User user, int flag) throws Exception;
 
+	public JSONObject getDataForDemoCall()throws Exception;
+
+	public JSONObject updateTopicStatusByTID(long tid, boolean flag)throws Exception;
+
 }

@@ -42,5 +42,7 @@ public interface TopicService {
 
 	public JSONObject getnextTopicByTopicID(long topicId) throws Exception;
 
+	public JSONObject getLTopicsDetails1() throws Exception;
+
 	
 }

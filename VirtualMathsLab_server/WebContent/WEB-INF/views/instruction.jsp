@@ -449,7 +449,7 @@ padding: 15px;
 
                     <div class="col-md-6 col-xs-12 text-align-right">
                         <h5>
-                            By College of Engineering Pune 2020
+                            By COEP Technological University
                         </h5>
                     </div>
     </div>

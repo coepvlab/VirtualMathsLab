@@ -38,12 +38,13 @@ public class MoveDataFromTestInstanceToCompletionServiceImpl implements MoveData
 				
 				testInstanceState.setStatus("C");
 				testInstanceStateDao.update(testInstanceState);
-
+				
+				data.put("testTypeId", testInstanceState.getTestType().getTestTypeId());
 				data.put("done", true);
 				data.put("msg", "All Records Moved Successfully");
 
 			}else{
-				
+				data.put("testTypeId", testInstanceState.getTestType().getTestTypeId());
 				data.put("done", false);
 				data.put("msg", "Records are already present in testInstaceCompletion for this user");
 			}

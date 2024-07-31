@@ -432,8 +432,6 @@ public class TestDaoImpl implements TestDao {
 		}
 	}
 
-
-
 	@Override
 	public Test getTestBytopicIdVarNoAndVarTypeAndCompLevel(String selectedTopicId, String varType, int complLevel,
 			String varNo) throws Exception {

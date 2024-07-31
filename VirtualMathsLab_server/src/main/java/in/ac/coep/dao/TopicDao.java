@@ -54,5 +54,7 @@ public interface TopicDao {
 	public List<TopicMapping> getPrerequisiteTopicsByTopicId(long topicId) throws Exception;
 
 	public List<Topic> getAllVerticalListByTopicLevel(String topicLevel) throws Exception;
+
+	public List<Topic> getAllTopicDetails1() throws Exception;
 	
 }

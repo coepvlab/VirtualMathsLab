@@ -73,7 +73,7 @@ public class TestServiceImpl implements TestService {
 	 * 
 	 * @see in.ac.coep.service.TestService#configureTest(in.ac.coep.vo.TestVO)
 	 */
-	@SuppressWarnings({ "rawtypes", "unused", "null" })
+	@SuppressWarnings({ "rawtypes", "unused" })
 	@Override
 	public JSONObject configureTestPaper(TestVO testVO, User user) throws Exception {
 		// TODO Auto-generated method stub
@@ -881,11 +881,7 @@ public class TestServiceImpl implements TestService {
 			return data;
 		}
 		
-		
 		return data;
-		
-		
-		
 	}
 
 	@SuppressWarnings("unused")
@@ -1083,8 +1079,6 @@ public class TestServiceImpl implements TestService {
 		test = testDao.getTestForPracticeTestByTopicId(selectedTopics[0], varType, complLevel); 
 		
 		if(test == null) {
-			
-			Test newTest = new Test();
 
 				for (int i = 0; i < selectedTopics.length; i++) {
 
@@ -1187,16 +1181,21 @@ public class TestServiceImpl implements TestService {
 				        Object[] varNoSetArray1 = {};
 				        Object[] varNoSetArray2 = {};
 				        
+				        JSONObject data1111 = twoVariationFilter(varNoArray);
+				       
+				        
 				        if (varNoList.size() == 1) {
 				        	 varNoSetArray1 =  varNoArray;
 				        	 System.out.println("v1 "+varNoSetArray1);
 					         varNoSetArray2 = varNoArray;
 					         System.out.println("v2 "+varNoSetArray2);
 						}else {
-								varNoSetArray1 =  Arrays.copyOfRange(varNoArray, 0, varNoArray.length/2);
-								 System.out.println("v21 "+varNoSetArray1);
-						        varNoSetArray2 = Arrays.copyOfRange(varNoArray, varNoArray.length/2, varNoArray.length);
-						        System.out.println("v22 "+varNoSetArray2);
+//								varNoSetArray1 =  Arrays.copyOfRange(varNoArray, 0, varNoArray.length/2);
+//								 System.out.println("v21 "+varNoSetArray1);
+//						        varNoSetArray2 = Arrays.copyOfRange(varNoArray, varNoArray.length/2, varNoArray.length);
+//						        System.out.println("v22 "+varNoSetArray2);
+								varNoSetArray1 = (Object[]) data1111.get("var1");
+						        varNoSetArray2 = (Object[]) data1111.get("var2");
 						}
 				       
 				        
@@ -1205,6 +1204,17 @@ public class TestServiceImpl implements TestService {
 				  
 //				        System.out.println("size - "+varNoSetArray1.length);
 //				        System.out.println("size - "+varNoSetArray2.length);
+				        long testId = 0l;
+				        int varLength = 0;
+				        for(int itr = 0; itr < 2; itr++) {
+				        	if(itr == 0) {
+				        		varType = "1";
+				        		varLength = varNoSetArray1.length;
+				        	}else if(itr == 1) {
+				        		varType = "2";
+				        		varLength = varNoSetArray2.length;
+				        	}
+				        Test newTest = new Test();
 				        
 						newTest = copyTestVOToTest(newTest, testVO);
 						if (varType == "1") {
@@ -1216,7 +1226,7 @@ public class TestServiceImpl implements TestService {
 							 
 //							String[] varNoArrayVar1 = Arrays.asList(varNoSetArray1).toArray(new String[varNoSetArray1.length]);
 							List<QuestionGroup> checkForQuestionAvailableInGivenVariations1 = questionGroupDao.getAllQuestionGroupsByTestConfiguration(
-									Long.parseLong((selectedTopics[i])), Constants.defaultNoOfQuestionsForPracticeTest,
+									Long.parseLong((selectedTopics[i])), varLength,
 									complLevel, varNoArrayVar1);
 							if (checkForQuestionAvailableInGivenVariations1.isEmpty()) {
 								
@@ -1226,7 +1236,7 @@ public class TestServiceImpl implements TestService {
 								String[] varNoArrayVar2 = temp2.split(",");
 //								String[] varNoArrayVar2 = Arrays.asList(varNoSetArray2).toArray(new String[varNoSetArray2.length]);
 								List<QuestionGroup> checkForQuestionAvailableInGivenVariations2 = questionGroupDao.getAllQuestionGroupsByTestConfiguration(
-										Long.parseLong((selectedTopics[i])), Constants.defaultNoOfQuestionsForPracticeTest,
+										Long.parseLong((selectedTopics[i])), varLength,
 										complLevel, varNoArrayVar2);
 								
 								if (checkForQuestionAvailableInGivenVariations2.isEmpty()) {
@@ -1283,6 +1293,8 @@ public class TestServiceImpl implements TestService {
 //						        Object[] varNoSetArray1 = {};
 //						        Object[] varNoSetArray2 = {};
 						        
+//						        JSONObject data111 = twoVariationFilter(varNoArray);
+						        
 								if (varNoList.size() == 1) {
 									varNoSetArray1 = null;
 									varNoSetArray1 = varNoArray;
@@ -1292,12 +1304,14 @@ public class TestServiceImpl implements TestService {
 									System.out.println("v2 " + varNoSetArray2);
 								} else {
 									varNoSetArray1 = null;
-									Arrays.sort(varNoArray);
-									varNoSetArray1 = Arrays.copyOfRange(varNoArray, 0, varNoArray.length / 2);
-									System.out.println("v21 " + varNoSetArray1);
+//									Arrays.sort(varNoArray);
+//									varNoSetArray1 = Arrays.copyOfRange(varNoArray, 0, varNoArray.length / 2);
+//									System.out.println("v21 " + varNoSetArray1);
 									varNoSetArray2 = null;
-									varNoSetArray2 = Arrays.copyOfRange(varNoArray, varNoArray.length / 2,	varNoArray.length);
-									System.out.println("v22 " + varNoSetArray2);
+									varNoSetArray1 = (Object[]) data1111.get("var1");
+							        varNoSetArray2 = (Object[]) data1111.get("var2");
+//									varNoSetArray2 = Arrays.copyOfRange(varNoArray, varNoArray.length / 2,	varNoArray.length);
+//									System.out.println("v22 " + varNoSetArray2);
 								}
 						       
 						        
@@ -1366,7 +1380,7 @@ public class TestServiceImpl implements TestService {
 //						String temp = Arrays.toString(varNoSetArray2).replace("[","").replace("]","").replaceAll("\\s", "");
 //						String[] varNoArrayVar = temp.split(",");
 						
-						long testId = 0l;
+						
 						Test test2 = testDao.getTestBytopicIdVarNoAndVarTypeAndCompLevel(selectedTopics[i], varType,
 								complLevel, newTest.getVarNo());
 						if (test2 == null) {
@@ -1403,7 +1417,7 @@ public class TestServiceImpl implements TestService {
 								testConfiguration.setStandard(standard);
 								
 								if (complLevel != 6) {
-									testConfiguration.setNoOfQuestionGroup(Constants.defaultNoOfQuestionsForPracticeTest);
+									testConfiguration.setNoOfQuestionGroup(varLength);
 								}else if (complLevel == 6) {
 									testConfiguration.setNoOfQuestionGroup(Constants.defaultNoOfQuestionsForLastPracticeTest);
 								}	
@@ -1420,7 +1434,7 @@ public class TestServiceImpl implements TestService {
 							testId = test2.getTestId();
 						}
 						
-						
+				        }
 						data.put("done", true);
 							
 //						data.put("data", totalQuestionArray);
@@ -1447,6 +1461,79 @@ public class TestServiceImpl implements TestService {
 		}
 	
 	}// method ends
+
+	private JSONObject twoVariationFilter(Object[] obj) {
+		Arrays.sort(obj);
+		
+		ArrayList<Integer> smallEven = new ArrayList<>();
+		ArrayList<Integer> smallOdd = new ArrayList<>();
+		ArrayList<Integer> big1 = new ArrayList<>();
+		ArrayList<Integer> big2 = new ArrayList<>();
+		ArrayList<Integer> var1 = new ArrayList<>();
+		ArrayList<Integer> var2 = new ArrayList<>();
+		
+		Integer[] arr = Arrays.copyOf(obj, obj.length, Integer[].class);
+		
+		boolean flgg = true;
+		for(int i=0; i < arr.length; i++) {
+			if(arr[i] < 100) {
+				if(arr[i] % 2 == 0) {
+					smallEven.add(arr[i]);
+				}else {
+					smallOdd.add(arr[i]);
+				}
+			}else {
+				if(flgg == true) {
+					flgg = false;
+					big1.add(arr[i]);
+				}else {
+					flgg = true;
+					big2.add(arr[i]);
+				}
+			}
+		}
+		
+//		System.out.println(smallEven);
+//		System.out.println(smallOdd);
+//		System.out.println(big1);
+//		System.out.println(big2);
+		
+		int se = smallEven.size();
+		int so = smallOdd.size();
+		
+		int tmp = 0;
+		if(se < so) {
+			tmp = se;
+		}else {
+			tmp = so;
+		}
+		
+		int flg = 0;
+		for(int j=0; j < tmp; j++) {
+			flg = (int) (Math.random() * (1 - 0 + 1) + 0);
+			if(flg == 0) {
+				var1.addAll(smallEven.subList(j, j+1));
+			}else {
+				var1.addAll(smallOdd.subList(j, j+1));
+			}
+			
+			if(flg == 1) {
+				var2.addAll(smallEven.subList(j, j+1));
+			}else {
+				var2.addAll(smallOdd.subList(j, j+1));
+			}
+		}
+		
+		var1.addAll(big1);
+		var2.addAll(big2);
+		
+//		System.out.println("var1 " + var1);
+//		System.out.println("var2 " + var2);
+		JSONObject varObj = new JSONObject();
+		varObj.put("var1", var1.toArray());
+		varObj.put("var2", var2.toArray());
+		return varObj;
+	}
 
 	private List<QuestionGroup> getQuestionsBycomplLevelForAllLevel(long topicId, Object[] complLevelArr) throws Exception {
 		// TODO Auto-generated method stub

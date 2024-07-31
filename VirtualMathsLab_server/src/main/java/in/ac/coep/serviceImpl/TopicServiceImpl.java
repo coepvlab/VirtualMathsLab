@@ -491,6 +491,7 @@ public class TopicServiceImpl implements TopicService{
 						topic.put("TNO", topicsList.getTopicNo());
 						topic.put("LNO", topicsList.getLevel());
 						topic.put("RDNO", topicsList.getRedirectNo());
+						topic.put("status", topicsList.isStatus());
 						topicJsonArray.put(topic);
 					}
 					data.put("done", true);
@@ -531,6 +532,7 @@ public class TopicServiceImpl implements TopicService{
 					childData.put("TN1", topic.getTopic().getTopicName1());
 					childData.put("TNO", topic.getTopic().getTopicNo());
 					childData.put("LNO", topic.getTopic().getLevel());
+					childData.put("STATUS", topic.getTopic().isStatus());
 					
 					if (topic.getTopic().getRedirectNo() != null) {
 						
@@ -865,6 +867,43 @@ public class TopicServiceImpl implements TopicService{
 		}
 		
 		return nextTopicId;
+	}
+
+	@Override
+	public JSONObject getLTopicsDetails1() throws Exception {
+		// TODO Auto-generated method stub
+
+		JSONObject data = new JSONObject();
+
+		try {
+				List<Topic> topicList = topicDao.getAllTopicDetails1();
+				
+				if (!topicList.isEmpty()) {
+					JSONArray topicJsonArray = new JSONArray();
+
+					for (Topic topicsList : topicList) {
+						JSONObject topic = new JSONObject();
+						topic.put("TID", topicsList.getTopicId());
+						topic.put("TN", topicsList.getTopicName());
+						topic.put("TN1", topicsList.getTopicName1());
+						topic.put("TNO", topicsList.getTopicNo());
+						topic.put("LNO", topicsList.getLevel());
+						topicJsonArray.put(topic);
+					}
+					data.put("done", true);
+					data.put("topicData", topicJsonArray); // to get topic data to all levels
+				}else {
+					data.put("done", false);
+					data.put("msg", "Topic list is empty.. Please add topics.");
+				}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			data.put("done", false);
+			data.put("msg", "Something went wrong.. Please try later.");
+		}
+
+		return data;
 	}
 	
 //	List<TopicMapping> topicMapping = topicDao.getTopicMappingByTopicId(parentId,status);

@@ -168,10 +168,27 @@ public class QuestionGroupController {
 		}
 
 	}
+
+	/**
+	 * DELETE -- delete multiple questionGroup permanently from database	 
+	 * @return
+	 */
 	
+	@RequestMapping(value = "/archived/delete", method = RequestMethod.DELETE)
+    public @ResponseBody String deleteArchiveQuestionsFromDB() {
+	
+		JSONObject data = new JSONObject();
+		try {
+			data = questionGroupService.deleteArchiveQuestions();
+			return data.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	/**
-	 * DELETE -- delete questionGroup permanently from database
+	 * DELETE -- delete questionGroup by QGId permanently from database
 	 * @param questionGroupId
 	 * @return
 	 */
@@ -187,7 +204,6 @@ public class QuestionGroupController {
 			LOGGER.error("Exception-", e);
 			return null;
 		}
-
 	}
 	
 	
@@ -290,7 +306,23 @@ public class QuestionGroupController {
 			LOGGER.error("Exception-", e);
 			return null;
 		}
-
+	}
+	
+	@RequestMapping(value="/api/get/topic/questGroup/{status}", method = RequestMethod.GET)
+	public @ResponseBody String fetchQuestionsGroupsForAllTopicsForFilterFromMapping1(@PathVariable String status) {
+		LOGGER.info("fetchQuestionGroup1....Start");
+		JSONObject data = new JSONObject();
+//		User user = (User) authentication.getPrincipal();
+		String[] str =status.split("_");
+		System.out.println(str[1]);
+		try {
+			data = questionGroupService.fetchQuestionsGroupsForFilterFromMapping(str[0], str[1]);
+			LOGGER.info("fetchQuestionGroup1....End");
+			return data.toString();
+		} catch (Exception e) {
+			LOGGER.error("Exception-", e);
+			return null;
+		}
 	}
 
 	

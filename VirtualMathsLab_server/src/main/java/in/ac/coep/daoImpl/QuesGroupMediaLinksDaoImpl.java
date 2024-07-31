@@ -148,4 +148,79 @@ public class QuesGroupMediaLinksDaoImpl implements QuesGroupMediaLinksDao {
 
 	}
 
+
+	@Override
+	public QuesGroupMediaLinks getQGMedilLinkByMediaId(long quesGroupMediaLinks) throws Exception {
+		// TODO Auto-generated method stub
+
+		Session session = null;
+		Transaction tx = null;
+
+		QuesGroupMediaLinks qgml= null;
+		try {
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+
+			session.flush();
+			session.clear();
+
+			Criteria criteria = session.createCriteria(QuesGroupMediaLinks.class);
+			criteria.add(Restrictions.eq("quesGroupMediaLinkId", quesGroupMediaLinks));
+
+			qgml = (QuesGroupMediaLinks) criteria.uniqueResult();
+			
+
+			session.flush();
+			session.clear();
+			tx.commit();
+			session.close();
+
+			return qgml;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			if (session != null && session.isOpen())
+				session.close();
+
+			throw new Exception(e);
+		}
+
+	}
+
+
+	@Override
+	public void deleteQuesGroupMediaLink(QuesGroupMediaLinks qgml) throws Exception {
+		// TODO Auto-generated method stub
+
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+
+			session.flush();
+			session.clear();
+
+			session.delete(qgml);
+
+			LOGGER.debug("Subject deleted");
+			session.flush();
+			session.clear();
+			tx.commit();
+			session.close();
+
+		} catch (HibernateException e) {
+			LOGGER.error("Subject delete failed", e);
+			if (tx != null)
+				tx.rollback();
+			if (session != null && session.isOpen())
+				session.close();
+
+			throw new Exception(e);
+		}
+
+	}
+
 }

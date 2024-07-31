@@ -30,12 +30,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import in.ac.coep.dao.TopicDao;
 import in.ac.coep.dao.UserDao;
+import in.ac.coep.dao.UtilityServiceDao;
 import in.ac.coep.entity.Cities;
 import in.ac.coep.entity.ContributorInfo;
 import in.ac.coep.entity.ParentInfo;
+import in.ac.coep.entity.QuestionGroup;
 import in.ac.coep.entity.Roles;
 import in.ac.coep.entity.StudentInfo;
 import in.ac.coep.entity.TeacherInfo;
+import in.ac.coep.entity.TestType;
 import in.ac.coep.entity.Topic;
 import in.ac.coep.entity.User;
 import in.ac.coep.service.MediaService;
@@ -70,8 +73,8 @@ public class UtilityServiceImpl implements UtilityService {
 	@Autowired
 	private QuestionGroupService questionGroupService;
 	
-//	@Autowired
-//	private UtilityServiceDao utilityServiceDao;
+	@Autowired
+	private UtilityServiceDao utilityServiceDao;
 	
 	@Override
 	public JSONObject getUserListForExcelDownload() throws Exception {
@@ -2850,5 +2853,49 @@ public class UtilityServiceImpl implements UtilityService {
 		
 		return data;
 	}
+
+	@Override
+	public JSONObject getDataForDemoCall() throws Exception {
+		// TODO Auto-generated method stub
+		
+		JSONObject data = new JSONObject();
+		JSONArray jsonArr = new JSONArray();
+		
+		List<TestType> ttList = utilityServiceDao.getCallDemoData();
+		
+		for(TestType tt : ttList) {
+			JSONObject obj = new JSONObject();
+			obj.put("name", tt.getName());
+			obj.put("id", tt.getTestTypeId());
+			jsonArr.put(obj);
+		}
+		
+		data.put("msg", "Data fetch successfully");
+		data.put("data", jsonArr);
+		
+		return data;
+	}
+
+	@Override
+	public JSONObject updateTopicStatusByTID(long tid, boolean flag) throws Exception {
+		// TODO Auto-generated method stub
+		
+		JSONObject data = new JSONObject();
+		Topic tp = topicDao.getTopicByTopicId(tid);
+		
+		if(flag == true) {
+			tp.setStatus(true);
+		}else if(flag == false) {
+			tp.setStatus(false);
+		}
+		
+		topicDao.updateTopic(tp);
+		
+		data.put("done", true);
+		data.put("msg", "Topic status updated successfully");
+		
+		return data;
+	}
+
 	
 }

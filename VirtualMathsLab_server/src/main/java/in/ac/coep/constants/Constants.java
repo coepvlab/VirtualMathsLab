@@ -115,15 +115,15 @@ public interface Constants {
 	
 	public static final int defaultNoOfQuestionsForLastPracticeTest = 6; //default No Of Questions For Last Practice Test
 	
-	public static final float percentageCriteriaForPractiseTestCompLevel1 = 80f;
+	public static final float percentageCriteriaForPractiseTestCompLevel1 = 55f;
 
-	public static final float percentageCriteriaForPractiseTestCompLevel2 = 75f;
+	public static final float percentageCriteriaForPractiseTestCompLevel2 = 50f;
 
-	public static final float percentageCriteriaForPractiseTestCompLevel3 = 70f;
+	public static final float percentageCriteriaForPractiseTestCompLevel3 = 45f;
 
-	public static final float percentageCriteriaForPractiseTestCompLevel4 = 65f;
+	public static final float percentageCriteriaForPractiseTestCompLevel4 = 0f;
 	
-	public static final float percentageCriteriaForPractiseTestCompLevel5 = 60f;
+	public static final float percentageCriteriaForPractiseTestCompLevel5 = 0f;
 	
 	public static final String passedFirstHalfDiffLevelMsg = "Congratulations.. You are successful, let us do it one more time.."; //अभिनंदन, पुन्हा एक प्रयन्त करू
 //	You are successful, let us give it one more try..  
@@ -158,6 +158,10 @@ public interface Constants {
 	public static final long otherTestTypeId = 5; // this testType id is for other test which are used to check the modified questions during Tests
 
 	public static final long practiceTestTypeId = 1;   // this testType id is for practice test 
+	
+	public static final int noOfPrevTestForGeneratingTab = 3;
+	
+	public static final int taggingPercentageCriteria = 40;
 	
 //	public static final String realPathtoUploads = "D:/VirtualMathLab_2020/VirtualMathsLab/src/main/java/in/ac/coep/maths/";
 	

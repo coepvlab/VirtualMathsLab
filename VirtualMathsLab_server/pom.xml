@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>VirtualMathsLab</groupId>
@@ -14,7 +15,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.test.skip>true</maven.test.skip>
-		<jdk.version>1.7</jdk.version>
+		<jdk.version>1.8</jdk.version>
 	</properties>
 
 
@@ -263,30 +264,54 @@
 			<version>1.4.1.RELEASE</version>
 		</dependency>
 
+<!-- https://mvnrepository.com/artifact/com.ibm.icu/icu4j -->
+		<dependency>
+		    <groupId>com.ibm.icu</groupId>
+		    <artifactId>icu4j</artifactId>
+		    <version>70.1</version>
+		</dependency>
+
+
+
+<!-- https://mvnrepository.com/artifact/net.sourceforge.jexcelapi/jxl -->
+<dependency>
+    <groupId>net.sourceforge.jexcelapi</groupId>
+    <artifactId>jxl</artifactId>
+    <version>2.6.12</version>
+</dependency>
+
 
 <!-- mongo mavens -->
 		<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
-		
+<!--	<dependency>-->
+<!--  <groupId>org.mongodb</groupId>-->
+<!--  <artifactId>mongodb-driver-sync</artifactId>-->
+<!--  <version>4.3.4</version>-->
+<!--</dependency>	-->
 	<dependency>
 	    <groupId>org.mongodb</groupId>
 	    <artifactId>mongo-java-driver</artifactId>
-	    <version>2.8.0</version>
+	    <version>3.5.0</version>
 	</dependency>
 		
 		
+
 <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
-<dependency>
-    <groupId>org.mongodb</groupId>
-    <artifactId>mongo-java-driver</artifactId>
-    <version>2.11.0-RC1</version>
-</dependency>
+<!--<dependency>-->
+<!--    <groupId>org.mongodb</groupId>-->
+<!--    <artifactId>mongo-java-driver</artifactId>-->
+<!--    <version>2.11.0-RC1</version>-->
+<!--</dependency>-->
 
 <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
-<dependency>
-    <groupId>org.springframework.data</groupId>
-    <artifactId>spring-data-mongodb</artifactId>
-    <version>1.2.0.RELEASE</version>
-</dependency>
+ <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-mongodb</artifactId>
+        <version>1.2.0.RELEASE</version>
+    </dependency>
+
+
+
 
 
 
@@ -301,8 +326,9 @@
 		<dependency>
 			<groupId>jdk.tools</groupId>
 			<artifactId>jdk.tools</artifactId>
-			<version>1.7</version>
+			<version>1.8</version>
 			<scope>system</scope>
+<!--			<systemPath>C:/Program Files/Java/jdk1.8.0_121/lib/tools.jar</systemPath>-->
 			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
@@ -428,7 +454,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.6</version>
+				<version>3.3.2</version>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
 					<webXml>WebContent\WEB-INF\web.xml</webXml>
@@ -437,10 +463,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>3.5.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>

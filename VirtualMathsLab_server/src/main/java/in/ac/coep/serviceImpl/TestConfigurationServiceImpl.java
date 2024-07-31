@@ -524,181 +524,210 @@ public class TestConfigurationServiceImpl implements TestConfigurationService {
 						
 						if (!questionGroups.isEmpty()) {
 							questionGroups = getRandomList(questionGroups, testConfiguration.getNoOfQuestionGroup());
-
-							for (QuestionGroup questionGroup : questionGroups) {
-
+							ArrayList<String> varString = new ArrayList<String>(); 
+							
+//							for (QuestionGroup questionGroup : questionGroups) {
+//							for(int q = 0; q < questionGroups.size(); q++) {
+							Iterator<QuestionGroup> it = questionGroups.iterator(); 
+							for(int q = 0; q < questionGroups.size(); q++) {
+								QuestionGroup questionGroup = new QuestionGroup();
+								while(it.hasNext()){								
+									questionGroup = it.next();
+									System.out.println(questionGroup.getQuestionGroupId() + "_while_" + q);
+									if (!varString.contains(questionGroup.getVarNo())) {
 										
-								JSONObject questionGroupObj = new JSONObject();
-								questionGroupObj.put("QGN", questionGroup.getName());
-								questionGroupObj.put("QGC", questionGroup.getQuesGroupMediaLinks().getMediaURLText());
-								questionGroupObj.put("QGID", questionGroup.getQuestionGroupId());
-								questionGroupObj.put("MEDTYP", questionGroup.getMediaType().getMediaTypeId());
+										varString.add(questionGroup.getVarNo());
 
-								if (questionGroup.getQuesGroupMediaLinks().getMediaURLText() != null) {
-									questionGroupObj.put("MED", questionGroup.getQuesGroupMediaLinks().getMediaURLText());
-								}
-								JSONArray quesArr = new JSONArray();
+										JSONObject questionGroupObj = new JSONObject();
+										questionGroupObj.put("QGN", questionGroup.getName());
+										questionGroupObj.put("QGC", questionGroup.getQuesGroupMediaLinks().getMediaURLText());
+										questionGroupObj.put("QGID", questionGroup.getQuestionGroupId());
+										questionGroupObj.put("MEDTYP", questionGroup.getMediaType().getMediaTypeId());
 
-								TestInstance instance = new TestInstance();
+										if (questionGroup.getQuesGroupMediaLinks().getMediaURLText() != null) {
+											questionGroupObj.put("MED", questionGroup.getQuesGroupMediaLinks().getMediaURLText());
+										}
+										JSONArray quesArr = new JSONArray();
 
-								Topic topic = new Topic();
-								topic.setTopicId(Integer.parseInt(topics[i]));
-								instance.setTopic(topic);
-								
-								instance.setUser(user);
-								instance.setTestInstanceState(testInstanceState);
+										TestInstance instance = new TestInstance();
 
-//								instance.setQuestionGroup(questionGroup);
-								
-								instance.setQuestionGroupId(questionGroup.getQuestionGroupId());
+										Topic topic = new Topic();
+										topic.setTopicId(Integer.parseInt(topics[i]));
+										instance.setTopic(topic);
 
-								Set<Question> myOrderedSet = new LinkedHashSet<Question>(questionGroup.getQuestions());
-								
-								for (Question question : myOrderedSet) {
+										instance.setUser(user);
+										instance.setTestInstanceState(testInstanceState);
 
-									JSONObject quesObj = new JSONObject();
-									quesObj.put("QC", question.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
-									quesObj.put("QID", question.getQuestionId());
-									quesObj.put("ANSTYP", question.getAnswerType().getAnswerTypeId());
-									
-									quesObj.put("QSOLTYPE", question.getSolType());
-									quesObj.put("QSOLTEXT", question.getSolText().replace("#", "<br />"));
-									quesObj.put("QSOLMEDIA", question.getSolMedia());
-									
-									quesArr.put(quesObj);
+										// instance.setQuestionGroup(questionGroup);
 
-									JSONArray answerArr = new JSONArray();//
-									
-//									instance.setQuestion(question);
-									
-									instance.setQuestionId(question.getQuestionId());
+										instance.setQuestionGroupId(questionGroup.getQuestionGroupId());
 
-									long time = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(question.getTime());
-									Date date = new Date(time);
+										Set<Question> myOrderedSet = new LinkedHashSet<Question>(questionGroup.getQuestions());
 
-									instance.setPlannedAnsEndTime(date);
+										for (Question question : myOrderedSet) {
 
-									if (question.getAnswers().size() > 4) {
-										List<Answers> answers = getFourRandomOptions(question.getAnswers(),
-												question.getAnswerType().getAnswerTypeId());
+											JSONObject quesObj = new JSONObject();
+											quesObj.put("QC", question.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
+											quesObj.put("QID", question.getQuestionId());
+											quesObj.put("ANSTYP", question.getAnswerType().getAnswerTypeId());
 
-										for (Answers answer : answers) {
-											JSONObject ansObj = new JSONObject();
-											if (question.getAnswerType().getAnswerTypeId() == 5 || question.getAnswerType().getAnswerTypeId() == 8) {
-//												Answers answer1 = new Answers();
-//												answer1.setAnswersId(Constants.answer_Dummy_Record_Id);
-//												instance.setAnswers(answer1);
-												instance.setAnswersId(Constants.answer_Dummy_Record_Id);
-//												instance.setActAnswersId(answer.getAnswersId()); // new field to set actual answer Id
-												instance.setActualGivenOptionsAnsId(answer.getAnswersId());// new
-																											// column
-																											// for
-																											// save
-																											// randomly
-																											// given
-																											// options
-																											// to
-																											// user
-												long instanceId = testInstanceDao.save(instance);
-												ansObj.put("TI_ID", instanceId);
+											quesObj.put("QSOLTYPE", question.getSolType());
+											quesObj.put("QSOLTEXT", question.getSolText().replace("#", "<br />"));
+											quesObj.put("QSOLMEDIA", question.getSolMedia());
 
-												ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
-												ansObj.put("RANS", answer.isRightAnswer()); // newly added
-												ansObj.put("ansMedia", answer.getMedia());
-												answerArr.put(ansObj);
+											quesArr.put(quesObj);
 
+											JSONArray answerArr = new JSONArray();//
+
+											// instance.setQuestion(question);
+
+											instance.setQuestionId(question.getQuestionId());
+
+											long time = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(question.getTime());
+											Date date = new Date(time);
+
+											instance.setPlannedAnsEndTime(date);
+
+											if (question.getAnswers().size() > 4) {
+												List<Answers> answers = getFourRandomOptions(question.getAnswers(), 
+														question.getAnswerType().getAnswerTypeId());
+
+												for (Answers answer : answers) {
+													JSONObject ansObj = new JSONObject();
+													if (question.getAnswerType().getAnswerTypeId() == 5 || question.getAnswerType().getAnswerTypeId() == 8) {
+														// Answers answer1 = new Answers();
+														// answer1.setAnswersId(Constants.answer_Dummy_Record_Id);
+														// instance.setAnswers(answer1);
+														instance.setAnswersId(Constants.answer_Dummy_Record_Id);
+														// instance.setActAnswersId(answer.getAnswersId()); // new field
+														// to set actual answer Id
+														instance.setActualGivenOptionsAnsId(answer.getAnswersId());// new
+																													// column
+																													// for
+																													// save
+																													// randomly
+																													// given
+																													// options
+																													// to
+																													// user
+														long instanceId = testInstanceDao.save(instance);
+														ansObj.put("TI_ID", instanceId);
+
+														ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
+														ansObj.put("RANS", answer.isRightAnswer()); // newly added
+														ansObj.put("ansMedia", answer.getMedia());
+														answerArr.put(ansObj);
+
+													} else {
+														// instance.setActAnswersId(answer.getAnswersId()); // new field
+														// to set actual answer Id
+														instance.setActualGivenOptionsAnsId(answer.getAnswersId());// new
+																													// column
+																													// for
+																													// save
+																													// randomly
+																													// given
+																													// options
+																													// to
+																													// user
+														ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
+//														if(answer.isRightAnswer() == true) {
+//															ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />")+"_Ans");
+//														}else {
+//															ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
+//														}
+														ansObj.put("ANSID", answer.getAnswersId());
+														ansObj.put("RANS", answer.isRightAnswer()); // newly added
+														ansObj.put("ansMedia", answer.getMedia());
+														answerArr.put(ansObj);
+													}
+
+												}
 											} else {
-//												instance.setActAnswersId(answer.getAnswersId()); // new field to set actual answer Id
-												instance.setActualGivenOptionsAnsId(answer.getAnswersId());// new
-																											// column
-																											// for
-																											// save
-																											// randomly
-																											// given
-																											// options
-																											// to
-																											// user
-												ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
-												ansObj.put("ANSID", answer.getAnswersId());
-												ansObj.put("RANS", answer.isRightAnswer()); // newly added
-												ansObj.put("ansMedia", answer.getMedia());
-												answerArr.put(ansObj);
+												for (Answers answer : question.getAnswers()) {
+													JSONObject ansObj = new JSONObject();
+													if (question.getAnswerType().getAnswerTypeId() == 5 || question.getAnswerType().getAnswerTypeId() == 8) {
+														// Answers answer1 = new Answers();
+														// answer1.setAnswersId(Constants.answer_Dummy_Record_Id);
+														// instance.setAnswers(answer1);
+														instance.setAnswersId(Constants.answer_Dummy_Record_Id);
+														// instance.setActAnswersId(answer.getAnswersId()); // new field
+														// to set actual answer Id
+														instance.setActualGivenOptionsAnsId(answer.getAnswersId());// new
+																													// column
+																													// for
+																													// save
+																													// randomly
+																													// given
+																													// options
+																													// to
+																													// user
+														long instanceId = testInstanceDao.save(instance);
+														ansObj.put("TI_ID", instanceId);
+
+														ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
+														ansObj.put("ANSID", answer.getAnswersId());
+														ansObj.put("RANS", answer.isRightAnswer()); // newly added
+														ansObj.put("ansMedia", answer.getMedia());
+														answerArr.put(ansObj);
+
+													} else {
+														// instance.setActAnswersId(answer.getAnswersId()); // new field
+														// to set actual answer Id
+														instance.setActualGivenOptionsAnsId(answer.getAnswersId());// new
+																													// column
+																													// for
+																													// save
+																													// randomly
+																													// given
+																													// options
+																													// to
+																													// user
+														ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
+//														if(answer.isRightAnswer() == true) {
+//															ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />")+"_Ans");
+//														}else {
+//															ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
+//														}
+														ansObj.put("ANSID", answer.getAnswersId());
+														ansObj.put("RANS", answer.isRightAnswer()); // newly added
+														ansObj.put("ansMedia", answer.getMedia());
+														answerArr.put(ansObj);
+													}
+
+												}
 											}
 
-										}
-									} else {
-										for (Answers answer : question.getAnswers()) {
-											JSONObject ansObj = new JSONObject();
-											if (question.getAnswerType().getAnswerTypeId() == 5 || question.getAnswerType().getAnswerTypeId() == 8) {
-//												Answers answer1 = new Answers();
-//												answer1.setAnswersId(Constants.answer_Dummy_Record_Id);
-//												instance.setAnswers(answer1);
-												instance.setAnswersId(Constants.answer_Dummy_Record_Id);
-//												instance.setActAnswersId(answer.getAnswersId()); // new field to set actual answer Id
-												instance.setActualGivenOptionsAnsId(answer.getAnswersId());// new
-																											// column
-																											// for
-																											// save
-																											// randomly
-																											// given
-																											// options
-																											// to
-																											// user
-												long instanceId = testInstanceDao.save(instance);
-												ansObj.put("TI_ID", instanceId);
+											if (question.getAnswerType().getAnswerTypeId() != 5) {
+												// Answers answerObj = new Answers();
+												// answerObj.setAnswersId(Constants.answer_Dummy_Record_Id);
+												// instance.setAnswers(answer);
+												if (question.getAnswerType().getAnswerTypeId() != 8) {
 
-												ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
-												ansObj.put("ANSID", answer.getAnswersId());
-												ansObj.put("RANS", answer.isRightAnswer()); // newly added
-												ansObj.put("ansMedia", answer.getMedia());
-												answerArr.put(ansObj);
+													instance.setAnswersId(Constants.answer_Dummy_Record_Id);
 
-											} else {
-//												instance.setActAnswersId(answer.getAnswersId()); // new field to set actual answer Id
-												instance.setActualGivenOptionsAnsId(answer.getAnswersId());// new
-																											// column
-																											// for
-																											// save
-																											// randomly
-																											// given
-																											// options
-																											// to
-																											// user
-												ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
-												ansObj.put("ANSID", answer.getAnswersId());
-												ansObj.put("RANS", answer.isRightAnswer()); // newly added
-												ansObj.put("ansMedia", answer.getMedia());
-												answerArr.put(ansObj);
+													long instanceId = testInstanceDao.save(instance);
+
+													quesObj.put("TI_ID", instanceId);
+													// LOGGER.info("Test Instance Saved");
+												}
+
 											}
 
+											quesObj.put("ANS", answerArr);
+
+											totalquestionsTime += question.getTime();
+
 										}
+										questionGroupObj.put("QUES", quesArr);
+										questionGroupsArr.put(questionGroupObj);
+
+									}else {
+										q--;//
 									}
-
-									if (question.getAnswerType().getAnswerTypeId() != 5) {
-//										Answers answerObj = new Answers();
-//										answerObj.setAnswersId(Constants.answer_Dummy_Record_Id);
-//										instance.setAnswers(answer);
-										if (question.getAnswerType().getAnswerTypeId() != 8) {
-											
-											instance.setAnswersId(Constants.answer_Dummy_Record_Id);
-											
-											long instanceId = testInstanceDao.save(instance);
-
-											quesObj.put("TI_ID", instanceId);
-//											LOGGER.info("Test Instance Saved");
-										}
-										
-									}
-
-									quesObj.put("ANS", answerArr);
-									
-									totalquestionsTime += question.getTime();
-
 								}
-								questionGroupObj.put("QUES", quesArr);
-								questionGroupsArr.put(questionGroupObj);
-								
-							} // 
+								//	System.out.println(varString.toString());
+						}
 						}else {
 							data.put("done", false);
 							data.put("msg", "No questions in the database to display..");
@@ -875,6 +904,11 @@ public class TestConfigurationServiceImpl implements TestConfigurationService {
 //												ansObj.put("GANSID", testInstance.getAnswers().getAnswersId()); // given ans id
 												
 												ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
+//												if(answer.isRightAnswer() == true) {
+//													ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />")+"_Ans");
+//												}else {
+//													ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
+//												}
 												ansObj.put("ANSID", answer.getAnswersId());
 												ansObj.put("RANS", answer.isRightAnswer()); // newly added
 												ansObj.put("ansMedia", answer.getMedia());
@@ -926,6 +960,11 @@ public class TestConfigurationServiceImpl implements TestConfigurationService {
 //												ansObj.put("GANSID", testInstance.getAnswers().getAnswersId()); // given ans id
 												
 												ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
+//												if(answer.isRightAnswer() == true) {
+//													ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />")+"_Ans");
+//												}else {
+//													ansObj.put("content", answer.getContent().replaceAll("(\\r\\n|\\n)", "<br />").replace("#", "<br />"));
+//												}
 												ansObj.put("ANSID", answer.getAnswersId());
 												ansObj.put("RANS", answer.isRightAnswer()); // newly added
 												ansObj.put("ansMedia", answer.getMedia());
@@ -1183,7 +1222,7 @@ public class TestConfigurationServiceImpl implements TestConfigurationService {
 		int i = 0;
 		Iterator<QuestionGroup> iterator = questionGroups.iterator();
 
-		while (iterator.hasNext() && i < noOfQuestionGroup) {
+		while (iterator.hasNext()) {
 			QuestionGroup questionGroup = (QuestionGroup) iterator.next();
 			questionGroups2.add(questionGroup);
 			i++;

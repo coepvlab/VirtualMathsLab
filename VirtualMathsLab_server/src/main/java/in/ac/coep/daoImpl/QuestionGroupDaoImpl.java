@@ -14,6 +14,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import in.ac.coep.dao.QuestionGroupDao;
 import in.ac.coep.entity.QuestionGroup;
+import in.ac.coep.entity.TestInstanceCompletion;
 
 @Repository
 @Transactional
@@ -1342,6 +1344,147 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 
 		}
 	}
+	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<QuestionGroup> getArchiveQuestions() throws Exception {
+		// TODO Auto-generated method stub
+
+		Session session = null;
+		Transaction tx = null;
+
+		List<QuestionGroup> qgList = null;
+		try {
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+
+			session.flush();
+			session.clear();
+
+			Criteria criteria = session.createCriteria(QuestionGroup.class);
+			criteria.add(Restrictions.eq("isArchive", true));
+//			criteria.add(Restrictions.eq("isApproved", false));
+//			criteria.addOrder(Order.asc("questionGroupId"));
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+			qgList = criteria.setMaxResults(3000).list();
+			qgList = criteria.list();
+
+			LOGGER.debug("fetch successful");
+			session.flush();
+			session.clear();
+			tx.commit();
+			session.close();
+
+		} catch (HibernateException e) {
+			LOGGER.debug("fetch failed", e);
+			if (tx != null)
+				tx.rollback();
+			if (session != null && session.isOpen())
+				session.close();
+		}
+
+		return qgList;
+	}
+
+	@Override
+	public List<QuestionGroup> getAllQuestionGroupsFromQuesGroupMappingToApproveByStatus(String status, String topicNo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		Session session = null;
+		Transaction tx = null;
+
+		List<QuestionGroup> topics = null;
+		try {
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+
+			session.flush();
+			session.clear();
+
+			DetachedCriteria crt = DetachedCriteria.forClass(QuestionGroup.class,
+					"qg");
+			
+			if (status.equalsIgnoreCase("Non-Approved")) {
+				crt.add(Restrictions.eq("qg.isArchive", false));
+				crt.add(Restrictions.eq("qg.isApproved", false));
+			} else {
+				crt.add(Restrictions.eq("qg.isArchive", false));
+				crt.add(Restrictions.eq("qg.isApproved", true));
+			}
+			crt.setFetchMode("qg.topicSet", FetchMode.JOIN);
+			
+			crt.createAlias("qg.topicSet", "tp",CriteriaSpecification.LEFT_JOIN);
+			
+//			crt.add(Restrictions.eq("tp.topicId", id));
+			
+			crt.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+			
+			topics = crt.getExecutableCriteria(session).list();
+			
+			LOGGER.debug("fetch successful");
+			session.flush();
+			session.clear();
+			tx.commit();
+			session.close();
+
+			return topics;
+
+		} catch (HibernateException e) {
+			LOGGER.debug("fetch failed", e);
+			if (tx != null)
+				tx.rollback();
+			if (session != null && session.isOpen())
+				session.close();
+
+			throw new Exception(e);
+
+		}
+
+	}
+
+	@Override
+	public TestInstanceCompletion getTestInstanceCompetionRecordByQuestionGroupId(long questionGroupId)
+			throws Exception {
+		// TODO Auto-generated method stub
+
+		Session session = null;
+		Transaction tx = null;
+
+		TestInstanceCompletion tic = null;
+		try {
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+
+			session.flush();
+			session.clear();
+
+			Criteria criteria = session.createCriteria(TestInstanceCompletion.class);
+//			criteria.add(Restrictions.eq("isArchive", true));
+			criteria.add(Restrictions.eq("questionGroup.questionGroupId", questionGroupId));
+//			criteria.addOrder(Order.asc("questionGroupId"));
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+			tic = (TestInstanceCompletion) criteria.uniqueResult();
+
+			LOGGER.debug("fetch successful");
+			session.flush();
+			session.clear();
+			tx.commit();
+			session.close();
+
+		} catch (HibernateException e) {
+			LOGGER.debug("fetch failed", e);
+			if (tx != null)
+				tx.rollback();
+			if (session != null && session.isOpen())
+				session.close();
+		}
+
+		return tic;
+	}
+
 
 //	@Override
 //	public List<QuestionGroup> getQuestionGroupByUserIdAndTestInstanceStateId(long userId, long testInstanceStateId)

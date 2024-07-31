@@ -707,14 +707,14 @@
 				    				 
 				    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6" ><div class="heading">Solution Media</div>'
 				    				 +'<div class="inners"><p>'
-									 +' With reference to the follwing Image answer the question'
+									 +' With reference to the following Image answer the question'
 									 +' </p>'
 				    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'"  class="popup-img" /></div>'
 				    			 }else if(data[l].QUESTION[m].QSOLTYPE == "AUDIO"){
 				    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 				    					 +'<div class="heading">Solution Media</div>'
 				    					 +'<div class="inners"><p>'
-										 +' With reference to the follwing clip answer the  question'
+										 +' With reference to the following clip answer the  question'
 										 +' </p>'
 										 +' <audio controls>'
 										 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="audio/mpeg"  class="">'
@@ -725,7 +725,7 @@
 				    				 ansHtm +='<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 				    					+'<div class="heading">Solution Media</div>'
 				 						+ '<div class="inners"><p>'
-				 						+ ' With reference to the follwing clip answer the question'
+				 						+ ' With reference to the following clip answer the question'
 				 						+ ' </p>'
 				 						+'  <video controls s >'
 				 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="video/mp4"  class"">'
@@ -1100,14 +1100,14 @@
 		    				 
 		    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6" ><div class="heading">Solution Media</div>'
 		    				 +'<div class="inners"><p>'
-							 +' With reference to the follwing Image answer the question'
+							 +' With reference to the following Image answer the question'
 							 +' </p>'
 		    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'"  class="popup-img" /></div>'
 		    			 }else if(data[l].QUESTION[m].QSOLTYPE == "AUDIO"){
 		    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 		    					 +'<div class="heading">Solution Media</div>'
 		    					 +'<div class="inners"><p>'
-								 +' With reference to the follwing clip answer the  question'
+								 +' With reference to the following clip answer the  question'
 								 +' </p>'
 								 +' <audio controls>'
 								 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="audio/mpeg"  class="">'
@@ -1118,7 +1118,7 @@
 		    				 ansHtm +='<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 		    					+'<div class="heading">Solution Media</div>'
 		 						+ '<div class="inners"><p>'
-		 						+ ' With reference to the follwing clip answer the question'
+		 						+ ' With reference to the following clip answer the question'
 		 						+ ' </p>'
 		 						+'  <video controls s >'
 		 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="video/mp4"  class"">'
@@ -1535,14 +1535,14 @@
 				    				 
 				    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6" ><div class="heading">Solution Media</div>'
 				    				 +'<div class="inners"><p>'
-									 +' With reference to the follwing Image answer the question'
+									 +' With reference to the following Image answer the question'
 									 +' </p>'
 				    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'"  class="popup-img" /></div>'
 				    			 }else if(data[l].QUESTION[m].QSOLTYPE == "AUDIO"){
 				    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 				    					 +'<div class="heading">Solution Media</div>'
 				    					 +'<div class="inners"><p>'
-										 +' With reference to the follwing clip answer the  question'
+										 +' With reference to the following clip answer the  question'
 										 +' </p>'
 										 +' <audio controls>'
 										 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="audio/mpeg"  class="">'
@@ -1553,7 +1553,7 @@
 				    				 ansHtm +='<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 				    					+'<div class="heading">Solution Media</div>'
 				 						+ '<div class="inners"><p>'
-				 						+ ' With reference to the follwing clip answer the question'
+				 						+ ' With reference to the following clip answer the question'
 				 						+ ' </p>'
 				 						+'  <video controls s >'
 				 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="video/mp4"  class"">'
@@ -1920,14 +1920,14 @@
 		    				 
 		    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6" ><div class="heading">Solution Media</div>'
 		    				 +'<div class="inners"><p>'
-							 +' With reference to the follwing Image answer the question'
+							 +' With reference to the following Image answer the question'
 							 +' </p>'
 		    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'"  class="popup-img" /></div>'
 		    			 }else if(data[l].QUESTION[m].QSOLTYPE == "AUDIO"){
 		    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 		    					 +'<div class="heading">Solution Media</div>'
 		    					 +'<div class="inners"><p>'
-								 +' With reference to the follwing clip answer the  question'
+								 +' With reference to the following clip answer the  question'
 								 +' </p>'
 								 +' <audio controls>'
 								 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="audio/mpeg"  class="">'
@@ -1938,7 +1938,7 @@
 		    				 ansHtm +='<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 		    					+'<div class="heading">Solution Media</div>'
 		 						+ '<div class="inners"><p>'
-		 						+ ' With reference to the follwing clip answer the question'
+		 						+ ' With reference to the following clip answer the question'
 		 						+ ' </p>'
 		 						+'  <video controls s >'
 		 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="video/mp4"  class"">'
@@ -2155,10 +2155,26 @@
 		
 	}
 	
-	
-	
-	
 	/// following code will be use for moderator to approve questions
+	QB.topicList= {};
+	QB.getTopicForQuestionsToApprove = function(status) {
+
+		$.ajax({
+			type: "GET",
+			url: com.coep.test.addProblem.baseURL
+				+ "topic/api/get/main/topics",
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function(data) {
+				QB.topicList = data;
+				QB.getQuestionsToApprove(status);
+
+			},
+			error: function() {
+			}
+
+		});
+	}
 	
 	QB.getQuestionsToApprove = function(status, quesID, pageIndexNo, selectedTopicId) {
 //		QB.getQuestionsToApprove = function(status, quesID, pageIndexNo) { //  before adding selectedTopicId 
@@ -2182,16 +2198,96 @@
 			
 			QB.getTopicDetailsToGetQuesBank();
 			
+					var name = "";
+					if (status == "Non-Approved") {
+						name = "NON-MODERATED"
+					}else{
+						name = "MODERATED"
+					}
+			
+			tpList = {};
+			tpList = QB.topicList;
+			
 			if (status == "Approved") {
 				
-//				console.log(QB.topicDataForApprovedQues);
 //				jQuery.isEmptyObject(anyObjectIncludingJSON)
 //				if (jQuery.isEmptyObject(QB.topicDataForApprovedQues)) {
+	
+					var	html1 = '<h1>'+ name + ' QUESTION DETAILS</h1>' 
+					 	+'<div class="form-group step1 col-sm-12 col-md-12 col-lg-12 col-xl-12" >'
+						+ '<label class="col-xl-12 col-md-12 col-sm-12" for="selectTopic">Select Vertical <span class="marathi-text" >(श्रेणी निवडा)</span><i class="fa fa-asterisk " aria-hidden="true"></i></label>'
+						+ ' <select class=" form-control col-xl-12 col-md-12 col-sm-12 selectpicker" data-live-search="true"  id="selTopicForFilter11"   >'
+						html1 += '' + '  <option value="" id ="0">Select topic</option>'
+						for (var i = 0; i <tpList.topicData.length; i++) {
+							html1 += '' + '  <option value="' + tpList.topicData[i].TNO
+									+ '" id ="' + tpList.topicData[i].TID + '" >'
+									+ tpList.topicData[i].TNO +" - "+ tpList.topicData[i].TN +"&nbsp;("+ tpList.topicData[i].TN1 + ') </option>'
+						}
 
+					html1 += ' </select>'
+								+ '<div id="error" class="invalid-feedback selectTopic">Please select topic.</div>'
+								+ '</div>'	
+								+'<div class="form-group step1" id="variationDiv"></div>'	
+
+								
+					$("#main-div").html(html1);
+					$('select').selectpicker();
+			
+//				}else{
+//					getTopicListDetails(QB.topicDataForApprovedQues, selectedTopicId);
+//				}
+				
+				
+			}else{
+				var	html1 = '<h1>'+ name + ' QUESTION DETAILS</h1>' 
+					 	+'<div class="form-group step1 col-sm-12 col-md-12 col-lg-12 col-xl-12" >'
+						+ '<label class="col-xl-12 col-md-12 col-sm-12" for="selectTopic">Select Topic <span class="marathi-text" >(श्रेणी निवडा)</span><i class="fa fa-asterisk " aria-hidden="true"></i></label>'
+						+ ' <select class=" form-control col-xl-12 col-md-12 col-sm-12 selectpicker" data-live-search="true"  id="selTopicForFilter11"   >'
+						html1 += '' + '  <option value="" id ="0">Select topic</option>'
+						for (var i = 0; i <tpList.topicData.length; i++) {
+							html1 += '' + '  <option value="' + tpList.topicData[i].TNO
+									+ '" id ="' + tpList.topicData[i].TID + '" >'
+									+ tpList.topicData[i].TNO +" - "+ tpList.topicData[i].TN +"&nbsp;("+ tpList.topicData[i].TN1 + ') </option>'
+						}
+
+					html1 += ' </select>'
+								+ '<div id="error" class="invalid-feedback selectTopic">Please select topic.</div>'
+								+ '</div>'	
+								+'<div class="form-group step1" id="variationDiv"></div>'	
+
+								
+					$("#main-div").html(html1);
+					$('select').selectpicker();
+				
+				
+//				$.ajax({
+//					type : "GET",
+//					url : com.coep.test.addProblem.baseURL
+//					+ "questionGroups/api/get/topic/questGroups/"+status,
+//					dataType : 'json',
+//					contentType : 'application/json',
+//					success : function(data) {
+//						
+//						if (data.done == false) {
+//							$("#main-div").html("<div class='col-xl-12 col-md-12 col-sm-12 alert alert-danger' style='text-align:center;'>No "+status+" questions in the database to display..</div>");
+//						}else{
+//							getTopicListDetails(data, selectedTopicId);
+//						}
+//						
+//					},
+//					error : function() {
+//					}
+//
+//				});
+			}
+			
+				$("#selTopicForFilter11").on('change', function(){ 
+						 var selected = $(this).find("option:selected").val();
+						 st = status + "_" + selected;
 					$.ajax({
 						type : "GET",
 						url : com.coep.test.addProblem.baseURL
-						+ "questionGroups/api/get/topic/questGroups/"+status,
+						+ "questionGroups/api/get/topic/questGroup/"+st,
 						dataType : 'json',
 						contentType : 'application/json',
 						success : function(data) {
@@ -2207,35 +2303,7 @@
 						}
 
 					});
-				
-//				}else{
-//					getTopicListDetails(QB.topicDataForApprovedQues, selectedTopicId);
-//				}
-				
-				
-			}else{
-				$.ajax({
-					type : "GET",
-					url : com.coep.test.addProblem.baseURL
-					+ "questionGroups/api/get/topic/questGroups/"+status,
-					dataType : 'json',
-					contentType : 'application/json',
-					success : function(data) {
-						
-						if (data.done == false) {
-							$("#main-div").html("<div class='col-xl-12 col-md-12 col-sm-12 alert alert-danger' style='text-align:center;'>No "+status+" questions in the database to display..</div>");
-						}else{
-							getTopicListDetails(data, selectedTopicId);
-						}
-						
-					},
-					error : function() {
-					}
-
-				});
-			}
-			
-				
+					})
 				
 				
 				function getTopicListDetails(data, selectedTopicId) {
@@ -2247,7 +2315,7 @@
 					}else{
 						name = "APPROVED"
 					}
-					html +=  '<h1>'+ name + ' QUESTION DETAILS</h1>'
+//					html +=  '<h1>'+ name + ' QUESTION DETAILS</h1>'
 					html += '<div class="form-group step1 col-sm-12 col-md-12 col-lg-12 col-xl-12" >'
 						+ '<label class="col-xl-12 col-md-12 col-sm-12" for="selectTopic">Select Topic <span class="marathi-text" >(श्रेणी निवडा)</span><i class="fa fa-asterisk " aria-hidden="true"></i></label>'
 						+ ' <select class=" form-control col-xl-12 col-md-12 col-sm-12 selectpicker" data-live-search="true"  id="selTopicForFilter"   >'
@@ -2273,7 +2341,7 @@
 								
 								+ '<div id="ques-bank-div"></div>'
 								
-					$("#main-div").html(html);
+					$("#variationDiv").html(html);
 					$('select').selectpicker();
 					
 //					var selectedTopicId = "";
@@ -2595,7 +2663,7 @@
 						
 						quesHtm += '<div class="col-xl-12 col-md-12 col-sm-12">'
 							 +'<p class="ApproveDivLabel">'
-							 +' With reference to the follwing Image answer the following question'
+							 +' With reference to the following Image answer the following question'
 							 +' </p>'
 							+'<div> <img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" class="ApproveQueImg" /></div></div><hr/>'
 						
@@ -2603,7 +2671,7 @@
 						
 						quesHtm += '<div class="col-xl-12 col-md-12 col-sm-12">'
 							 +'<p class="ApproveDivLabel">'
-							 +' With reference to the follwing clip answer the following question'
+							 +' With reference to the following clip answer the following question'
 							 +' </p>'
 							 +' <audio controls class="ApproveQueAudio">'
 							 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" type="audio/mpeg" >'
@@ -2614,7 +2682,7 @@
 					}else if($.trim(data[i].QGTYP) == "Video" || $.trim(data[i].QGTYP) == "video"){
 						quesHtm +='<div class="col-xl-12 col-md-12 col-sm-12">'
 							+ '<p class="ApproveDivLabel">'
-							+ ' With reference to the follwing clip answer the following question'
+							+ ' With reference to the following clip answer the following question'
 							+ ' </p>'
 							+'  <video controls class="ApproveQueVideo">'
 							+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" type="video/mp4" >'
@@ -2765,7 +2833,7 @@
 						    				 
 						    				 quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle" ><span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 						    				 +'<p>'
-											 +' With reference to the follwing Image answer the question'
+											 +' With reference to the following Image answer the question'
 											 +' </p>'
 						    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'"  class="ApproveQueImg" /></div>'
 						    				 
@@ -2773,7 +2841,7 @@
 						    				 quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 						    					 +'<span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 						    					 +'<p>'
-												 +' With reference to the follwing clip answer the  question'
+												 +' With reference to the following clip answer the  question'
 												 +' </p>'
 												 +' <audio controls class="ApproveQueAudio">'
 												 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'" type="audio/mpeg" >'
@@ -2784,7 +2852,7 @@
 						    				 quesHtm +='<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 							    					+'<span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 							 						+ '<p>'
-							 						+ ' With reference to the follwing clip answer the question'
+							 						+ ' With reference to the following clip answer the question'
 							 						+ ' </p>'
 							 						+'  <video controls  class="ApproveQueVideo" >'
 							 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'" type="video/mp4" >'
@@ -3721,7 +3789,7 @@
 						
 						quesHtm += '<div class="col-xl-12 col-md-12 col-sm-12">'
 							 +'<p class="ApproveDivLabel">'
-							 +' With reference to the follwing Image answer the following question'
+							 +' With reference to the following Image answer the following question'
 							 +' </p>'
 							+'<div> <img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" class="ApproveQueImg" /></div></div><hr/>'
 						
@@ -3729,7 +3797,7 @@
 						
 						quesHtm += '<div class="col-xl-12 col-md-12 col-sm-12">'
 							 +'<p class="ApproveDivLabel">'
-							 +' With reference to the follwing clip answer the following question'
+							 +' With reference to the following clip answer the following question'
 							 +' </p>'
 							 +' <audio controls class="ApproveQueAudio">'
 							 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" type="audio/mpeg" >'
@@ -3740,7 +3808,7 @@
 					}else if($.trim(data[i].QGTYP) == "Video" || $.trim(data[i].QGTYP) == "Video"){
 						quesHtm +='<div class="col-xl-12 col-md-12 col-sm-12">'
 							+ '<p class="ApproveDivLabel">'
-							+ ' With reference to the follwing clip answer the following question'
+							+ ' With reference to the following clip answer the following question'
 							+ ' </p>'
 							+'  <video controls class="ApproveQueVideo">'
 							+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" type="video/mp4" >'
@@ -3887,7 +3955,7 @@
 					    				 
 					    				 quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle" ><span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 					    				 +'<p>'
-										 +' With reference to the follwing Image answer the question'
+										 +' With reference to the following Image answer the question'
 										 +' </p>'
 					    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'"  class="ApproveQueImg" /></div>'
 					    				 
@@ -3895,7 +3963,7 @@
 					    				 quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 					    					 +'<span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 					    					 +'<p>'
-											 +' With reference to the follwing clip answer the  question'
+											 +' With reference to the following clip answer the  question'
 											 +' </p>'
 											 +' <audio controls class="ApproveQueAudio">'
 											 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'" type="audio/mpeg" >'
@@ -3906,7 +3974,7 @@
 					    				 quesHtm +='<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 						    					+'<span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 						 						+ '<p>'
-						 						+ ' With reference to the follwing clip answer the question'
+						 						+ ' With reference to the following clip answer the question'
 						 						+ ' </p>'
 						 						+'  <video controls  class="ApproveQueVideo" >'
 						 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'" type="video/mp4" >'
