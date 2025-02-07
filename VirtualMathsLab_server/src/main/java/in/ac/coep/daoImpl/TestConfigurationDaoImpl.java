@@ -49,18 +49,18 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Serializable serializable = session.save(testConfiguration);
 
 			long testConfigurationId = (Long) serializable;
 
 			LOGGER.debug("configure Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return testConfigurationId;
 
@@ -68,11 +68,15 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			LOGGER.error("configure Test failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -88,8 +92,8 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			// QuestionGroup questionGroup = (QuestionGroup)
 			// session.get(QuestionGroup.class, questionGroupId);
@@ -97,10 +101,10 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			TestConfiguration testConfiguration = (TestConfiguration) session.get(TestConfiguration.class, testConfigId);
 
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return testConfiguration;
 
@@ -108,12 +112,16 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/* (non-Javadoc)
@@ -129,27 +137,31 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.update(testConfiguration);
 
 
 			LOGGER.debug("configure Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("configure Test failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -211,8 +223,8 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestConfiguration.class,"tc");
 			criteria.add(Restrictions.eq("tc.test.testId", testId));
@@ -225,10 +237,10 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			
 
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return testConfigurations;
 
@@ -236,12 +248,16 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -254,8 +270,8 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestConfiguration.class, "testConfig");
 			criteria.add(Restrictions.eq("testConfig.test.testId", testId));
@@ -263,10 +279,10 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			List<TestConfiguration> test = criteria.list();
 
 			LOGGER.debug("fetch Test configuration successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return test;
 
@@ -274,12 +290,16 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			LOGGER.debug("fetch Test Configuration", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -292,8 +312,8 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qgp");
 			criteria.add(Restrictions.eq("qgp.section.sectionId", sectId));
@@ -304,10 +324,10 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			List<TestConfiguration> test = criteria.list();
 
 			LOGGER.debug("fetch Test configuration successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return test;
 
@@ -315,12 +335,16 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			LOGGER.debug("fetch Test Configuration", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@Override
@@ -332,8 +356,8 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestConfiguration.class,"tc");
 			criteria.add(Restrictions.eq("tc.topic.topicId", topicId));
@@ -346,10 +370,10 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			
 
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return testConfigurations;
 
@@ -357,12 +381,16 @@ public class TestConfigurationDaoImpl implements TestConfigurationDao{
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 }

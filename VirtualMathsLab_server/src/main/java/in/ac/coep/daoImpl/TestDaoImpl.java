@@ -49,18 +49,18 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Serializable serializable = session.save(test);
 
 			long questionGroupId = (Long) serializable;
 
 			LOGGER.debug("configure Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroupId;
 
@@ -68,8 +68,8 @@ public class TestDaoImpl implements TestDao {
 			LOGGER.error("configure Test failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 		}
@@ -90,8 +90,8 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			// QuestionGroup questionGroup = (QuestionGroup)
 			// session.get(QuestionGroup.class, questionGroupId);
@@ -99,10 +99,10 @@ public class TestDaoImpl implements TestDao {
 			Test test = (Test) session.get(Test.class, testId);
 
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return test;
 
@@ -110,12 +110,16 @@ public class TestDaoImpl implements TestDao {
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/*
@@ -133,26 +137,30 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.update(test);
 
 			LOGGER.debug("modifyTestPaper successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("modifyTestPaper failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -170,8 +178,8 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Test.class, "test");
 			criteria.add(Restrictions.eq("test.department.departmentId", domain));
@@ -180,10 +188,10 @@ public class TestDaoImpl implements TestDao {
 			Test test = (Test) criteria.uniqueResult();
 
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return test;
 
@@ -191,12 +199,16 @@ public class TestDaoImpl implements TestDao {
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/*
@@ -213,18 +225,18 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestInstanceState.class);
 
 			long totalResult = ((Long) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
 
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return totalResult;
 
@@ -232,12 +244,16 @@ public class TestDaoImpl implements TestDao {
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/*
@@ -254,18 +270,18 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Test.class);
 			criteria.add(Restrictions.eq("user.userId", userId));
 			Test test = (Test) criteria.uniqueResult();
 
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return test;
 
@@ -273,12 +289,16 @@ public class TestDaoImpl implements TestDao {
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -291,17 +311,17 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Test.class);
 //			criteria.add(Restrictions.eq("user.userId", userId));
 			List<Test> test = criteria.list();
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return test;
 
@@ -309,12 +329,16 @@ public class TestDaoImpl implements TestDao {
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@Override
@@ -327,26 +351,30 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.update(test);
 
 			LOGGER.debug("modify Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("modify Test failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -359,8 +387,8 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Test.class, "test");
 			criteria.add(Restrictions.eq("test.department.departmentId", domain));
@@ -370,10 +398,10 @@ public class TestDaoImpl implements TestDao {
 			Test test = (Test) criteria.uniqueResult();
 
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return test;
 
@@ -381,12 +409,16 @@ public class TestDaoImpl implements TestDao {
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@Override
@@ -398,8 +430,8 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Test.class, "test");
 			
@@ -413,10 +445,10 @@ public class TestDaoImpl implements TestDao {
 			Test test = (Test) criteria.uniqueResult();
 
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return test;
 
@@ -424,12 +456,16 @@ public class TestDaoImpl implements TestDao {
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@Override
@@ -442,8 +478,8 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Test.class, "test");
 			
@@ -458,10 +494,10 @@ public class TestDaoImpl implements TestDao {
 			Test test = (Test) criteria.uniqueResult();
 
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return test;
 
@@ -469,12 +505,16 @@ public class TestDaoImpl implements TestDao {
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@Override
@@ -486,8 +526,8 @@ public class TestDaoImpl implements TestDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Test.class,"test");
 			criteria.add(Restrictions.eq("test.testType.testTypeId", testTypeId));
@@ -496,10 +536,10 @@ public class TestDaoImpl implements TestDao {
 			@SuppressWarnings("unchecked")
 			List<Test> test = criteria.list();
 			LOGGER.debug("fetch Test successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return test;
 
@@ -507,11 +547,101 @@ public class TestDaoImpl implements TestDao {
 			LOGGER.debug("fetch Test", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Test> getTestForPracticeTestByTopicIdAndTestLevel(String selectedTopics, int testLevel)
+			throws Exception {
+		// TODO Auto-generated method stub
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+
+//			session.flush();
+//			session.clear();
+
+			Criteria criteria = session.createCriteria(Test.class);
+			criteria.add(Restrictions.eq("isActive", true));
+			criteria.add(Restrictions.eq("selectedTopics", selectedTopics));
+			criteria.add(Restrictions.eq("testLevel", testLevel));
+			
+			List<Test> test = criteria.list();
+			LOGGER.debug("fetch Test successful");
+//			session.flush();
+//			session.clear();
+			tx.commit();
+//			session.close();
+
+			return test;
+
+		} catch (HibernateException e) {
+			LOGGER.debug("fetch Test", e);
+			if (tx != null)
+				tx.rollback();
+//			if (session != null && session.isOpen())
+//				session.close();
+
+			throw new Exception(e);
+
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Test> getTestForPracticeTestByTopicIdOnly(String selectedTopics) throws Exception {
+		// TODO Auto-generated method stub
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+
+//			session.flush();
+//			session.clear();
+
+			Criteria criteria = session.createCriteria(Test.class);
+			criteria.add(Restrictions.eq("isActive", true));
+			criteria.add(Restrictions.eq("selectedTopics", selectedTopics));
+			
+			List<Test> test = criteria.list();
+			LOGGER.debug("fetch Test successful");
+//			session.flush();
+//			session.clear();
+			tx.commit();
+//			session.close();
+
+			return test;
+
+		} catch (HibernateException e) {
+			LOGGER.debug("fetch Test", e);
+			if (tx != null)
+				tx.rollback();
+//			if (session != null && session.isOpen())
+//				session.close();
+
+			throw new Exception(e);
+
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 }

@@ -2,6 +2,10 @@
 	display: none;
 }
 
+img:active {
+    -webkit-transform: scale(1.5);
+}
+
 .checkLatexAns {
 	position: absolute;
 	padding: 3px;
@@ -680,8 +684,8 @@ textarea, textarea::-webkit-input-placeholder {
 }
 
 .ApproveQueImg {
-	width: 50%;
-	margin: 0 25%
+	width: 90%;
+	margin: 5%
 }
 
 .ApproveQueImgOption {
@@ -719,6 +723,7 @@ KBD {
 }
 
 #nonApprovedQuestionData_filter {
+/*	margin-left: 50px;*/
 	background: #d6d4d4;
 	/* text-align: right; */
 	border-radius: 10px;
@@ -751,6 +756,7 @@ KBD {
 }
 
 #approvedQuestionData_filter {
+	margin-left: 50px;
 	background: #d6d4d4;
     /* text-align: right; */
     border-radius: 10px;
@@ -883,6 +889,11 @@ div.dataTables_wrapper div.dataTables_filter input {
 
 .modal-dialog {
 	max-width: 700px;
+	margin: 1.75rem auto;
+}
+
+.model-lg {
+	max-width: 90%;
 	margin: 1.75rem auto;
 }
 

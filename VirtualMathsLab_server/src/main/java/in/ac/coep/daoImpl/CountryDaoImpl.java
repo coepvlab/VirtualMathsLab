@@ -39,8 +39,8 @@ public class CountryDaoImpl implements CountryDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria  criteria = session.createCriteria(Countries.class);
 			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
@@ -49,10 +49,10 @@ public class CountryDaoImpl implements CountryDao {
 			List<Countries> countries = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return countries;
 
@@ -60,12 +60,16 @@ public class CountryDaoImpl implements CountryDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 		
 		
 	}
@@ -80,8 +84,8 @@ public class CountryDaoImpl implements CountryDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria  criteria = session.createCriteria(States.class);
 			
@@ -95,10 +99,10 @@ public class CountryDaoImpl implements CountryDao {
 			
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return states;
 
@@ -106,12 +110,16 @@ public class CountryDaoImpl implements CountryDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 		
 		
 	
@@ -127,8 +135,8 @@ public class CountryDaoImpl implements CountryDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria  criteria = session.createCriteria(Cities.class);
 			
@@ -142,10 +150,10 @@ public class CountryDaoImpl implements CountryDao {
 			
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return city;
 
@@ -153,12 +161,16 @@ public class CountryDaoImpl implements CountryDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 		
 		
 		

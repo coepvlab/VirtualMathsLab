@@ -55,26 +55,30 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.save(completion);
 
 			LOGGER.debug("TestInstanceCompletion saved successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("TestInstanceCompletion saved failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -95,8 +99,8 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			// String q = "select * from testinstance t left join"+
 			// "sections s on(s.sectionId = t.section_sectionId)"+
@@ -140,10 +144,10 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			List<Object[]> completions = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return completions;
 
@@ -151,12 +155,16 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -179,8 +187,8 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestInstanceCompletion.class,"ti");
 			criteria.add(Restrictions.eq("ti.testInstanceState.testInstanceStateId", testInstanceStateId));
@@ -201,10 +209,10 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 
 			LOGGER.debug("TestInstanceCompletion saved successful");
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return completion;
 
@@ -212,11 +220,15 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			LOGGER.error("TestInstanceCompletion saved failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -239,8 +251,8 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestInstanceCompletion.class, "tic");
 			criteria.add(Restrictions.eq("tic.testInstanceState.testInstanceStateId", testInstanceStateId));
@@ -254,10 +266,10 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 
 			LOGGER.debug("TestInstanceCompletion saved successful");
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return completion;
 
@@ -265,11 +277,15 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			LOGGER.error("TestInstanceCompletion saved failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -284,8 +300,8 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestInstanceCompletion.class, "tic");
 			criteria.add(Restrictions.eq("tic.testInstanceState.testInstanceStateId", testInstanceStateId));
@@ -295,10 +311,10 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 
 			LOGGER.debug("TestInstanceCompletion saved successful");
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return completion;
 
@@ -306,11 +322,15 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			LOGGER.error("TestInstanceCompletion saved failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -324,8 +344,8 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestInstanceCompletion.class, "tic");
 			criteria.add(Restrictions.eq("tic.testInstanceState.testInstanceStateId", tisId));
@@ -336,10 +356,10 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 
 			LOGGER.debug("TestInstanceCompletion saved successful");
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return completion;
 
@@ -347,11 +367,15 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			LOGGER.error("getTestPaper failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -365,26 +389,30 @@ public class TestInstanceCompletionDaoImpl implements TestInstanceCompletionDao 
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.delete(tic);
 
 			LOGGER.debug("TestInstanceCompletion deleted successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("TestInstanceCompletion deletion failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 

@@ -41,26 +41,30 @@ public class SubjectDaoImpl implements SubjectDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.save(subject);
 
 			LOGGER.debug("Subject saved successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("Subject saved failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -77,27 +81,31 @@ public class SubjectDaoImpl implements SubjectDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Subject.class);
 
 			subjects = criteria.list();
 
 			LOGGER.debug("Subject fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.debug("Subject fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 		return subjects;
 	}
@@ -114,8 +122,8 @@ public class SubjectDaoImpl implements SubjectDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Subject.class);
 			criteria.add(Restrictions.eq("subjectId", subjectId));
@@ -123,10 +131,10 @@ public class SubjectDaoImpl implements SubjectDao{
 			subject = (Subject) criteria.uniqueResult();
 			
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return subject;
 
@@ -134,11 +142,15 @@ public class SubjectDaoImpl implements SubjectDao{
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 	

@@ -194,8 +194,6 @@ public class LoginController {
 				}else if (testInstanceState.getTestType().getTestTypeId() == Constants.otherTestTypeId) {
 					System.out.println("Other Test type");
 				}
-				
-				
 			}
 			
 			
@@ -206,7 +204,7 @@ public class LoginController {
 			            result.remove(element);
 			        }
 			    }
-			    System.out.println("F - "+result);  ;
+//			    System.out.println("F - "+result);  
 			    int n = result.size();
 			    Long topicArr[] = new Long[n];
 			    

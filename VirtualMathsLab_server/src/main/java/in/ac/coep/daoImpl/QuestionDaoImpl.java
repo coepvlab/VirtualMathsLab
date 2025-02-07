@@ -54,18 +54,18 @@ public class QuestionDaoImpl implements QuestionDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Serializable serializable = session.save(question);
 
 			long questionId = (Long) serializable;
 
 			LOGGER.debug("addQuestion  successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionId;
 
@@ -73,11 +73,15 @@ public class QuestionDaoImpl implements QuestionDao {
 			LOGGER.error("addQuestion failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -96,8 +100,8 @@ public class QuestionDaoImpl implements QuestionDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 //			Question question = (Question) session.get(Question.class, questionId);
 			
@@ -111,10 +115,10 @@ public class QuestionDaoImpl implements QuestionDao {
 			
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return question;
 
@@ -122,12 +126,16 @@ public class QuestionDaoImpl implements QuestionDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/*
@@ -147,8 +155,8 @@ public class QuestionDaoImpl implements QuestionDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			Criteria criteria = session.createCriteria(Question.class);
 
 			criteria.add(Restrictions.eq("approved", false));
@@ -156,10 +164,10 @@ public class QuestionDaoImpl implements QuestionDao {
 			questions = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questions;
 
@@ -167,12 +175,16 @@ public class QuestionDaoImpl implements QuestionDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 //	@SuppressWarnings({ "deprecation", "unchecked" })
@@ -235,22 +247,22 @@ public class QuestionDaoImpl implements QuestionDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.delete(question);
 
 			LOGGER.debug("remove successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch(ConstraintViolationException constraintViolationException){
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 			LOGGER.error("This question can not be modified or delete.", constraintViolationException);
 			throw new ConstraintViolationException("This question can not be modified or delete.", constraintViolationException.getSQLException(),
 					"Username");
@@ -259,11 +271,15 @@ public class QuestionDaoImpl implements QuestionDao {
 			LOGGER.error("remove failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/*
@@ -327,26 +343,30 @@ public class QuestionDaoImpl implements QuestionDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.update(question);
 			LOGGER.debug("merge successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.debug("merge failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@Override
@@ -358,8 +378,8 @@ public class QuestionDaoImpl implements QuestionDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Query sql = session.createSQLQuery(query);
 			sql.setLong("QID", questionId);
@@ -369,10 +389,10 @@ public class QuestionDaoImpl implements QuestionDao {
 
 			// session.delete(question);
 			LOGGER.debug("remove successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return result;
 
@@ -380,11 +400,15 @@ public class QuestionDaoImpl implements QuestionDao {
 			LOGGER.error("remove failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/* (non-Javadoc)
@@ -402,8 +426,8 @@ public class QuestionDaoImpl implements QuestionDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			Criteria criteria = session.createCriteria(Question.class,"question");
 			criteria.setFetchMode("question.answers", FetchMode.JOIN);
 			criteria.createAlias("question.answers", "ans", CriteriaSpecification.LEFT_JOIN);
@@ -412,10 +436,10 @@ public class QuestionDaoImpl implements QuestionDao {
 			questions = criteria.list();
 
 			LOGGER.debug("fetch Question successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questions;
 
@@ -423,12 +447,16 @@ public class QuestionDaoImpl implements QuestionDao {
 			LOGGER.debug("fetch Question failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 }

@@ -47,7 +47,7 @@
 	p:testConnectionOnCheckin="true"
 	p:maxIdleTimeExcessConnections="240" />
 	
-
+	<bean class="in.ac.coep.filters.DeregisterJDBCDriver" lazy-init="false"/>
 	
 	 <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
      p:dataSource-ref="dataSource"

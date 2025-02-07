@@ -46,13 +46,13 @@
 			+ '<thead>' + ' <tr>'
 //			+ '<th width="5%" > </th>'
 			+ '<th width="5%" >Sr. No. </th>'
-			+ '<th width="5%">Topic Name</th>'
-			+ '<th width="30%">Test Name </th>'
+			+ '<th width="35%">Topic Name</th>'
+			+ '<th width="40%">Test Name </th>'
 			+ '<th width="5%">Correct Answers</th>'
-			+ '<th width="15%">Total Questions</th>'
+			+ '<th width="5%">Total Questions</th>'
 //			+ '<th width="20%">Topics</th>'
 //			+ '<th width="5%" title ="Variation No">Var No</th>'
-			+ '<th width="5%">Click here for Question Paper</th>' 
+			+ '<th width="10%">Click here for Question Paper</th>' 
 			+ '</tr>'
 			+ '</thead>'
 			+ '<tbody>'
@@ -62,18 +62,17 @@
 			recordHtm += '<tr  id="'+i+'" >' 
 			recordHtm += '<td width="5%">' + (i + 1)
 			recordHtm += '</td>'
-			+ '<td width="5%">' + data[i].TOPICNM
+			+ '<td width="35%">' + data[i].TOPICNM
 			+ '</td>'
-			+ '<td width="30%" id="MathPreview" >' + data[i].TESTNM
+			+ '<td width="40%" id="MathPreview" >' + data[i].TESTNM
 			+ '</td>'
-			+ '<td width="10%">' + data[i].PASSNOQUES
+			+ '<td width="5%">' + data[i].PASSNOQUES
 			+ '</td>' 
-			+ '<td width="15%">' + data[i].TOTALNOQUES
+			+ '<td width="5%">' + data[i].TOTALNOQUES
 			+ '</td>' 
 			
-			+'<td width="5%">'
-//			+'<a href="#">Click here for question paper' + data[i].TISID + '</a></td>' 
-			+ '<span class="resultBtn btn btn-success" onClick="javascript:com.coep.test.AlertMessage.getQuestionPaperOnClick('+i+','+data[i].TISID+')" data-toggle="modal" data-target="#AlertMesConfirm2-'+i+'-'+data[i].TISID+'" title="Click here for Question Paper" class="btn btn-success AcT_ArchIcon" >'+ "Question Paper" + '</span>'
+			+'<td width="10%">'
+			+ '<span class="resultBtn btn btn-success" onClick="javascript:com.coep.test.AlertMessage.getQuestionPaperOnClick('+i+','+data[i].TISID+')" data-toggle="modal" data-target="#AlertMesConfirm2-'+i+'-'+data[i].TISID+'" title="Click here for Question Paper" class="btn btn-success AcT_ArchIcon" >'+ "Question <br/> Paper" + '</span>'
 			+'</td>' 
 			+ '</tr>'
 		}
@@ -84,21 +83,13 @@
 		$("#main-div").ready(function() {
 			var data_table = $('#TestData').DataTable({
 				"pageLength" : 100,
-				// lengthChange: false,
 				buttons : [ 'copy', 'excel', 'pdf' ],
-//				 "order": [[ 3, "asc" ]],
 			     drawCallback: function(){
 			          $('.paginate_button.page-item:not(.disabled)', this.api().table().container())          
 			             .on('click', function(){
 			            	 com.coep.test.mathJax.renderMathJax();
 			             });       
 			       },
-//			       "columnDefs": [ {
-//			    	      "targets"  : 'no-sort',
-//			    	      "orderable": false,
-//			    	      "order": []
-//			    	    }],
-//			    "ordering": false,
 		       "initComplete": function() {
 //		    	   com.coep.test.mathJax.renderMathJax();
 		       }
@@ -126,7 +117,6 @@
 					    success : function(data) {
 
 						if (data.done != false) {
-							console.log(data);
 							setTimeout(function(){ AM.showQuestionPaper(i,TISID, data.data, allData); }, 100);	
 						} else {
 							showToast.show(data.msg, false);
@@ -141,8 +131,8 @@
 		
 		
 		AM.showQuestionPaper = function(i,TISID,  data, allData) {
-
-				var AlertMesConfirm = ''
+				
+				var AlertMesConfirm = '';
 					AlertMesConfirm +=  '<div class="container-fluid">'
 					+ '<div class="row">'
 					+ '<div  class="col-sm-12 col-md-12 col-lg-12 col-xl-12">'
@@ -160,30 +150,19 @@
 									// body
 									+'<hr>'
 									
-//									 AlertMesConfirm += '<h1>NON-APPROVED QUESTION DETAILS</h1>'
 										 AlertMesConfirm += '<div class="table-responsive" >'
 											+ '<center><div id="showSelQues" style="display: none;  color: #007bff"></div></center>' // showSelQues
 											+ '<table id="nonApprovedQuestionData" class="table table-striped table-bordered" style="width:100%">'
 											+ '<thead>' + ' <tr>'
 											+ '<th  width="5%"  title="Result"  style="cursor: pointer;">'
-//											+'<input type="checkbox"  id="checkAllNonApproved" checkId="" name="checkMultiple" class="checkboxType"  style="cursor: pointer;" /> <label for="checkAllNonApproved"  style="cursor: pointer; color: white;"  >Select all Questions.</label>'
 											+' <label for="result"  style="cursor: pointer; color: white;"  >Result</label>'
 											+ ' </th>'
-//											+ '<th width="5%" >Sr. No. </th>'
 											+ '     <th width="90%">Question </th>'
 											+ '   </tr>'
 											+ '</thead>'
 											+ ' <tbody>'
 
 									for (var i = 0; i < data.length; i++) {
-//										var topicName = "";
-//										for (var q = 0; q < data[i].QGTOPICS.length; q++) {
-//											if(q == data[i].QGTOPICS.length - 1){
-//												topicName += data[i].QGTOPICS[q].TNO+" - "+data[i].QGTOPICS[q].TNM + " ("+data[i].QGTOPICS[q].TNM1 +")";
-//											}else{
-//												topicName += data[i].QGTOPICS[q].TNO+" - "+data[i].QGTOPICS[q].TNM + " ("+data[i].QGTOPICS[q].TNM1 +") "+",<br>";
-//											}
-//										}
 										
 											AlertMesConfirm += '<tr  >'
 												
@@ -201,20 +180,6 @@
 											+ '<td width="90%">'
 											+'<div class="row ApproveQueStyle" id="Q'+(i + 1)+'">' // ApproveQue main div start
 											
-//											AlertMesConfirm += '<div class="col-xl-12 col-md-12 col-sm-12 justify-content-center" ><p class="ApproveDivLabel">Contributor - '+data[i].CBY+'</p></div>'
-											
-//											AlertMesConfirm += '<div class="col-xl-3 col-md-3 col-sm-12 ApproveDivStyle" >'
-//												 +'<span><p class="ApproveDivLabel">Question Type </p>'+data[i].QGTYP+'</span>'
-//												 +'</div>' 
-//												
-//												 +'<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
-//												 +'<span><p class="ApproveDivLabel">Assign Topics </p class="ApproveDivLabel">'+topicName+'</span>'
-//												 +'</div>'
-//												 +'<div class="col-xl-3 col-md-3 col-sm-12 ApproveDivStyle">'
-//												+'<p class="ApproveDivLabel">Difficulty level  </p>'
-//												+'Level - ' +data[i].QGLVL
-//												+'</div>'
-												 
 											 // Reference start
 											 
 											 if($.trim(data[i].QGTYP) == "Text" || $.trim(data[i].QGTYP) == "text"){
@@ -228,17 +193,17 @@
 													
 												}else if($.trim(data[i].QGTYP) == "Image" || $.trim(data[i].QGTYP) == "image"){
 													
-													AlertMesConfirm += '<div class="col-xl-12 col-md-12 col-sm-12">'
+													AlertMesConfirm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 														 +'<p class="ApproveDivLabel">'
-														 +' With reference to the follwing Image answer the following question'
+														 +' Related details/पूरक (संबंधित) माहिती'
 														 +' </p>'
 														+'<div> <img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" class="ApproveQueImg" /></div></div><hr/>'
 													
 												}else if($.trim(data[i].QGTYP) == "Audio" || $.trim(data[i].QGTYP) == "audio"){
 													
-													AlertMesConfirm += '<div class="col-xl-12 col-md-12 col-sm-12">'
+													AlertMesConfirm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 														 +'<p class="ApproveDivLabel">'
-														 +' With reference to the follwing clip answer the following question'
+														 +' Related details/पूरक (संबंधित) माहिती'
 														 +' </p>'
 														 +' <audio controls class="ApproveQueAudio">'
 														 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" type="audio/mpeg" >'
@@ -247,9 +212,9 @@
 														+'</div><hr/>'
 														
 												}else if($.trim(data[i].QGTYP) == "Video" || $.trim(data[i].QGTYP) == "video"){
-													AlertMesConfirm +='<div class="col-xl-12 col-md-12 col-sm-12">'
+													AlertMesConfirm +='<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 														+ '<p class="ApproveDivLabel">'
-														+ ' With reference to the follwing clip answer the following question'
+														+ ' Related details/पूरक (संबंधित) माहिती'
 														+ ' </p>'
 														+'  <video controls class="ApproveQueVideo">'
 														+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" type="video/mp4" >'
@@ -266,13 +231,6 @@
 												
 												// actual Que start
 												AlertMesConfirm +='<div id="Actual_que" class="col-xl-12 col-md-12 col-sm-12">' //Actual_que start
-													
-//													AlertMesConfirm +='<div class="row"><div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
-//														 +'<span><p class="ApproveDivLabel">Answer Type </p>'+data[i].QUESTION[j].QTYP+'</span>'
-//														 +'</div>'
-//														 
-//														 + '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle" ><p class="ApproveDivLabel">Time</p><i class="fa fa-clock-o" aria-hidden="true" style="color:red;"></i> '+data[i].QUESTION[j].QTIM+' Seconds</div><hr/>'
-//														 + '</div>'
 													
 													+'<div id="MathPreview" class=" actualQuesDiv" >' // actualQue start
 
@@ -306,23 +264,12 @@
 																			  			+'</div>'
 																			  			+'</div>'
 																		  }else{
-//																			  if (data[i].QUESTION[j].GIVENANSID == data[i].QUESTION[j].answers[k].ansId) {
-//																				  AlertMesConfirm +='<div >'
-//																				        +'<div  >' 
-//																				  		+'<input type="radio" id="textOpt'+(i+1)+'-'+(j+1)+'-'+(k+1)+'" name="radioOpt'+(i+1)+'-'+(j+1)+'" class="radiostyle">'
-//																			  			+ '<label  for="textOpt'+(i+1)+'-'+(j+1)+'-'+(k+1)+'" style="color: #1757b8;"  id="MathPreview">'+data[i].QUESTION[j].answers[k].content+'</label>'
-//																			  			+'</div>'
-//																			  			+'<i class="fa fa-times" aria-hidden="true" style="color: red;">Given Answer</i>'
-//																			  			+'</div>'
-//																			}else{
 																				  AlertMesConfirm +='<div >'
 																				        +'<div  >' 
 																				  		+'<input type="radio" id="textOpt'+(i+1)+'-'+(j+1)+'-'+(k+1)+'" name="radioOpt'+(i+1)+'-'+(j+1)+'" class="radiostyle">'
 																			  			+ '<label  for="textOpt'+(i+1)+'-'+(j+1)+'-'+(k+1)+'" style="color: #1757b8;"  id="MathPreview">'+data[i].QUESTION[j].answers[k].content+'</label>'
 																			  			+'</div>'
 																			  			+'</div>'
-//																			}
-																			
 																		  }
 																		
 																	  }else{ 
@@ -349,7 +296,7 @@
 																	  }
 																	 
 																  AlertMesConfirm +='</div>'
-																	// 
+																	 
 															  } else if(data[i].QUESTION[j].QTYPID == 5 || data[i].QUESTION[j].QTYPID == 8) {
 
 																  AlertMesConfirm += '<div class="col-xl-6 col-md-6 col-sm-12 OptDiv">'
@@ -414,7 +361,7 @@
 													    				 
 													    				 AlertMesConfirm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle" ><span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 													    				 +'<p>'
-																		 +' With reference to the follwing Image answer the question'
+																		 +' Related details/पूरक (संबंधित) माहिती'
 																		 +' </p>'
 													    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'"  class="ApproveQueImg" /></div>'
 													    				 
@@ -422,7 +369,7 @@
 													    				 AlertMesConfirm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 													    					 +'<span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 													    					 +'<p>'
-																			 +' With reference to the follwing clip answer the  question'
+																			 +' Related details/पूरक (संबंधित) माहिती'
 																			 +' </p>'
 																			 +' <audio controls class="ApproveQueAudio">'
 																			 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'" type="audio/mpeg" >'
@@ -433,7 +380,7 @@
 													    				 AlertMesConfirm +='<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 														    					+'<span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 														 						+ '<p>'
-														 						+ ' With reference to the follwing clip answer the question'
+														 						+ ' Related details/पूरक (संबंधित) माहिती'
 														 						+ ' </p>'
 														 						+'  <video controls  class="ApproveQueVideo" >'
 														 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'" type="video/mp4" >'
@@ -450,18 +397,6 @@
 												// solution div end
 												// variation No div start	
 															 
-//												if (data[i].varNo != "") {
-//													
-//													 if (data[i].varNo != undefined) {
-//														 AlertMesConfirm += '<div class="col-xl-12 col-md-12 col-sm-12 justify-content-center" ><p class="ApproveDivLabel">Variation No - '+data[i].varNo+'</p></div>'
-//													 }else{
-//														 AlertMesConfirm += '<div class="col-xl-12 col-md-12 col-sm-12 justify-content-center" ><p class="ApproveDivLabel">Variation No - Not assigned</p></div>'
-//													 }
-//
-//												} else {
-//													AlertMesConfirm += '<div class="col-xl-12 col-md-12 col-sm-12 justify-content-center" ><p class="ApproveDivLabel">Variation No - Not assigned</p></div>'
-//												}
-											
 												//	variation No div start
 												
 												 AlertMesConfirm +='<hr style="border-top: 8px solid rgba(72, 1, 1, 0.82);"></div>' //Actual_que start
@@ -469,11 +404,6 @@
 												
 											}	
 											
-//													AlertMesConfirm +='<div class="col-xl-12 col-md-12 col-sm-12 justify-content-center">'
-//														AlertMesConfirm +=	'<button onclick = "modifyQuesGroup('+  data[i].QGID +',\'Non-Approved\', '+  (i+1) +')"  title="MODIFY QUESTION" class="btn btn-success AcT_ArchIcon float-left"><i class="fa fa-pencil-square-o " aria-hidden="true"></i>&nbsp;MODIFY</button> '
-//														+'<button onclick = "javascript:com.coep.test.AlertMessage.confirmationToApproveQues('+  data[i].QGID +',\'Non-Approved\',\'Approval\','+data.length+','+selectedTopicId+')" data-toggle="modal"  title="Approve Question" class="btn btn-dark confModelBtn " >APPROVE</button>'
-//														+'<button  onClick="javascript:com.coep.test.AlertMessage.confirmationToArchiveOrActiveNonApprovedQues('+data[i].QGID +',\'archive\',\'Non-Approved\','+data.length+', '+selectedTopicId+')" data-toggle="modal"  title="Archive Question" class="btn btn-danger AcT_ArchIcon float-right confModelArchBtn"><i class="fa fa-archive " aria-hidden="true"></i>&nbsp;ARCHIVE<div id="delete-pre"></div></button>'
-//														+'</div>'
 												
 											AlertMesConfirm +='</div>' // ApproveQue main div end
 											AlertMesConfirm +='</td>'
@@ -489,8 +419,6 @@
 								+ '</div>'
 				                + '<div class="modal-footer">'
 								+ '<button type="button" class="btn btn-success" data-dismiss="modal"  >OKAY</button>&nbsp;&nbsp;'
-//								+ '<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>'
-//				                + '<button type="button" class="close" data-dismiss="modal">OKAY</button>'
 								+ '</div>'
 				
 							  + '    </div>'
@@ -503,22 +431,9 @@
 					
 					$("#main-div").append(AlertMesConfirm);
 			     	com.coep.test.mathJax.renderMathJax();
-			     	
-			     	
-//			     	for (var i = 0; i < data.length; i++) {
-//			     		for (var j = 0; j < data[i].QUESTION.length; j++) {
-//			     			if (data[i].QUESTION[j].RESULT == true) {
-//								$("check-"+i+"").html('<i class="fa fa-check" aria-hidden="true" style="color: green;"></i>');
-//							}else{
-//								$("check-"+i+"").html('<i class="fa fa-times" aria-hidden="true" style="color: red;"></i>');
-//							}
-//			     		}
-//			     	}
-		
 		}
 		
 		$("#Loading").css("display","none");
-		
 }
  
 

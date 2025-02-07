@@ -52,18 +52,18 @@ public class AnswerDaoImpl implements AnswerDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Serializable serializable = session.save(answer);
 
 			long answerId = (Long) serializable;
 
 			LOGGER.debug("addAnswer  successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return answerId;
 
@@ -71,11 +71,15 @@ public class AnswerDaoImpl implements AnswerDao {
 			LOGGER.error("addAnswer failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -96,8 +100,8 @@ public class AnswerDaoImpl implements AnswerDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			Criteria criteria = session.createCriteria(Answers.class, "answer");
 
 			criteria.add(Restrictions.eq("answer.question.questionId", questionId));
@@ -105,10 +109,10 @@ public class AnswerDaoImpl implements AnswerDao {
 			answers = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return answers;
 
@@ -116,12 +120,16 @@ public class AnswerDaoImpl implements AnswerDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/*
@@ -138,26 +146,30 @@ public class AnswerDaoImpl implements AnswerDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.delete(answers2);
 
 			LOGGER.debug("remove successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("remove failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/*
@@ -175,15 +187,15 @@ public class AnswerDaoImpl implements AnswerDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			Answers answers = (Answers) session.get(Answers.class, ansId);
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return answers;
 
@@ -191,12 +203,16 @@ public class AnswerDaoImpl implements AnswerDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 }

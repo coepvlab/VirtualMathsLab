@@ -17,4 +17,8 @@ public interface UtilityService {
 
 	public JSONObject updateTopicStatusByTID(long tid, boolean flag)throws Exception;
 
+	public JSONObject updateDODlevel(String json)throws Exception;
+
+	public JSONObject getVarCountOfDOD(String json)throws Exception;
+
 }

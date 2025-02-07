@@ -31,8 +31,8 @@ public class ForgotPasswordDaoImpl implements ForgotPasswordDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			Criteria criteria = session.createCriteria(User.class, "user")
 					.add(Restrictions.eq("user.userId", uid))
 					.add(Restrictions.eq("user.emailId", emailId))
@@ -40,20 +40,24 @@ public class ForgotPasswordDaoImpl implements ForgotPasswordDao{
 			long result = (Long) criteria.uniqueResult();
 			System.out.println("result:" + result);
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 			return result;
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 

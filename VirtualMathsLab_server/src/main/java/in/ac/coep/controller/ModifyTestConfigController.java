@@ -12,7 +12,7 @@
 //@RequestMapping(value = "/getTestConfig")
 //public class ModifyTestConfigController {
 //	
-//		private static final Logger LOGGER = Logger.getLogger(TestConfigurationController.class);
+//		private static final Logger LOGGER = Logger.getLogger(ModifyTestConfigController.class);
 //		
 ////		@Autowired
 ////		private TestConfigurationService testConfigurationService;

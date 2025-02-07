@@ -543,7 +543,6 @@
 		$("#Loading").css("display","none");
 		$("#Loading").remove();
 		$("#main-div").html("");	
-		
 
 		$.ajax({
 			type : "GET",
@@ -552,10 +551,9 @@
 			contentType : 'application/json',
 			success : function(data) {
 				if (data.done == false) {
-
+					showToast.show(data.msg);
 				} else {
 					if (data.length != 0) {
-						console.log(data);
 						TC.renderShowTest(data.data);
 					} else {
 						showToast.show(

@@ -21,7 +21,7 @@
 		<intercept-url pattern="/test" access="isAuthenticated()" />
 		<intercept-url pattern="/test" access="hasAnyRole('STUDENT')" />
 		<intercept-url pattern="/othertest" access="isAuthenticated()" />
-		<intercept-url pattern="/othertest" access="hasAnyRole('CONTRIBUTOR','MODERATOR')" />
+		<intercept-url pattern="/othertest" access="hasAnyRole('CONTRIBUTOR','MODERATOR','STUDENT')" />
 		<!-- <form-login login-page="/login" authentication-success-handler-ref="customAuthenticationHandler" -->
 		<!-- authentication-failure-url="/loginfailed" /> -->
 

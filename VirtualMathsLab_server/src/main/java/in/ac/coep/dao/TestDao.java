@@ -62,6 +62,10 @@ public interface TestDao {
 
 	public List<Test> getAllTestListByTestTypeId(long testTypeId) throws Exception;
 
+	public List<Test> getTestForPracticeTestByTopicIdAndTestLevel(String selectedTopics, int testLevel)throws Exception;
+
+	public List<Test> getTestForPracticeTestByTopicIdOnly(String selectedTopics)throws Exception;
+
 //	public Test getTestForPracticeTestByTopicId(String selectedTopicId, String varType)  throws Exception;
 
 	

@@ -45,18 +45,18 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Serializable serializable = session.save(questionGroup);
 
 			long questionGroupId = (Long) serializable;
 
 			LOGGER.debug("add QuestionGroup successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroupId;
 
@@ -64,11 +64,15 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.error("add QuestionGroup failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -82,8 +86,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			// QuestionGroup questionGroup = (QuestionGroup)
 			// session.get(QuestionGroup.class, questionGroupId);
@@ -98,10 +102,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			QuestionGroup questionGroup = (QuestionGroup) criteria.uniqueResult();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroup;
 
@@ -109,12 +113,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/*
@@ -135,8 +143,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -152,10 +160,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -163,12 +171,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -188,26 +200,30 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.update(questionGroup);
 
 			LOGGER.debug("add QuestionGroup successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("add QuestionGroup failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -229,8 +245,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.add(Restrictions.eq("isArchive", filtersJson.getBoolean("status")));
@@ -259,10 +275,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -270,12 +286,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -297,8 +317,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			// criteria.add(Restrictions.eq("qg.level", 1));
@@ -315,10 +335,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -326,12 +346,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -354,8 +378,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			// criteria.add(Restrictions.eq("qg.level", 1));
@@ -371,10 +395,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			}
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return result;
 
@@ -382,12 +406,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/*
@@ -407,8 +435,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -426,10 +454,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			List<QuestionGroup> questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -437,12 +465,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	/*
@@ -463,8 +495,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -482,10 +514,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			List<QuestionGroup> questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -493,12 +525,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
@@ -513,8 +549,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -532,10 +568,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -543,12 +579,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -564,8 +604,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -583,10 +623,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -594,12 +634,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -612,16 +656,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.delete(questionGroup);
 
 			LOGGER.debug("remove successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (ConstraintViolationException constraintViolationException) {
 			if (tx != null)
@@ -635,11 +679,15 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.error("remove failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
@@ -655,8 +703,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			DetachedCriteria crt = DetachedCriteria.forClass(QuestionGroup.class,
 					"qg");
@@ -678,24 +726,28 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			questionGroups = crt.getExecutableCriteria(session).list();
 			
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			
 			tx.commit();
-			session.close();
+//			session.close();
 
 		
 		} catch (HibernateException e) {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 		return questionGroups;
 
 	}
@@ -711,8 +763,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -734,10 +786,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			List<QuestionGroup> questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -745,12 +797,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings("deprecation")
@@ -763,8 +819,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -789,10 +845,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			List<QuestionGroup> questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -800,12 +856,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings("deprecation")
@@ -819,8 +879,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -844,10 +904,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			List<QuestionGroup> questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -855,12 +915,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings({ "deprecation" })
@@ -874,8 +938,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -927,10 +991,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			List<QuestionGroup> questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -938,12 +1002,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings("deprecation")
@@ -956,8 +1024,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -988,10 +1056,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			List<QuestionGroup> questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -999,12 +1067,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings({ "deprecation", "unchecked" })
@@ -1020,8 +1092,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			DetachedCriteria crt = DetachedCriteria.forClass(QuestionGroup.class,
 					"qg");
@@ -1044,10 +1116,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			topics = crt.getExecutableCriteria(session).list();
 			
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return topics;
 
@@ -1055,12 +1127,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -1074,8 +1150,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -1098,10 +1174,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			List<QuestionGroup> questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -1109,12 +1185,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings("deprecation")
@@ -1128,8 +1208,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -1152,10 +1232,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			List<QuestionGroup> questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -1163,12 +1243,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings("deprecation")
@@ -1182,8 +1266,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -1206,10 +1290,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			List<QuestionGroup> questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -1217,12 +1301,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
@@ -1239,8 +1327,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			DetachedCriteria crt = DetachedCriteria.forClass(QuestionGroup.class,
 					"qg");
@@ -1266,24 +1354,28 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			questionGroups = crt.getExecutableCriteria(session).list();
 			
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			
 			tx.commit();
-			session.close();
+//			session.close();
 
 		
 		} catch (HibernateException e) {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 		return questionGroups;
 
 	}
@@ -1300,8 +1392,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class, "qg");
 			criteria.setFetchMode("qg.questions", FetchMode.JOIN);
@@ -1326,10 +1418,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			List<QuestionGroup> questionGroups = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return questionGroups;
 
@@ -1337,12 +1429,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 	
 
@@ -1359,8 +1455,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuestionGroup.class);
 			criteria.add(Restrictions.eq("isArchive", true));
@@ -1372,18 +1468,22 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			qgList = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
-		}
+//			if (session != null && session.isOpen())
+//				session.close();
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 		return qgList;
 	}
@@ -1400,8 +1500,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			DetachedCriteria crt = DetachedCriteria.forClass(QuestionGroup.class,
 					"qg");
@@ -1424,10 +1524,10 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			topics = crt.getExecutableCriteria(session).list();
 			
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return topics;
 
@@ -1435,12 +1535,16 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -1457,8 +1561,8 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestInstanceCompletion.class);
 //			criteria.add(Restrictions.eq("isArchive", true));
@@ -1469,20 +1573,61 @@ public class QuestionGroupDaoImpl implements QuestionGroupDao {
 			tic = (TestInstanceCompletion) criteria.uniqueResult();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
-		}
+//			if (session != null && session.isOpen())
+//				session.close();
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 		return tic;
+	}
+
+	@Override
+	public void updateQG(QuestionGroup qg) throws Exception {
+		// TODO Auto-generated method stub
+
+		Session session = null;
+		Transaction tx = null;
+		try {
+			session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+
+//			session.flush();
+//			session.clear();
+
+			session.update(qg);
+			LOGGER.debug("save successful");
+//			session.flush();
+//			session.clear();
+			tx.commit();
+//			session.close();
+			
+		}catch (HibernateException e) {
+			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+//			if (session != null && session.isOpen())
+//				session.close();
+
+			throw new Exception(e);
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
+		
+
 	}
 
 

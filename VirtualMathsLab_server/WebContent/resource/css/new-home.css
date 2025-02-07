@@ -10632,7 +10632,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 #sidebar {
 	min-width: 250px;
 	max-width: 250px;
-	background: #343148ff;
+	background: #302e41;
 	color: #fff;
 /* 	padding: 10px 15px; */
 	-webkit-transition: all 0.3s;

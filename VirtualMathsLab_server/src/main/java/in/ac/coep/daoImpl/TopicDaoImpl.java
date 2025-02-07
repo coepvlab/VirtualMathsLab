@@ -46,26 +46,30 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.save(topic);
 
 			LOGGER.debug("Topic saved successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("Topic saved failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -81,18 +85,18 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Topic.class);
 			criteria.add(Restrictions.eq("topicId", parentId));
 
 			topic = (Topic) criteria.uniqueResult();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return topic;
 
@@ -100,11 +104,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -118,26 +126,30 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.saveOrUpdate(topic);
 
 			LOGGER.debug("Topic saved successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("Topic saved failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -151,26 +163,30 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.save(mapping);
 
 			LOGGER.debug("Topic mapping saved successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("Topic mapping saved failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -187,27 +203,31 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Topic.class);
 
 			topics = criteria.list();
 
 			LOGGER.debug("topic fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.debug("topic fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 		return topics;
 	}
@@ -224,18 +244,18 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Topic.class);
 			criteria.add(Restrictions.eq("topicNo", topicNo));
 
 			topic = (Topic) criteria.uniqueResult();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return topic;
 
@@ -243,11 +263,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -264,8 +288,8 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TopicMapping.class);
 			criteria.add(Restrictions.eq("parent.topicId", parentId));
@@ -273,10 +297,10 @@ public class TopicDaoImpl implements TopicDao {
 
 			topicMapping = criteria.list();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return topicMapping;
 
@@ -284,11 +308,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -302,26 +330,30 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.update(tp1);
 
 			LOGGER.debug("Topic updated successfully");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("Topic update failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -338,8 +370,8 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Topic.class);
 			criteria.add(Restrictions.like("topicNo", topicNo, MatchMode.START));
@@ -347,18 +379,22 @@ public class TopicDaoImpl implements TopicDao {
 			topics = criteria.list();
 
 			LOGGER.debug("topic fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.debug("topic fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
-		}
+//			if (session != null && session.isOpen())
+//				session.close();
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 		return topics;
 	}
@@ -376,18 +412,18 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TopicMapping.class);
 			criteria.add(Restrictions.eq("parent.topicId", topicId));
 
 			topicMapping = criteria.list();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return topicMapping;
 
@@ -395,11 +431,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -413,26 +453,30 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.delete(tm);
 
 			LOGGER.debug("Topic mapping deleted successfully");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("Topic deleted failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -446,26 +490,30 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.delete(topic);
 
 			LOGGER.debug("Topic deleted successfully");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("Topic deleted failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -482,18 +530,18 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TopicMapping.class);
 			criteria.add(Restrictions.eq("topic.topicId", topicId));
 
 			topicMapping = criteria.list();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return topicMapping;
 
@@ -501,11 +549,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -522,18 +574,18 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TopicMapping.class);
 			criteria.add(Restrictions.eq("status", status));
 
 			topicMapping = criteria.list();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return topicMapping;
 
@@ -541,11 +593,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -561,8 +617,8 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TopicMapping.class);
 			criteria.add(Restrictions.eq("status", status));
@@ -571,10 +627,10 @@ public class TopicDaoImpl implements TopicDao {
 
 			topicMapping = (TopicMapping) criteria.uniqueResult();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return topicMapping;
 
@@ -582,11 +638,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -600,26 +660,30 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.delete(tm);
 
 			LOGGER.debug("Topic mapping removed successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("Topic deletion failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -635,18 +699,18 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TopicMapping.class);
 			criteria.add(Restrictions.eq("topicMappingId", tmId));
 
 			tm = (TopicMapping) criteria.uniqueResult();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return tm;
 
@@ -654,11 +718,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -675,18 +743,18 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Topic.class);
 			criteria.add(Restrictions.eq("level", topicLevel));
 
 			topic = criteria.list();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return topic;
 
@@ -694,11 +762,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -715,8 +787,8 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			DetachedCriteria detachedCriteria = DetachedCriteria.forClass(TopicMapping.class, "tm");
 			detachedCriteria.setFetchMode("tm.topic", FetchMode.JOIN);
@@ -726,10 +798,10 @@ public class TopicDaoImpl implements TopicDao {
 			detachedCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			childTopics = detachedCriteria.getExecutableCriteria(session).list();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return childTopics;
 
@@ -737,11 +809,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -757,8 +833,8 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TopicMapping.class);
 			criteria.add(Restrictions.eq("topic.topicId", topicId));
@@ -766,10 +842,10 @@ public class TopicDaoImpl implements TopicDao {
 
 			tm = (TopicMapping) criteria.uniqueResult();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return tm;
 
@@ -777,11 +853,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -798,18 +878,18 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TopicMapping.class);
 			criteria.add(Restrictions.eq("topic.topicId", topicId));
 			criteria.add(Restrictions.eq("status", "2")); // 1 is to get parent only, 2 is to get prerequisite
 //			tm = (TopicMapping) criteria.uniqueResult();
 			tm =  criteria.list();
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return tm;
 
@@ -817,11 +897,15 @@ public class TopicDaoImpl implements TopicDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -838,8 +922,8 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Topic.class);
 			criteria.add(Restrictions.eq("level", topicLevel));
@@ -847,18 +931,22 @@ public class TopicDaoImpl implements TopicDao {
 			topics = criteria.list();
 
 			LOGGER.debug("get topics fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.debug("topics fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
-		}
+//			if (session != null && session.isOpen())
+//				session.close();
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 		return topics;
 	}
@@ -876,8 +964,8 @@ public class TopicDaoImpl implements TopicDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(Topic.class);
 			criteria.add(Restrictions.eq("level", "01"));
@@ -885,19 +973,23 @@ public class TopicDaoImpl implements TopicDao {
 			topics = criteria.list();
 
 			LOGGER.debug("topic fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.debug("topic fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 		return topics;
 	}

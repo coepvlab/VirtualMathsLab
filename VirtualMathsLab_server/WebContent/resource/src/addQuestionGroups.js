@@ -1,8 +1,8 @@
 (function(AH, AP, AM, MJ) {
 
-	AP.baseURL = "http://localhost:8080/VirtualMathsLab/";
-//	AP.baseURL = "https://portal.coepvlab.ac.in/VirtualMathsLab/"
 //	AP.baseURL = "http://192.168.1.35:8080/VirtualMathsLab/";
+	AP.baseURL = "https://portal.coepvlab.ac.in/VirtualMathsLab/"
+//	AP.baseURL = "http://192.168.1.63:8080/VirtualMathsLab/";
 //	AP.baseURL = "http://ec2-13-233-206-54.ap-south-1.compute.amazonaws.com:8080/VirtualMathsLab/";
 	
 	
