@@ -109,6 +109,8 @@ public interface QuestionGroupDao {
 
 	public TestInstanceCompletion getTestInstanceCompetionRecordByQuestionGroupId(long questionGroupId)throws Exception;
 
+	public void updateQG(QuestionGroup qg)throws Exception;
+
 //	public List<QuestionGroup> getAllQuestionGroupsToApproveByStatusForFiler(String status)   throws Exception;
 
 

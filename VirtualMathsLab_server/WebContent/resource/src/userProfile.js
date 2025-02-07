@@ -1035,9 +1035,15 @@
 		$("#main-div").html(renderAccountActUserHtm);
 		$("#ActiveAccountData").ready(function() {
 			var table = $('#ActiveAccountTable').DataTable({
-				"pageLength" : 10,
-				// lengthChange: false,
-				buttons : [ 'copy', 'excel', 'pdf' ]
+				paging: true,
+                searching: true,
+                ordering: true,
+                info: true,
+                lengthMenu: [5, 10, 25, 50, 75, 100],
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
 			});
 
 			// table.buttons().container()

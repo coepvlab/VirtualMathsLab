@@ -46,18 +46,18 @@ public class QuesGroupMediaLinksDaoImpl implements QuesGroupMediaLinksDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Serializable serializable = session.save(mediaLinks);
 
 			long quesGroupMediaLinkId = (Long) serializable;
 
 			LOGGER.debug("addQuesGroupMediaLink  successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return quesGroupMediaLinkId;
 
@@ -65,11 +65,15 @@ public class QuesGroupMediaLinksDaoImpl implements QuesGroupMediaLinksDao {
 			LOGGER.error("addQuesGroupMediaLink failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -86,8 +90,8 @@ public class QuesGroupMediaLinksDaoImpl implements QuesGroupMediaLinksDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuesGroupMediaLinks.class);
 			criteria.add(Restrictions.eq("quesGroupMediaLinkId", quesGroupMediaLinkId));
@@ -95,10 +99,10 @@ public class QuesGroupMediaLinksDaoImpl implements QuesGroupMediaLinksDao {
 			quesGroupMediaLinks = (QuesGroupMediaLinks) criteria.uniqueResult();
 			
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return quesGroupMediaLinks;
 
@@ -106,11 +110,15 @@ public class QuesGroupMediaLinksDaoImpl implements QuesGroupMediaLinksDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -125,26 +133,30 @@ public class QuesGroupMediaLinksDaoImpl implements QuesGroupMediaLinksDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.update(quesGroupMediaLinks);
 
 			LOGGER.debug("Subject saved successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("Subject saved failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -161,8 +173,8 @@ public class QuesGroupMediaLinksDaoImpl implements QuesGroupMediaLinksDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(QuesGroupMediaLinks.class);
 			criteria.add(Restrictions.eq("quesGroupMediaLinkId", quesGroupMediaLinks));
@@ -170,10 +182,10 @@ public class QuesGroupMediaLinksDaoImpl implements QuesGroupMediaLinksDao {
 			qgml = (QuesGroupMediaLinks) criteria.uniqueResult();
 			
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return qgml;
 
@@ -181,11 +193,15 @@ public class QuesGroupMediaLinksDaoImpl implements QuesGroupMediaLinksDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -200,26 +216,30 @@ public class QuesGroupMediaLinksDaoImpl implements QuesGroupMediaLinksDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.delete(qgml);
 
 			LOGGER.debug("Subject deleted");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("Subject delete failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 

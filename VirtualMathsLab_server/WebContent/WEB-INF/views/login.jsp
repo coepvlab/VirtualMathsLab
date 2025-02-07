@@ -113,7 +113,7 @@ hr {
 	height: 2px;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:300); */
 
 .bglogo {
 	background-color: transprant;

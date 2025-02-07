@@ -211,8 +211,8 @@
 							
 								
 							renderVarHtml +=  '<div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">'
-								+ '<label>Enter Time[in Seconds] <span class="marathi-text" >(गणित सोडवण्यासाठी दिलेला वेळ सेकंदात)</span> </label><br/>'
-								+ '<input type="text" id="defTime" maxlength="4"  class="form-control col-xl-12 col-md-12 col-sm-12"  placeholder="Enter Time[in Seconds]"  required><i class="fa fa-asterisk asteriskForInput" aria-hidden="true"></i>'
+								+ '<label>Enter Time[in Seconds] <span class="marathi-text" >(गणित सोडवण्यासाठी दिलेला वेळ सेकंदात)</span><i class="fa fa-asterisk" aria-hidden="true"></i> </label><br/>'
+								+ '<input type="text" id="defTime" maxlength="4"  class="form-control col-xl-12 col-md-12 col-sm-12"  placeholder="Enter Time[in Seconds]"  required>'
 								+ '<div id="errmsg" class="red-color"></div>'
 								+ '</div>'
 								

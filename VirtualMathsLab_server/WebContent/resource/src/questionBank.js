@@ -707,14 +707,14 @@
 				    				 
 				    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6" ><div class="heading">Solution Media</div>'
 				    				 +'<div class="inners"><p>'
-									 +' With reference to the following Image answer the question'
+									 +' Related details/पूरक (संबंधित) माहिती'
 									 +' </p>'
 				    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'"  class="popup-img" /></div>'
 				    			 }else if(data[l].QUESTION[m].QSOLTYPE == "AUDIO"){
 				    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 				    					 +'<div class="heading">Solution Media</div>'
 				    					 +'<div class="inners"><p>'
-										 +' With reference to the following clip answer the  question'
+										 +' Related details/पूरक (संबंधित) माहिती'
 										 +' </p>'
 										 +' <audio controls>'
 										 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="audio/mpeg"  class="">'
@@ -725,7 +725,7 @@
 				    				 ansHtm +='<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 				    					+'<div class="heading">Solution Media</div>'
 				 						+ '<div class="inners"><p>'
-				 						+ ' With reference to the following clip answer the question'
+				 						+ ' Related details/पूरक (संबंधित) माहिती'
 				 						+ ' </p>'
 				 						+'  <video controls s >'
 				 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="video/mp4"  class"">'
@@ -1100,14 +1100,14 @@
 		    				 
 		    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6" ><div class="heading">Solution Media</div>'
 		    				 +'<div class="inners"><p>'
-							 +' With reference to the following Image answer the question'
+							 +' Related details/पूरक (संबंधित) माहिती'
 							 +' </p>'
 		    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'"  class="popup-img" /></div>'
 		    			 }else if(data[l].QUESTION[m].QSOLTYPE == "AUDIO"){
 		    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 		    					 +'<div class="heading">Solution Media</div>'
 		    					 +'<div class="inners"><p>'
-								 +' With reference to the following clip answer the  question'
+								 +' Related details/पूरक (संबंधित) माहिती'
 								 +' </p>'
 								 +' <audio controls>'
 								 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="audio/mpeg"  class="">'
@@ -1118,7 +1118,7 @@
 		    				 ansHtm +='<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 		    					+'<div class="heading">Solution Media</div>'
 		 						+ '<div class="inners"><p>'
-		 						+ ' With reference to the following clip answer the question'
+		 						+ ' Related details/पूरक (संबंधित) माहिती'
 		 						+ ' </p>'
 		 						+'  <video controls s >'
 		 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="video/mp4"  class"">'
@@ -1535,14 +1535,14 @@
 				    				 
 				    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6" ><div class="heading">Solution Media</div>'
 				    				 +'<div class="inners"><p>'
-									 +' With reference to the following Image answer the question'
+									 +' Related details/पूरक (संबंधित) माहिती'
 									 +' </p>'
 				    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'"  class="popup-img" /></div>'
 				    			 }else if(data[l].QUESTION[m].QSOLTYPE == "AUDIO"){
 				    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 				    					 +'<div class="heading">Solution Media</div>'
 				    					 +'<div class="inners"><p>'
-										 +' With reference to the following clip answer the  question'
+										 +' Related details/पूरक (संबंधित) माहिती'
 										 +' </p>'
 										 +' <audio controls>'
 										 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="audio/mpeg"  class="">'
@@ -1553,7 +1553,7 @@
 				    				 ansHtm +='<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 				    					+'<div class="heading">Solution Media</div>'
 				 						+ '<div class="inners"><p>'
-				 						+ ' With reference to the following clip answer the question'
+				 						+ ' Related details/पूरक (संबंधित) माहिती'
 				 						+ ' </p>'
 				 						+'  <video controls s >'
 				 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="video/mp4"  class"">'
@@ -1920,14 +1920,14 @@
 		    				 
 		    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6" ><div class="heading">Solution Media</div>'
 		    				 +'<div class="inners"><p>'
-							 +' With reference to the following Image answer the question'
+							 +' Related details/पूरक (संबंधित) माहिती'
 							 +' </p>'
 		    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'"  class="popup-img" /></div>'
 		    			 }else if(data[l].QUESTION[m].QSOLTYPE == "AUDIO"){
 		    				 ansHtm += '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 		    					 +'<div class="heading">Solution Media</div>'
 		    					 +'<div class="inners"><p>'
-								 +' With reference to the following clip answer the  question'
+								 +' Related details/पूरक (संबंधित) माहिती'
 								 +' </p>'
 								 +' <audio controls>'
 								 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="audio/mpeg"  class="">'
@@ -1938,7 +1938,7 @@
 		    				 ansHtm +='<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">'
 		    					+'<div class="heading">Solution Media</div>'
 		 						+ '<div class="inners"><p>'
-		 						+ ' With reference to the following clip answer the question'
+		 						+ ' Related details/पूरक (संबंधित) माहिती'
 		 						+ ' </p>'
 		 						+'  <video controls s >'
 		 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[l].QUESTION[m].QSOLMEDIA+'" type="video/mp4"  class"">'
@@ -2535,7 +2535,7 @@
 										difficultyLevel = "[0]";
 									}
 								
-									console.log(""+topicID+"/"+variationNum+"/"+difficultyLevel);
+//									console.log(""+topicID+"/"+variationNum+"/"+difficultyLevel);
 									
 									if (topicID == 0) {
 										alert("Please select topic");
@@ -2661,17 +2661,17 @@
 						
 					}else if($.trim(data[i].QGTYP) == "Image" || $.trim(data[i].QGTYP) == "image"){
 						
-						quesHtm += '<div class="col-xl-12 col-md-12 col-sm-12">'
+						quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 							 +'<p class="ApproveDivLabel">'
-							 +' With reference to the following Image answer the following question'
+							 +' Related details/पूरक (संबंधित) माहिती'
 							 +' </p>'
 							+'<div> <img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" class="ApproveQueImg" /></div></div><hr/>'
 						
 					}else if($.trim(data[i].QGTYP) == "Audio" || $.trim(data[i].QGTYP) == "audio"){
 						
-						quesHtm += '<div class="col-xl-12 col-md-12 col-sm-12">'
+						quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 							 +'<p class="ApproveDivLabel">'
-							 +' With reference to the following clip answer the following question'
+							 +' Related details/पूरक (संबंधित) माहिती'
 							 +' </p>'
 							 +' <audio controls class="ApproveQueAudio">'
 							 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" type="audio/mpeg" >'
@@ -2680,9 +2680,9 @@
 							+'</div><hr/>'
 							
 					}else if($.trim(data[i].QGTYP) == "Video" || $.trim(data[i].QGTYP) == "video"){
-						quesHtm +='<div class="col-xl-12 col-md-12 col-sm-12">'
+						quesHtm +='<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 							+ '<p class="ApproveDivLabel">'
-							+ ' With reference to the following clip answer the following question'
+							+ ' Related details/पूरक (संबंधित) माहिती'
 							+ ' </p>'
 							+'  <video controls class="ApproveQueVideo">'
 							+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" type="video/mp4" >'
@@ -2833,7 +2833,7 @@
 						    				 
 						    				 quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle" ><span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 						    				 +'<p>'
-											 +' With reference to the following Image answer the question'
+											 +' Related details/पूरक (संबंधित) माहिती'
 											 +' </p>'
 						    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'"  class="ApproveQueImg" /></div>'
 						    				 
@@ -2841,7 +2841,7 @@
 						    				 quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 						    					 +'<span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 						    					 +'<p>'
-												 +' With reference to the following clip answer the  question'
+												 +' Related details/पूरक (संबंधित) माहिती'
 												 +' </p>'
 												 +' <audio controls class="ApproveQueAudio">'
 												 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'" type="audio/mpeg" >'
@@ -2852,7 +2852,7 @@
 						    				 quesHtm +='<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 							    					+'<span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 							 						+ '<p>'
-							 						+ ' With reference to the following clip answer the question'
+							 						+ ' Related details/पूरक (संबंधित) माहिती'
 							 						+ ' </p>'
 							 						+'  <video controls  class="ApproveQueVideo" >'
 							 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'" type="video/mp4" >'
@@ -2929,6 +2929,7 @@
 				  			 $("#nonApprovedQuestionData_paginate a[data-dt-idx='"+pageIndexNo+"']").click();
 				  			 setTimeout(function(){ 
 				  				 $("#Loading").css("display","none");
+				  				 if(quesID == undefined){quesID = 1}
 				  				 $(window).scrollTop($('#Q'+quesID).offset().top);
 				  			 }, 1000);
 				       }
@@ -3701,6 +3702,7 @@
 	
 	// approved questions for moderator
 	QB.renderApprovedQuestionGroup = function(data, quesID, pageIndexNo, selectedTopicId) {
+		if(quesID == undefined){quesID = 1}
 		
 		var quesHtm = '';
 		 
@@ -3787,17 +3789,17 @@
 						
 					}else if($.trim(data[i].QGTYP) == "Image"  || $.trim(data[i].QGTYP) == "image"){
 						
-						quesHtm += '<div class="col-xl-12 col-md-12 col-sm-12">'
+						quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 							 +'<p class="ApproveDivLabel">'
-							 +' With reference to the following Image answer the following question'
+							 +' Related details/पूरक (संबंधित) माहिती'
 							 +' </p>'
 							+'<div> <img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" class="ApproveQueImg" /></div></div><hr/>'
 						
 					}else if($.trim(data[i].QGTYP) == "Audio" || $.trim(data[i].QGTYP) == "audio"){
 						
-						quesHtm += '<div class="col-xl-12 col-md-12 col-sm-12">'
+						quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 							 +'<p class="ApproveDivLabel">'
-							 +' With reference to the following clip answer the following question'
+							 +' Related details/पूरक (संबंधित) माहिती'
 							 +' </p>'
 							 +' <audio controls class="ApproveQueAudio">'
 							 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" type="audio/mpeg" >'
@@ -3806,9 +3808,9 @@
 							+'</div><hr/>'
 							
 					}else if($.trim(data[i].QGTYP) == "Video" || $.trim(data[i].QGTYP) == "Video"){
-						quesHtm +='<div class="col-xl-12 col-md-12 col-sm-12">'
+						quesHtm +='<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 							+ '<p class="ApproveDivLabel">'
-							+ ' With reference to the following clip answer the following question'
+							+ ' Related details/पूरक (संबंधित) माहिती'
 							+ ' </p>'
 							+'  <video controls class="ApproveQueVideo">'
 							+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QGMEDIA+'" type="video/mp4" >'
@@ -3955,7 +3957,7 @@
 					    				 
 					    				 quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle" ><span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 					    				 +'<p>'
-										 +' With reference to the following Image answer the question'
+										 +' Related details/पूरक (संबंधित) माहिती'
 										 +' </p>'
 					    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'"  class="ApproveQueImg" /></div>'
 					    				 
@@ -3963,7 +3965,7 @@
 					    				 quesHtm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 					    					 +'<span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 					    					 +'<p>'
-											 +' With reference to the following clip answer the  question'
+											 +' Related details/पूरक (संबंधित) माहिती'
 											 +' </p>'
 											 +' <audio controls class="ApproveQueAudio">'
 											 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'" type="audio/mpeg" >'
@@ -3974,7 +3976,7 @@
 					    				 quesHtm +='<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
 						    					+'<span class=""><p class="ApproveDivLabel">Solution Media</p></span>'
 						 						+ '<p>'
-						 						+ ' With reference to the following clip answer the question'
+						 						+ ' Related details/पूरक (संबंधित) माहिती'
 						 						+ ' </p>'
 						 						+'  <video controls  class="ApproveQueVideo" >'
 						 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+data[i].QUESTION[j].QSOLMEDIA+'" type="video/mp4" >'
@@ -4047,7 +4049,7 @@
 			    	   	 $("#approvedQuestionData_paginate a[data-dt-idx='"+pageIndexNo+"']").click();
 			  			 setTimeout(function(){ 
 			  				$("#Loading").css("display","none"); 
-			  				 $(window).scrollTop($('#Q'+quesID).offset().top);
+			  				 $(window).scrollTop($('#Q'+quesID).offset().top -10);
 			  			 }, 1000);
 			  }
 				

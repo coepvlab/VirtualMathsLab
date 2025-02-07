@@ -16,8 +16,8 @@
     <link href="resource/css/bootstrap.min.css" rel="stylesheet">
     <link href="resource/css/latofonts.css" rel="stylesheet">
     <link href="resource/css/latostyle.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+<!--     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> -->
+<!--     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'> -->
     <!-- Custom styles for this template -->
     <link href="resource/custom.css" rel="stylesheet">
     <link href="resource/css/style.css" rel="stylesheet">

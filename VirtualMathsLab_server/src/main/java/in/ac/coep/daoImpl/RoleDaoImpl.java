@@ -37,8 +37,8 @@ public class RoleDaoImpl implements RoleDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			LOGGER.info("fetch role start ");
 			Criteria criteria = session.createCriteria(Roles.class);
@@ -46,10 +46,10 @@ public class RoleDaoImpl implements RoleDao {
 
 			roles = (Roles) criteria.uniqueResult();
 			LOGGER.info("fetch role end ");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return roles;
 
@@ -57,11 +57,15 @@ public class RoleDaoImpl implements RoleDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		} finally {
+	        if (session != null && session.isOpen()) {
+	            session.close(); 
+	        }
+	    }
 		
 		
 	

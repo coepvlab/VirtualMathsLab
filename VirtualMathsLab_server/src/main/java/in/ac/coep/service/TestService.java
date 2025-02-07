@@ -31,6 +31,8 @@ public interface TestService {
 	 * @throws Exception
 	 */
 	public JSONObject getAvailableTestForLoggedInUser(Long userId) throws Exception;
+
+	public JSONObject setTestConfigurationForSelectedTopic(TestVO testVO, User user) throws Exception;
 	
 	
 	

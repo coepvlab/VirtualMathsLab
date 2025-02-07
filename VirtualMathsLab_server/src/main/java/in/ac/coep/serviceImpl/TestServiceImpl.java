@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.ac.coep.constants.Constants;
+import in.ac.coep.constants.Constants.sysConfig;
 import in.ac.coep.dao.QuestionGroupDao;
 import in.ac.coep.dao.TestConfigurationDao;
 import in.ac.coep.dao.TestDao;
@@ -691,15 +692,9 @@ public class TestServiceImpl implements TestService {
 								JSONObject totalQuestion = new JSONObject();
 								totalQuestion = questionGroupServiceImpl
 										.fetchLevelWiseCountOfQuestionGroupsByTopics(Long.parseLong((selectedTopics[0])));
-
+								totalQuestion.put("TOTALQG", 0);  //Line added to avoid 6th level and to finish the topic on 5th level
 								if (totalQuestion.get("TOTALQG").equals("0")) {
 									
-//									data.put("done", false);
-//									data.put("msg", "Under development..");
-//									No questions in the database to for the selected topic
-									
-//									compLevelFivePassFailCntVarType2 = 2;
-//									compLevelFinalPassFailCntVarType = 1;
 									compLevelFinalPassCntVarType = 3;
 									
 								}else {
@@ -713,31 +708,22 @@ public class TestServiceImpl implements TestService {
 												lvlFlag = true;
 											}else {
 												lvlFlag = false;
-												 data = createTestPaperForPracticeTest(testVO, user, test, varType, complLevel);
-												 break;
+//												 data = createTestPaperForPracticeTest(testVO, user, test, varType, complLevel);//Line commented to avoid test creation for level 6 and to finish the topic on 5th level
+												lvlFlag = true; //Line added to avoid 6th level and to finish the topic on 5th level
+												break;
 											}
 										} catch (JSONException e) {
-											// TODO Auto-generated catch block
-//											compLevelTwoPassFailCntVarType2++;
 											lvlFlag = true;
 											
 											e.printStackTrace();
 										}
-//										System.out.println(tt.get("LVL2"));
-//										"LVL"+objects[0]
 									}
 									
 									if (lvlFlag == true) {
-//										compLevelFivePassFailCntVarType2 = 2;
-//										compLevelFinalPassFailCntVarType = 1;
 										compLevelFinalPassCntVarType = 2; // before it was 3
 										System.out.println("last LVL not found");
 									}
-//									 data = createTestPaperForPracticeTest(testVO, user, test, varType, complLevel);
 								}
-							 
-							 
-//							 data = createTestPaperForPracticeTest(testVO, user, test, varType, complLevel);
 							 System.out.println("Move to next complextiy Level");
 							 
 						}
@@ -746,19 +732,11 @@ public class TestServiceImpl implements TestService {
 							System.out.println("END OF ALL TEST, MOVE TO THE NEXT STEP");
 							data.put("done", false);
 							
-//							data.put("data", totalQuestionArray);
-//							data.put("COMPLEVEL", complLevel); // this is the start of the topic
-//							data.put("TID", testId);
-							
 							if (!(testInstanceStateToSetLevelCompleteFlag.isLevelComplete())) {
 								
 								testInstanceStateToSetLevelCompleteFlag.setLevelComplete(true);
 								instanceStateDao.update(testInstanceStateToSetLevelCompleteFlag);
 							}
-							
-//							long newTopicId = getNextTopicAfterAllTestDone(testInstanceStateToSetLevelCompleteFlag.getTest().getSelectedTopics());
-//							
-//							data.put("nextTopicId", newTopicId);
 							
 							data.put("msg", "Congratulations.. You have successfully cleared all stages for this topic, We will move to the next topic <br> अभिनंदन!!! या विभागातील सर्व पायऱ्या तुम्ही पूर्ण केलाय आहेत. आता पुढच्या विभागात प्रवेश करूयात ");
 						}
@@ -1060,9 +1038,6 @@ public class TestServiceImpl implements TestService {
 
 	@Override
 	public JSONObject getAvailableTestForLoggedInUser(Long userId) throws Exception {
-		// TODO Auto-generated method stub
-
-//		List<TestInstance> instances = testDao.getTestInstancesByUserId(userId);
 
 		return null;
 	}
@@ -1073,7 +1048,6 @@ public class TestServiceImpl implements TestService {
 		JSONObject data = new JSONObject();
 		
 		JSONObject totalQuestion = new JSONObject();
-//		JSONArray totalQuestionArray = new JSONArray();
 		String[] selectedTopics = testVO.getSelectedTopics().split(",");
 		
 		test = testDao.getTestForPracticeTestByTopicId(selectedTopics[0], varType, complLevel); 
@@ -1120,33 +1094,6 @@ public class TestServiceImpl implements TestService {
 							}
 						}
 						
-//						List<QuestionGroup> questionGroups = questionGroupDao.getAllApprovedQuestionGroupsByTopicId(Long.parseLong((selectedTopics[i])));
-						
-//						boolean emptyFlag = false;
-//						List<QuestionGroup> questionGroupsByComlLevel = null;
-//						if (!questionGroups.isEmpty()) {
-//							
-//							 questionGroupsByComlLevel = getQuestionsBycomplLevel(Long.parseLong((selectedTopics[i])), complLevel);
-//							
-//							if (questionGroupsByComlLevel.isEmpty()) {
-//								 emptyFlag = true;
-//							}else {
-//								 emptyFlag = false;
-//							}
-//							
-//							while (emptyFlag) {
-//								
-//								complLevel = complLevel + 1;
-//								
-//								questionGroupsByComlLevel = getQuestionsBycomplLevel(Long.parseLong((selectedTopics[i])), complLevel);
-//								
-//								if (!questionGroupsByComlLevel.isEmpty()) {
-//									 emptyFlag = false;
-//								}
-//							}
-//							
-//						}
-						
 						Set<Integer> varNO_Set = new HashSet<Integer>();
 						
 						for (QuestionGroup questionGroup : questionGroups) {
@@ -1190,20 +1137,10 @@ public class TestServiceImpl implements TestService {
 					         varNoSetArray2 = varNoArray;
 					         System.out.println("v2 "+varNoSetArray2);
 						}else {
-//								varNoSetArray1 =  Arrays.copyOfRange(varNoArray, 0, varNoArray.length/2);
-//								 System.out.println("v21 "+varNoSetArray1);
-//						        varNoSetArray2 = Arrays.copyOfRange(varNoArray, varNoArray.length/2, varNoArray.length);
-//						        System.out.println("v22 "+varNoSetArray2);
 								varNoSetArray1 = (Object[]) data1111.get("var1");
 						        varNoSetArray2 = (Object[]) data1111.get("var2");
 						}
-				       
-				        
-				        System.out.println("First half of the array:: "+Arrays.toString(varNoSetArray1));
-				        System.out.println("First second of the array:: "+Arrays.toString(varNoSetArray2));
 				  
-//				        System.out.println("size - "+varNoSetArray1.length);
-//				        System.out.println("size - "+varNoSetArray2.length);
 				        long testId = 0l;
 				        int varLength = 0;
 				        for(int itr = 0; itr < 2; itr++) {
@@ -1224,23 +1161,18 @@ public class TestServiceImpl implements TestService {
 							
 							 System.out.println(varNoArrayVar1);
 							 
-//							String[] varNoArrayVar1 = Arrays.asList(varNoSetArray1).toArray(new String[varNoSetArray1.length]);
 							List<QuestionGroup> checkForQuestionAvailableInGivenVariations1 = questionGroupDao.getAllQuestionGroupsByTestConfiguration(
 									Long.parseLong((selectedTopics[i])), varLength,
 									complLevel, varNoArrayVar1);
 							if (checkForQuestionAvailableInGivenVariations1.isEmpty()) {
 								
-//								String[] varNoArrayVar2 = (String[])varNoSetArray2;
-								
 								String temp2 = Arrays.toString(varNoSetArray2).replace("[","").replace("]","").replaceAll("\\s", "");
 								String[] varNoArrayVar2 = temp2.split(",");
-//								String[] varNoArrayVar2 = Arrays.asList(varNoSetArray2).toArray(new String[varNoSetArray2.length]);
 								List<QuestionGroup> checkForQuestionAvailableInGivenVariations2 = questionGroupDao.getAllQuestionGroupsByTestConfiguration(
 										Long.parseLong((selectedTopics[i])), varLength,
 										complLevel, varNoArrayVar2);
 								
 								if (checkForQuestionAvailableInGivenVariations2.isEmpty()) {
-//									newTest.setVarNo(Arrays.toString(varNoSetArray2).replace("[","").replace("]",""));
 								}else {
 									varType = "2";
 									newTest.setVarNo(Arrays.toString(varNoSetArray2).replace("[","").replace("]","").replaceAll("\\s", ""));
@@ -1252,7 +1184,6 @@ public class TestServiceImpl implements TestService {
 							
 						}else if (varType == "2") {
 							if (varNoSetArray1.equals(varNoSetArray2)) {
-//								createTestPaperForPracticeTest(testVO, user, newTest, "1", (complLevel+1));
 								varType = "1";
 								complLevel = (complLevel+1);
 								
@@ -1284,47 +1215,30 @@ public class TestServiceImpl implements TestService {
 								varNoList = new ArrayList<>(varNO_Set);
 						        Collections.sort(varNoList);
 						        
-						        System.out.println(varNoList);
-						        System.out.println("size -"+varNoList.size());
-						        
 						        varNoArray = null;
 						        varNoArray =  varNoList.toArray();
-						        
-//						        Object[] varNoSetArray1 = {};
-//						        Object[] varNoSetArray2 = {};
-						        
-//						        JSONObject data111 = twoVariationFilter(varNoArray);
 						        
 								if (varNoList.size() == 1) {
 									varNoSetArray1 = null;
 									varNoSetArray1 = varNoArray;
-									System.out.println("v1 " + varNoSetArray1);
 									varNoSetArray2 = null;
 									varNoSetArray2 = varNoArray;
-									System.out.println("v2 " + varNoSetArray2);
 								} else {
 									varNoSetArray1 = null;
-//									Arrays.sort(varNoArray);
-//									varNoSetArray1 = Arrays.copyOfRange(varNoArray, 0, varNoArray.length / 2);
-//									System.out.println("v21 " + varNoSetArray1);
 									varNoSetArray2 = null;
 									varNoSetArray1 = (Object[]) data1111.get("var1");
 							        varNoSetArray2 = (Object[]) data1111.get("var2");
-//									varNoSetArray2 = Arrays.copyOfRange(varNoArray, varNoArray.length / 2,	varNoArray.length);
-//									System.out.println("v22 " + varNoSetArray2);
 								}
 						       
 						        
 						        System.out.println("First half of the array:: "+Arrays.toString(varNoSetArray1));
 						        System.out.println("First second of the array:: "+Arrays.toString(varNoSetArray2));
 						        if (varType == "1") {
-//									newTest.setVarNo(Arrays.toString(varNoSetArray1).replace("[","").replace("]",""));]
 						        	test = testDao.getTestForPracticeTestByTopicId(selectedTopics[0], varType, complLevel); 
 						        	if (test == null) {
 						        		newTest.setVarNo(Arrays.toString(varNoSetArray1).replace("[","").replace("]","").replaceAll("\\s", ""));
 									}else {
 										data.put("done", true);
-//										data.put("data", totalQuestionArray);
 										data.put("COMPLEVEL", complLevel); // this is the start of the topic
 										data.put("TID", test.getTestId());
 										data.put("msg", Constants.testcreationsuccess);
@@ -1338,7 +1252,6 @@ public class TestServiceImpl implements TestService {
 						        		newTest.setVarNo(Arrays.toString(varNoSetArray2).replace("[","").replace("]","").replaceAll("\\s", ""));
 									}else {
 										data.put("done", true);
-//										data.put("data", totalQuestionArray);
 										data.put("COMPLEVEL", complLevel); // this is the start of the topic
 										data.put("TID", test.getTestId());
 										data.put("msg", Constants.testcreationsuccess);
@@ -1353,7 +1266,6 @@ public class TestServiceImpl implements TestService {
 						        		newTest.setVarNo(Arrays.toString(varNoArray).replace("[","").replace("]","").replaceAll("\\s", ""));
 									}else {
 										data.put("done", true);
-//										data.put("data", totalQuestionArray);
 										data.put("COMPLEVEL", complLevel); // this is the start of the topic
 										data.put("TID", test.getTestId());
 										data.put("msg", Constants.testcreationsuccess);
@@ -1376,10 +1288,6 @@ public class TestServiceImpl implements TestService {
 						newTest.setTestLevel(complLevel); //  this to find test by complexity number
 						
 						newTest.setCreatedBy(user.getUserId()+"-"+user.getFirstName() +" "+ user.getLastName());
-//						
-//						String temp = Arrays.toString(varNoSetArray2).replace("[","").replace("]","").replaceAll("\\s", "");
-//						String[] varNoArrayVar = temp.split(",");
-						
 						
 						Test test2 = testDao.getTestBytopicIdVarNoAndVarTypeAndCompLevel(selectedTopics[i], varType,
 								complLevel, newTest.getVarNo());
@@ -1389,7 +1297,6 @@ public class TestServiceImpl implements TestService {
 							testVO.setTestId(testId);
 
 							JSONArray jsArrayLvlNm = (JSONArray) totalQuestion.get("LVLNO");
-//							JSONArray jsArrayLvl = (JSONArray) totalQuestion.get("QGAVABL");
 							System.out.println(jsArrayLvlNm);
 							
 							/// test Configuration starts
@@ -1406,11 +1313,7 @@ public class TestServiceImpl implements TestService {
 							}
 							
 							
-//							if (complLevel != 6) {
 								testConfiguration.setTopicTimeLimit(Constants.defaultTimeLimitForPracticeTest); //default set time for test
-//							}else if (complLevel == 6) {
-//								testConfiguration.setTopicTimeLimit(Constants.defaultNoOfQuestionsForLastPracticeTest);
-//							}
 							
 								Standard standard = new Standard();
 								standard.setStdId(testVO.getStandard().getStdId());
@@ -1430,6 +1333,9 @@ public class TestServiceImpl implements TestService {
 								testConfiguration.setTest(setTest);
 								
 								testConfigurationDao.configureTest(testConfiguration);
+								
+								Thread t = new Thread();
+								t.sleep(2000);
 						} else {
 							testId = test2.getTestId();
 						}
@@ -1437,21 +1343,17 @@ public class TestServiceImpl implements TestService {
 				        }
 						data.put("done", true);
 							
-//						data.put("data", totalQuestionArray);
 						data.put("COMPLEVEL", complLevel); // this is the start of the topic
-						data.put("TID", testId);
+						data.put("TID", (testId-1));
 						data.put("msg", Constants.testcreationsuccess);
-						
 					}
 				}
 			
 			return data;
 			
-			
 		}else {
 			
 			data.put("done", true);
-//			data.put("data", totalQuestionArray);
 			data.put("COMPLEVEL", complLevel); // this is the start of the topic
 			data.put("TID", test.getTestId());
 			data.put("msg", Constants.testcreationsuccess);
@@ -1493,11 +1395,6 @@ public class TestServiceImpl implements TestService {
 			}
 		}
 		
-//		System.out.println(smallEven);
-//		System.out.println(smallOdd);
-//		System.out.println(big1);
-//		System.out.println(big2);
-		
 		int se = smallEven.size();
 		int so = smallOdd.size();
 		
@@ -1527,8 +1424,6 @@ public class TestServiceImpl implements TestService {
 		var1.addAll(big1);
 		var2.addAll(big2);
 		
-//		System.out.println("var1 " + var1);
-//		System.out.println("var2 " + var2);
 		JSONObject varObj = new JSONObject();
 		varObj.put("var1", var1.toArray());
 		varObj.put("var2", var2.toArray());
@@ -1536,7 +1431,6 @@ public class TestServiceImpl implements TestService {
 	}
 
 	private List<QuestionGroup> getQuestionsBycomplLevelForAllLevel(long topicId, Object[] complLevelArr) throws Exception {
-		// TODO Auto-generated method stub
 		List<QuestionGroup> questionGroupsByComlLevel = questionGroupDao.getAllApprovedQuestionGroupsByTopicIdAndAllcomplLevel(topicId, complLevelArr);
 		
 //		if (questionGroupsByComlLevel.isEmpty()) {
@@ -1548,7 +1442,6 @@ public class TestServiceImpl implements TestService {
 	}
 
 	private List<QuestionGroup> getQuestionsBycomplLevel(long topicId, int complLevel) throws Exception {
-		// TODO Auto-generated method stub
 		List<QuestionGroup> questionGroupsByComlLevel = questionGroupDao.getAllApprovedQuestionGroupsByTopicIdAndcomplLevel(topicId, complLevel);
 		
 //		if (questionGroupsByComlLevel.isEmpty()) {
@@ -1558,5 +1451,193 @@ public class TestServiceImpl implements TestService {
 		
 		return questionGroupsByComlLevel;
 	}
+
+	
+//	TODO: Set test configuration new development
+	@Override
+	public JSONObject setTestConfigurationForSelectedTopic(TestVO testVO, User user) throws Exception {
+		
+		JSONObject data = new JSONObject();
+
+		if (testVO != null) {
+			
+			Topic tp = topicDao.getTopicByTopicId(Long.parseLong(testVO.getSelectedTopics()));
+			
+			if(testVO.getTestType().getTestTypeId() == 1) {
+				
+				List<Test> testList = testDao.getTestForPracticeTestByTopicIdOnly(testVO.getSelectedTopics());
+				
+				if(!testList.isEmpty()) {
+					for(Test t : testList) {
+						t.setActive(false);
+						t.setUpdatedTime(System.currentTimeMillis());
+						testDao.updateTestDetails(t);
+					}
+				}
+				
+				testVO.setName(tp.getTopicName() + "*" + tp.getTopicName1());
+				String[] selectedTopics = testVO.getSelectedTopics().split(",");
+				data = generateTestConfiguration(selectedTopics, testVO, user);
+			}
+		}
+		return data;
+	}
+
+	private JSONObject generateTestConfiguration(String[] selectedTopics, TestVO testVO, User user)
+			throws NumberFormatException, Exception {
+		
+		JSONObject data = new JSONObject();
+		JSONObject totalQuestion = new JSONObject();
+		
+		int complLevel = 1;
+		String varType = null;
+		for (int i = 0; i < selectedTopics.length; i++) {
+			totalQuestion = questionGroupServiceImpl
+					.fetchLevelWiseCountOfQuestionGroupsByTopics(Long.parseLong((selectedTopics[i])));
+
+			if (totalQuestion.get("TOTALQG").equals("0")) {
+
+				data.put("done", false);
+				data.put("msg", "No question found for this topic");
+
+			} else {
+				int[] r = new int[totalQuestion.getJSONArray("LVLNO").length()];
+
+				for (int n = 0; n < totalQuestion.getJSONArray("LVLNO").length(); n++) {
+					JSONObject lvlnoObject = totalQuestion.getJSONArray("LVLNO").getJSONObject(n);
+					for (String key : lvlnoObject.keySet()) {
+						r[n] = Integer.parseInt(key);
+					}
+				}
+
+				for (int z = 0; z < totalQuestion.getInt("TOTALQG"); z++) {
+					List<QuestionGroup> questionGroups = null;
+					complLevel = r[z];
+					questionGroups = getQuestionsBycomplLevel(Long.parseLong((selectedTopics[i])), complLevel);
+					if (questionGroups.isEmpty()) {
+						data.put("done", false);
+						data.put("msg", "Under development..");
+						return data;
+					}
+
+					Set<Integer> varNO_Set = new HashSet<Integer>();
+
+					for (QuestionGroup questionGroup : questionGroups) {
+
+						if (questionGroup.getComplexityLevel().getQgComplexityLevelId() == complLevel) {
+							if (questionGroup.getVarNo() != null) {
+								varNO_Set.add(Integer.parseInt(questionGroup.getVarNo()));
+							}
+						}
+					}
+
+					List<Integer> varNoList = new ArrayList<>(varNO_Set);
+					Collections.sort(varNoList);
+
+					Object[] varNoArray = varNoList.toArray();
+
+					Object[] varNoSetArray1 = {};
+					Object[] varNoSetArray2 = {};
+
+					JSONObject data1111 = twoVariationFilter(varNoArray);
+
+					if (varNoList.size() == 1) {
+						varNoSetArray1 = varNoArray;
+						varNoSetArray2 = varNoArray;
+					} else {
+						varNoSetArray1 = (Object[]) data1111.get("var1");
+						varNoSetArray2 = (Object[]) data1111.get("var2");
+					}
+
+					long testId = 0l;
+					int varLength = 0;
+					for (int itr = 0; itr < 2; itr++) {
+						if (itr == 0) {
+							varType = "1";
+							varLength = varNoSetArray1.length;
+						} else if (itr == 1) {
+							varType = "2";
+							varLength = varNoSetArray2.length;
+						}
+						Test newTest = new Test();
+
+						newTest = copyTestVOToTest(newTest, testVO);
+						if (varType == "1") {
+								newTest.setVarNo(Arrays.toString(varNoSetArray1).replace("[", "").replace("]", "")
+										.replaceAll("\\s", ""));
+						} else if (varType == "2") {
+							 if (!varNoSetArray1.equals(varNoSetArray2)) {
+								newTest.setVarNo(Arrays.toString(varNoSetArray2).replace("[", "").replace("]", "")
+										.replaceAll("\\s", ""));
+							}
+						}
+
+						newTest.setVarType(varType);
+
+						newTest.setTestLevel(complLevel); // this to find test by complexity number
+
+						newTest.setCreatedBy(user.getUserId() + "-" + user.getFirstName() + " " + user.getLastName());
+
+						Test test2 = testDao.getTestBytopicIdVarNoAndVarTypeAndCompLevel(selectedTopics[i], varType,
+								complLevel, newTest.getVarNo());
+						if (test2 == null) {
+							if(!(varNoSetArray1.equals(varNoSetArray2) && varType == "2")) {
+								testId = testDao.configureTestPaper(newTest);
+							}
+
+							testVO.setTestId(testId);
+
+							JSONArray jsArrayLvlNm = (JSONArray) totalQuestion.get("LVLNO");
+							System.out.println(jsArrayLvlNm);
+
+							/// test Configuration starts
+
+							TestConfiguration testConfiguration = new TestConfiguration();
+
+							QGComplexityLevel complexityLevel = new QGComplexityLevel();
+							if (complLevel != 6) {
+								complexityLevel.setQgComplexityLevelId(complLevel);
+								testConfiguration.setComplexityLevel(complexityLevel);
+							} else if (complLevel == 6) {
+								complexityLevel.setQgComplexityLevelId(complLevel - 1);
+								testConfiguration.setComplexityLevel(complexityLevel);
+							}
+
+							testConfiguration.setTopicTimeLimit(Constants.defaultTimeLimitForPracticeTest); // default
+																											// set time
+																											// for test
+
+							Standard standard = new Standard();
+							standard.setStdId(testVO.getStandard().getStdId());
+							testConfiguration.setStandard(standard);
+
+							testConfiguration.setNoOfQuestionGroup(varLength);
+							Topic topic = new Topic();
+							topic.setTopicId(totalQuestion.getLong("TID"));
+							testConfiguration.setTopic(topic);
+
+							Test setTest = new Test();
+							setTest.setTestId(testId);
+							testConfiguration.setTest(setTest);
+							if(!(varNoSetArray1.equals(varNoSetArray2) && varType == "2")) {
+								testConfigurationDao.configureTest(testConfiguration);
+							}
+						} else {
+							testId = test2.getTestId();
+						}
+					}
+					data.put("done", true);
+
+					data.put("COMPLEVEL", complLevel); // this is the start of the topic
+					data.put("TID", testId);
+					data.put("msg", Constants.testcreationsuccess);
+				}
+			}
+		}
+
+		return data;
+	}
+	
+	
 
 }

@@ -33,35 +33,30 @@ public interface Constants {
 	
 	public static final String CSRF_TOKEN = "token";
 	
-	public static final String baseURLPath = "http://localhost:8080/VirtualMathsLab/"; 
-	public static final String srcURLForSinglePdfResult = "E:/PdfReports/coep/";
-	public static final String destURLForSinglePdfResult = "E:/PdfReports/coep/";
-	public static final String path = "\\";
-	public static final String CERTIFICATE_IMG_DEST = "D:/images/Certificates/";
-	public static final String mathsFileUplaod = "D:\\VirtualMathLab_2020\\VirtualMathsLab\\src\\main\\java\\intechOlympiad\\";
+//	public static final String baseURLPath = "http://192.168.1.35:8080/VirtualMathsLab/"; 
+//	public static final String srcURLForSinglePdfResult = "E:/PdfReports/coep/";
+//	public static final String destURLForSinglePdfResult = "E:/PdfReports/coep/";
+//	public static final String path = "\\";
+//	public static final String CERTIFICATE_IMG_DEST = "D:/images/Certificates/";
+//	public static final String mathsFileUplaod = "D:\\VirtualMathLab_2020\\VirtualMathsLab\\src\\main\\java\\intechOlympiad\\";
 
+//	COEP server
 	
+	public static final String baseURLPath = "https://portal.coepvlab.ac.in/VirtualMathsLab/";
+	public static final String srcURLForSinglePdfResult = "/home/administrator/reports/";
+	public static final String destURLForSinglePdfResult = "/home/administrator/MergeReports/";
+	public static final String path = "/";
+	public static final String CERTIFICATE_IMG_DEST = "/home/administrator/Certificates/";
+	public static final String mathsFileUplaod = "/var/lib/tomcat8/webapps/VirtualMathsLab/WEB-INF/classes/intechOlympiad/";
+	
+//	AWS 
 //	public static final String baseURLPath = "https://portal.coepvlab.ac.in/VirtualMathsLab/";
 //	public static final String srcURLForSinglePdfResult = "/home/administrator/reports/";
 //	public static final String destURLForSinglePdfResult = "/home/administrator/MergeReports/";
 //	public static final String path = "/";
 //	public static final String CERTIFICATE_IMG_DEST = "/home/administrator/Certificates/";
-//	public static final String mathsFileUplaod = "/var/lib/tomcat8/webapps/VirtualMathsLab/WEB-INF/classes/intechOlympiad/";	
-
-												  
-//	public static final String baseURLPath = "http://192.168.1.35:8080/VirtualMathsLab/";
-//	public static final String srcURLForSinglePdfResult = "/home/administrator/reports/";
-//	public static final String destURLForSinglePdfResult = "/home/administrator/MergeReports/";
-//	public static final String path = "/";
-//	public static final String CERTIFICATE_IMG_DEST = "/home/administrator/Certificates/";
+//	public static final String mathsFileUplaod = "/var/lib/tomcat8/webapps/VirtualMathsLab/WEB-INF/classes/intechOlympiad/";
 	
-	
-	
-//	public static final String baseURLPath = "http://14.139.123.181:8080/VirtualMathsLab/"; 
-//	public static final String srcURLForSinglePdfResult = "/home/administrator/reports/";
-//	public static final String destURLForSinglePdfResult = "/home/administrator/MergeReports/";
-//	public static final String path = "/";
-//	public static final String CERTIFICATE_IMG_DEST = "/home/administrator/Certificates/";
 	
 	public static final String mathsFileUplaodPackage = "intechOlympiad.";
 	

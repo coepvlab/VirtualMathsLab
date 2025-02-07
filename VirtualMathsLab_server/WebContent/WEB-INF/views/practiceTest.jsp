@@ -9,11 +9,14 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/input/asciimath.js" charset="UTF-8"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/input/asciimath.js" charset="UTF-8"></script> -->
+<script src="resource/js/tex-mml-chtml.js"></script>
+<script src="resource/js/asciimath.js" charset="UTF-8"></script>
 
+<!--   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"> </script>  -->
 <script
-	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+	src="resource/js/MathJax2.7.1.js">
 </script>
 
 <title>Practice Test</title>
@@ -61,6 +64,10 @@
 		font-size: 27px;
 	}
 	}
+	
+img:active {
+    -webkit-transform: scale(2);
+}
 </style>
 
 </head>
@@ -133,7 +140,13 @@
 		com.coep.test.practiceTest.practiceTestMessage(testData.msg);
 
 	} else {
-
+// 		var childHtml = '<div class="overlay" id="Loading">'
+// 			 + '<div class="overlay__inner">'
+// 			 + '<div class="overlay__content"><span class="spinner"></span><br/><span class="loading">LOADING....</span></div>'
+// 			 + '</div>'
+// 			 + '</div>'
+			 
+// 			 $("#main-div").append(childHtml);
 		com.coep.test.practiceTest.startpracticeTest(testData, firstName);
 	}
 	

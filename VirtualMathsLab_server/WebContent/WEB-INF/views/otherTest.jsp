@@ -9,12 +9,16 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/input/asciimath.js" charset="UTF-8"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/input/asciimath.js" charset="UTF-8"></script> -->
+<script src="resource/js/tex-mml-chtml.js"></script>
+<script src="resource/js/asciimath.js" charset="UTF-8"></script>
 
-<script
-	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
-</script>
+<!-- <script -->
+<!-- 	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"> -->
+<!-- </script> -->
+
+<script src="resource/js/MathJax2.7.1.js"></script>
 
 <title>Other Test</title>
 <!-- Bootstrap core CSS -->

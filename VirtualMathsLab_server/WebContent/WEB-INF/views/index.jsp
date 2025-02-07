@@ -9,9 +9,9 @@
 	pageEncoding="UTF-8"%>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-	crossorigin="anonymous">
+	href="resource/css/all.css">
+<!-- 	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" -->
+<!-- 	crossorigin="anonymous"> -->
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,19 +20,23 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="resource/css/bootstrap4.5.2.min.css">
+<link rel="stylesheet" href="resource/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <link rel="stylesheet" href="resource/css/LoadingPage.css">
 <link rel="stylesheet" href="resource/css/top.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<%-- <script --%>
+<%-- 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --%>
+<script src="resource/js/jquery-3.5.min.js"></script>
+<%-- <script --%>
+<%-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> --%>
+<script src="resource/js/popper.min.js"></script>
+<%-- <script --%>
+<%-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --%>
+<script src="resource/js/bootstrap-4.5.min.js"></script>
 <style>
 </style>
 
@@ -111,6 +115,9 @@
 
 				</span> <span class="float-right">
 					<div class="dropdown">
+						<button class="dropbtn">
+							<a href="resource/files/Sample_problems_with_solutions_for_website.pdf" target="_blank" style="color: #fff;"> SAMPLE QUESTIONS</a>
+						</button>
 						<button class="dropbtn">
 							<a href="welcome" style="color: #fff;"> HOME</a>
 						</button>
@@ -913,44 +920,44 @@
 	<footer> Virtual Math Lab @ COEP </footer>
 
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-	<script src="resource/js/bootstrap.min.js"></script>
+<%-- 	<script --%>
+<%-- 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> --%>
+	<script src="resource/js/jquery.min.js"></script>
+	<script src="resource/js/bootstrap-4.5.min.js"></script>
 
 	<script src="resource/js/material.min.js"></script>
 	<script src="resource/core/namespace.js"></script>
 	<script src="resource/core/ajaxMngr.js"></script>
 
-	<script src="resource/js/jquery.viewbox.min.js"></script>
-	<script src="resource/js/run_prettify.js"></script>
+<%-- 	<script src="resource/js/jquery.viewbox.min.js"></script> --%>
+<%-- 	<script src="resource/js/run_prettify.js"></script> --%>
 
 	<script type="text/javascript" src="resource/src/menu.js"></script>
-	<script type="text/javascript" src="resource/js/slick.js"></script>
+<%-- 	<script type="text/javascript" src="resource/js/slick.js"></script> --%>
 
 	<script>
-		$(document).ready(function() {
-			$('.customer-logos').slick({
-				slidesToShow : 4,
-				slidesToScroll : 1,
-				autoplay : true,
-				autoplaySpeed : 1500,
-				arrows : false,
-				dots : false,
-				pauseOnHover : false,
-				responsive : [ {
-					breakpoint : 768,
-					settings : {
-						slidesToShow : 4
-					}
-				}, {
-					breakpoint : 520,
-					settings : {
-						slidesToShow : 1
-					}
-				} ]
-			});
-		});
+// 		$(document).ready(function() {
+// 			$('.customer-logos').slick({
+// 				slidesToShow : 4,
+// 				slidesToScroll : 1,
+// 				autoplay : true,
+// 				autoplaySpeed : 1500,
+// 				arrows : false,
+// 				dots : false,
+// 				pauseOnHover : false,
+// 				responsive : [ {
+// 					breakpoint : 768,
+// 					settings : {
+// 						slidesToShow : 4
+// 					}
+// 				}, {
+// 					breakpoint : 520,
+// 					settings : {
+// 						slidesToShow : 1
+// 					}
+// 				} ]
+// 			});
+// 		});
 
 		// jquery viewbox script start
 
@@ -976,29 +983,34 @@
 		});
 	</script>
 	<script>
-		new WOW().init();
+// 		new WOW().init();
 	</script>
 	<script src="resource/src/top.js"></script>
 	<!-- //jquery viewbox script end -->
 	<script>
-		$(function() {
+// 		$(function() {
 
-			$('.thumbnail').viewbox();
-			$('.thumbnail-2').viewbox();
+// 			$('.thumbnail').viewbox();
+// 			$('.thumbnail-2').viewbox();
 
-			(function() {
-				var vb = $('.popup-link').viewbox();
-				$('.popup-open-button').click(function() {
-					vb.trigger('viewbox.open');
-				});
-				$('.close-button').click(function() {
-					vb.trigger('viewbox.close');
-				});
-			})();
+// 			(function() {
+// 				var vb = $('.popup-link').viewbox();
+// 				$('.popup-open-button').click(function() {
+// 					vb.trigger('viewbox.open');
+// 				});
+// 				$('.close-button').click(function() {
+// 					vb.trigger('viewbox.close');
+// 				});
+// 			})();
 
-		});
+// 		});
 	</script>
 	<script>
+	
+// 		$("#refQues").on("click", function(){
+// 			alert("hey");
+// 		})
+	
 		// for dropdown
 		$(
 				"#BasicFeature,#TechnicalFeature,#typeQuestion,#resultAnalysis,#student,#teacher,#school,#parent").click(function() {

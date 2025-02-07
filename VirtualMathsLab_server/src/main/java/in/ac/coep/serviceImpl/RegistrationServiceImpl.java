@@ -74,14 +74,14 @@ public class RegistrationServiceImpl implements RegistrationService{
 				user.setMiddleName(userVO.getMiddleName());
 				user.setLastName(userVO.getLastName());
 				user.setPhoneNumber(userVO.getPhoneNumber());
-				user.setWhatsAppNo(userVO.getWhatsAppNo());
+//				user.setWhatsAppNo(userVO.getWhatsAppNo());
 				user.setGender(userVO.getGender());
 				user.setPassword(Md5Encryption.md5(userVO.getPassword()));
-				user.setPincode(userVO.getPincode());
-				Date date = new Date(userVO.getDateOfBirth());
-				user.setDateOfBirth(date);
-				user.setCityId(userVO.getCityId());
-				user.setStateId(userVO.getStateId());
+//				user.setPincode(userVO.getPincode());
+//				Date date = new Date(userVO.getDateOfBirth());
+//				user.setDateOfBirth(date);
+//				user.setCityId(userVO.getCityId());
+//				user.setStateId(userVO.getStateId());
 				user.setCountryId(101);
 				user.setUserType(userVO.getUserType());
 				
@@ -98,10 +98,13 @@ public class RegistrationServiceImpl implements RegistrationService{
 				Date uT = new Date(userVO.getUpdatedDate());
 				user.setUpdatedDate(uT);
 				user.setTermsAndConditionsAccepted(true);
-				user.setEmailValidated(false);	
-				user.setDeleted(true);	
+//				user.setEmailValidated(false);	
+				user.setEmailValidated(true);	
+//				user.setDeleted(true);	
+				user.setDeleted(false);
 				user.setAccountExpired(false);		
-				user.setAccountLocked(true);
+//				user.setAccountLocked(true);
+				user.setAccountLocked(false);
 				user.setCredentialsExpired(false);
 				
 				if(userVO.getUserType().equals("Contributor")) {
@@ -175,15 +178,15 @@ public class RegistrationServiceImpl implements RegistrationService{
 				
 				if(userVO.getUserType().equals("Student")) {
 					StudentInfo stud = new StudentInfo();
-					stud.setParEmailId(studVO.getParEmailId());
-					stud.setSchoolName(studVO.getSchoolName());
-					stud.setSchoolAdd(studVO.getSchoolAdd());
-					stud.setSchoolType(studVO.getSchoolType());
+//					stud.setParEmailId(studVO.getParEmailId());
+//					stud.setSchoolName(studVO.getSchoolName());
+//					stud.setSchoolAdd(studVO.getSchoolAdd());
+//					stud.setSchoolType(studVO.getSchoolType());
 					stud.setStandard(studVO.getStandard());
 					
-					Medium medium = new Medium();
-					medium.setMediumId(studVO.getMediumId());
-					stud.setMedium(medium);
+//					Medium medium = new Medium();
+//					medium.setMediumId(studVO.getMediumId());
+//					stud.setMedium(medium);
 					
 					roles = roleDao.getRoleByRoleName("STUDENT");
 					Set<Roles> set = new HashSet<>();
@@ -198,22 +201,23 @@ public class RegistrationServiceImpl implements RegistrationService{
 				}
 				
 
-				JSONObject mailData = new JSONObject();
-				mailData.put("emailId", userVO.getEmailId());
-				mailData.put("userId", user.getUserId());
+//				JSONObject mailData = new JSONObject();
+//				mailData.put("emailId", userVO.getEmailId());
+//				mailData.put("userId", user.getUserId());
 
-				String link = user.getEmailId();
-				link = EncoderDecoder.encodeString(link);
-				link = Constants.baseURLPath + "userProfile/emailVerification?token=" + link;
-				mailData.put("link", link);
+//				String link = user.getEmailId();
+//				link = EncoderDecoder.encodeString(link);
+//				link = Constants.baseURLPath + "userProfile/emailVerification?token=" + link;
+//				mailData.put("link", link);
 				
-				Thread.sleep(2000);
-				Thread t = new Thread(new MailSenderForRegistration(mailData,
-						mailSender, classtemplateEngine));
-				t.start();
+//				Thread.sleep(2000);
+//				Thread t = new Thread(new MailSenderForRegistration(mailData,
+//						mailSender, classtemplateEngine));
+//				t.start();
 				
 				data.put("done", true);
-				data.put("msg", "You have registered successfully. A verificaion link has been sent to your registered email account.");
+//				data.put("msg", "You have registered successfully. A verificaion link has been sent to your registered email account.");
+				data.put("msg", "You have registered successfully.");
 			}
 		} else {
 			data.put("done", false);

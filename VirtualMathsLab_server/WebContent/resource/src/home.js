@@ -2,6 +2,7 @@
 
 	HM.itoFlag = false;
 	HM.topicDetails = {};
+	HM.testCnt = 0;
 	
 	HM.getAllTopicToHomePage = function(itoStud, topicArray) {
 //		alert(topicArray);
@@ -25,9 +26,7 @@
 	
 	
 	HM.homePage = function(data, itoStud, topicArray) {
-		
-//		console.log(data);
-		
+//		console.log(topicArray);
 		 var tArray = [];
 		 tArray = topicArray.split(",");
 		 var names = "";
@@ -40,22 +39,16 @@
 				dataType : 'json',
 				contentType : 'application/json',
 				success : function(data) {
-//					console.log("data: "+data);
 					if (data.done == true) {
 						names +=  data.TN +"*"+data.TN1 +"*"+ data.TID +"!!";
 					}else{
-//						alert("as");
 					}
-					
-//					console.log(names);
 //					HM.rendChildTopic(data, TopicId, parentId, index, itoStud);
 				},
 				error : function() {
 
 				}
 			});
-			
-			
 		}
 		
 			setTimeout(function(){ AM.confirmationFromHomePage(names, tArray) }, 700); 
@@ -119,7 +112,6 @@
 			htm +='</div>'// accordion div end
 
 			$("#main-div").html(htm);
-			
 			
 		}else{
 				// following  code is for intech olympiad students
@@ -186,7 +178,7 @@
 		
 		
 		HM.rendChildTopic = function(data, TopicId, parentId, index, itoStud) {
-			console.log(data);
+//			console.log(data);
 			var childHtml = '';
 			
 //			if (itoStud != "ito@gmail.com" && HM.itoFlag == true) {
@@ -264,7 +256,7 @@
 	}
 	
 	AM.confirmationFromHomePage = function(names, tArray) {
-
+//		console.log(names +" : " + tArray);
 		$("#Loading").css("display","none");
 		
 		if (names != "") {
@@ -272,12 +264,36 @@
 		
 		var AlertComfirmFlag = false;
 			AlertMsg = "Some earlier topic/s need your attention. They are pending and are as follows...<br>या आधीचे काही विभाग अजून अपुरे आहेत. तुम्ही ते पूर्ण करणे गरजेचे आहे<br><br>"
-				for (var i = 0; i < topicNames.length; i++) {
-					if (topicNames[i] != "") {                               																																												//data.data[i].TN1+''+'\')  +''+'\'
-						AlertMsg +="<div><span class='red-color'>"+topicNames[i].split("*")[0]+" ("+topicNames[i].split("*")[1]+")"+"</span><div><center><button type='button' class='btn btn-success' style='margin-top: 10px;font-size: 18px;font-weight: bold;' data-dismiss='modal' onClick='javascript:com.coep.test.home.openTopic("+topicNames[i].split("*")[2]+",\""+topicNames[i]+""+"\")'>Start Practice Test</button></center></div> </div><br><br> ";
-					}
+//				for (var i = 0; i < topicNames.length; i++) {
+//					if (topicNames[i] != "") {                               																																												//data.data[i].TN1+''+'\')  +''+'\'
+//						AlertMsg +="<div>"
+//								+"<span class='red-color'>"+topicNames[i].split("*")[0]+" ("+topicNames[i].split("*")[1]+")"+"</span>"
+//								+"<div><button type='button' class='btn btn-success' style='margin-top: 10px;font-size: 18px;font-weight: bold;' "
+//								+"data-dismiss='modal' onClick='javascript:com.coep.test.home.openTopic("+topicNames[i].split("*")[2]+",\""+topicNames[i]+""+"\")'>"
+//								+"Start Practice Test</button>"
+//								+"</div>"
+//								+"</div>";
+						
+						AlertMsg += "<div class='table-responsive'>"
+					            +"<table id='pendingTest' class='table table-bordered' style = 'width: 95%;'>"
+					            +"<thead><tr>"
+					            +"<th style='width:85%'>Topic</th>"
+					            +"<th style='width:15%'>Action </th>"
+					            +"</tr></thead><tbody>"
+					          for (var i = 0; i < topicNames.length; i++) {
+					if (topicNames[i] != "") {       
+					            AlertMsg +="<tr><td  style='width:85%' class='red-color'>"+topicNames[i].split('*')[0]+' ('+topicNames[i].split('*')[1]+')'+"</td>"
+		     					+"<td style='width:15%'><button type='button' class='btn btn-success' style='margin-top: 10px;font-size: 18px;font-weight: bold;' "
+								+"data-dismiss='modal' onClick='javascript:com.coep.test.home.openTopic("+topicNames[i].split("*")[2]+",\""+topicNames[i]+""+"\")'>"
+								+"Start Practice Test</button></td>"
+		     					+"</tr>"
+		     					}
+		     				}
+		     			AlertMsg +="<tbody></table></div>";
+
+//					}
 					
-				}
+//				}
 			
 			var AlertMesConfirm = ''
 				AlertMesConfirm +=  '<div class="container-fluid">'
@@ -285,16 +301,17 @@
 				+ '<div  class="col-sm-12 col-md-12 col-lg-12 col-xl-12">'
 				//Alert modal start
 						+ '<div class="modal" id="AlertMesConfirm">'
-						+ '<div class="modal-dialog">'
+						+ '<div class="modal-dialog model-lg">'
 						+ '<div class="modal-content">'
 			            
 			            	 +' <div class="modal-header bg-info ">'
 								+ '   <h4 class="modal-title ModelHeaderStyle">Confirmation !!</h4>'
-//								+ '  <button type="button" class="close" data-dismiss="modal">&times;</button>'
+								+ '  <button type="button" class="close" data-dismiss="modal">&times;</button>'
 								+ '  </div>'
 				
 								+ '   <div class="modal-body">'
-								+ '<span id="AlertMsgStyle">'+AlertMsg+'</span>'
+//								+ '<span id="AlertMsgStyle">'+AlertMsg+'</span>'
+								+AlertMsg
 							    + ' </div>'
 			                +'    <div class="modal-footer">'
 //			                + '<button type="button" class="btn btn-success" data-dismiss="modal" id="AlertComfirmYes" onClick="AlertComfirmYes()">Yes<span class="marathi-text" > ( होय )</span></button>&nbsp;&nbsp;'
@@ -313,7 +330,14 @@
 			
 				$("#main-div").append(AlertMesConfirm);
 			
-			
+			$('#pendingTest').DataTable({
+				paging: true,
+				searching: true,
+				ordering: false,
+				info: true,
+				lengthMenu: [5, 10, 25, 50, 75, 100],
+				dom: 'lfrtip',
+			})
 			
 				setTimeout(function() {
 						$('#AlertMesConfirm').modal({
@@ -328,33 +352,20 @@
 					AlertComfirmFlag = true;
 					return AlertComfirmFlag;
 				}
-			
-		
 		}
 	
 	
 	HM.openTopic = function(topicId, TN) {
-		console.log(TN);
-//		$.ajax({
-//			type : "GET",
-//			url : com.coep.test.addProblem.baseURL + "topic/api/get/parent?topicId=" + topicId,
-//			dataType : 'json',
-//			contentType : 'application/json',
-//			success : function(data) {
-//				console.log(data);
-//				if (data.done == true) {
-//					HM.renderOpenTopic(data.data, data.TNODATA ,topicId);
-//				}
-//				
-//			},
-//			error : function() {
-//
-//			}
-//		});
 		
+		var childHtml = '<div class="overlay" id="Loading">'
+			 + '<div class="overlay__inner">'
+			 + '<div class="overlay__content"><span class="spinner"></span><br/><span class="loading">LOADING....</span></div>'
+			 + '</div>'
+			 + '</div>'
+			 
+			 $("#main-div").append(childHtml);
+
 		HM.createPracticeTest(topicId, TN , true);
-//		childHtml += '<button type="button" class="btn btn-success" onClick="javascript:com.coep.test.home.createPracticeTest('+data.data[i].TID +',\''+data.data[i].TN+'*'+''+data.data[i].TN1+''+'\')" data-toggle="modal" data-target="#AlertMesConfirm-'+data.data[i].TID+'"   title="Start Practice Test"> <span class="marathi-text" >सराव सुरू करा</span><br>Start Practice Test</button>&nbsp;&nbsp;'	
-		
 	}
 	
 	
@@ -362,20 +373,9 @@
 
 		var j = data.length;
 		for (var i =  (data.length - 1);  i >= 0;  i--) {
-//			alert(data[i][j]);
-//			var temp = data[i][j].split("-");
-//			setTimeout($("#"+data[i][j]).click(), 1000); 
-		
 			$("#"+data[i][j]).click();
-			
-//			getChild(temp[0],data[i][j] ,TopicNoData[temp[0]],"ito@gmail.com");
 			j--;
-			
-//			if (data.length > 1) {
-//				break;
-//			}
 		}
-		
 	}
 	
 	HM.createPracticeTest = function(topicId, topicName,  homePageFlag) {
@@ -387,7 +387,8 @@
 			 + '</div>'
 			 + '</div>'
 			 
-			 $("#main-div").append(childHtml);
+//			 $("#main-div").append(childHtml);
+			 $("#practiceTestDiv").append(childHtml);
 		
 		var selectedTopicJSON = {};
 		var configureTestJSON = {};
@@ -417,6 +418,8 @@
 		
 //		console.log(JSON.stringify(configureTestJSON));
 //		console.log(configureTestJSON);
+		$("#Loading").css("display","none");
+		$("#Loading").remove();
 		
 		$.ajax({
 			type : "POST",
@@ -425,22 +428,17 @@
 			dataType : 'json',
 			contentType : 'application/json',
 			success : function(data) {
-
 				if (data.done == true) {
-					
 					AM.confirmationToStartTest(topicId, topicName, data, homePageFlag);
 					$('#AlertMesConfirm-'+topicId).modal();
-					
 				} else {
-//					console.log(data);
+					disableLoader();
+					console.log("sampla topic");
 					$("#lastTopicMsg").html(data.msg);
 					$("#moveToNextTest").hide();
 					$("#homePage").show();
 //					goToNextTopic.show();
-					toastr.success(data.msg);
-					
-					$("#Loading").css("display","none");
-					$("#Loading").remove();
+//					toastr.success(data.msg);
 				}
 				$("#Loading").css("display","none");
 				$("#Loading").remove();
@@ -451,6 +449,12 @@
 			}
 
 		});
+		
+		disableLoader = function(){
+			console.log("function called");
+			$("#Loading").css("display","none");
+				$("#Loading").remove();
+		}
 		
 		
 		toastr.options = {
@@ -474,6 +478,8 @@
 	}
 	
 	AM.confirmationToStartTest = function(topicId, topicName, data, homePageFlag) {
+		$("#Loading").css("display","none");
+		$("#Loading").remove();
 
 		if (!homePageFlag) {
 			$("#Loading").css("display","none");
@@ -517,7 +523,7 @@
 //					HM.createPracticeTest(topicId, topicName, data);
 				
 					AlertComfirmYes = function()
-					{
+					{  	
 						AlertComfirmFlag = true;
 						HM.startPracticeTest(topicId, topicName, data);
 						return AlertComfirmFlag;

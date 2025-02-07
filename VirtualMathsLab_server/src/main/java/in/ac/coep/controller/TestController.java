@@ -102,6 +102,21 @@ public class TestController {
 			// TODO: handle exception
 			return null;
 		}
+	}
+	
+	@RequestMapping(value = "/set/configuration",method = RequestMethod.POST)
+	public @ResponseBody String setConfigurationForTest(Authentication authentication, @RequestBody TestVO testVO) {
 
+		JSONObject data = new JSONObject();
+
+		try {
+			User user = (User) authentication.getPrincipal();
+			data = testService.setTestConfigurationForSelectedTopic(testVO, user);
+			return data.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+			return null;
+		}
 	}
 }

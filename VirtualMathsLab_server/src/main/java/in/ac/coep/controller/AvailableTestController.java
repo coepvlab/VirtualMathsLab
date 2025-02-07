@@ -14,7 +14,7 @@ import in.ac.coep.service.TestConfigurationService;
 @RequestMapping(value = "/getAllTest")
 public class AvailableTestController {
 	
-	private static final Logger LOGGER = Logger.getLogger(TestConfigurationController.class);
+	private static final Logger LOGGER = Logger.getLogger(AvailableTestController.class);
 	
 	@Autowired
 	private TestConfigurationService testConfigurationService;

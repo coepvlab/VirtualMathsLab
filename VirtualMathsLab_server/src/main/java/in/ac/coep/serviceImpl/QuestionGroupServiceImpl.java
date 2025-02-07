@@ -1271,7 +1271,6 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 		JSONArray jsonArr = new JSONArray();
 		
 		JSONArray jsArrayLvlNm = new JSONArray();
-//		JSONArray jsArrayLvlNoOfQues = new JSONArray();
 
 		if (topicId != 0) {
 
@@ -1284,26 +1283,21 @@ public class QuestionGroupServiceImpl implements QuestionGroupService {
 					
 					JSONObject leveldata = new JSONObject();
 					JSONObject jsArrayLvlNmData = new JSONObject();
-//					JSONObject jsArrayLvlNoOfQuesData = new JSONObject();
 					leveldata.put("LVL"+objects[0],String.valueOf(objects[1])); // both complexity level and no of quesGroups
 					
 					jsArrayLvlNmData.put(""+objects[0], String.valueOf(objects[1]) ); // complexity level number
-//					jsArrayLvlNoOfQuesData.put(""+objects[0], String.valueOf(objects[1]) ); // number of quesGrouop available for the same complexity level number
 					
 					jsonArr.put(leveldata);
 					
 					jsArrayLvlNm.put(jsArrayLvlNmData);
-//					jsArrayLvlNoOfQues.put(jsArrayLvlNoOfQuesData);
 					
 					long obj = (long) objects[1];
 					totalQuesCount =  totalQuesCount + obj;
-					System.out.println(totalQuesCount);
 				}
 				
 				data.put("data", jsonArr);
 				data.put("TID", topicId);
 				data.put("LVLNO", jsArrayLvlNm);
-//				data.put("QGAVABL", jsArrayLvlNoOfQues);
 				data.put("TOTALQG", list.size()); // total no of complexity level available
 				data.put("TOTALQUES", totalQuesCount); 
 				data.put("done", true);

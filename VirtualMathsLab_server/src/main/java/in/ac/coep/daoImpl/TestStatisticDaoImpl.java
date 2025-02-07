@@ -48,26 +48,30 @@ public class TestStatisticDaoImpl implements TestStatisticDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			session.save(instanceStatistics);
 
 			LOGGER.debug("save TestInstance Statistic  successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.error("save TestInstance Statistic failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -128,8 +132,8 @@ public class TestStatisticDaoImpl implements TestStatisticDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			Criteria criteria = session.createCriteria(TestInstanceStatistics.class, "tstIns");
 				criteria.add(Restrictions.eq("tstIns.user.userId", userId));
 				criteria.add(Restrictions.in("tstIns.section.sectionId", sections));
@@ -138,10 +142,10 @@ public class TestStatisticDaoImpl implements TestStatisticDao {
 			List<TestInstanceStatistics> testInstanceStatistics = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 			return testInstanceStatistics;
 
 		} catch (HibernateException e) {
@@ -149,11 +153,15 @@ public class TestStatisticDaoImpl implements TestStatisticDao {
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 	@SuppressWarnings("unchecked")
@@ -167,27 +175,31 @@ public class TestStatisticDaoImpl implements TestStatisticDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestInstanceStatistics.class);
 
 			testInstanceStatistics = criteria.list();
 
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 		return testInstanceStatistics;
 	}
@@ -203,27 +215,31 @@ public class TestStatisticDaoImpl implements TestStatisticDao {
 					session = sessionFactory.openSession();
 					tx = session.beginTransaction();
 
-					session.flush();
-					session.clear();
+//					session.flush();
+//					session.clear();
 
 					session.delete(testInstanceStatistics1);
 
 					LOGGER.debug("fetch successful");
-					session.flush();
-					session.clear();
+//					session.flush();
+//					session.clear();
 					tx.commit();
-					session.close();
+//					session.close();
 
 				} catch (HibernateException e) {
 					LOGGER.debug("fetch failed", e);
 					if (tx != null)
 						tx.rollback();
-					if (session != null && session.isOpen())
-						session.close();
+//					if (session != null && session.isOpen())
+//						session.close();
 
 					throw new Exception(e);
 
-				}
+				}finally {
+			        if (session != null && session.isOpen()) {
+			            session.close();
+			        }
+			    }
 		
 		
 		
@@ -242,8 +258,8 @@ public class TestStatisticDaoImpl implements TestStatisticDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestInstanceStatistics.class);
 			criteria.add(Restrictions.eq("TestInstanceStatisticId", instanceStatisticsId));
@@ -251,19 +267,23 @@ public class TestStatisticDaoImpl implements TestStatisticDao {
 			testInstanceStatistics = (TestInstanceStatistics) criteria.uniqueResult();
 			
 			LOGGER.debug("fetch successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 		} catch (HibernateException e) {
 			LOGGER.debug("fetch failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 		return testInstanceStatistics;
 	}
@@ -280,8 +300,8 @@ public class TestStatisticDaoImpl implements TestStatisticDao {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TestInstanceStatistics.class,"stat");
 			criteria.add(Restrictions.eq("stat.user.userId", userId));
@@ -290,21 +310,25 @@ public class TestStatisticDaoImpl implements TestStatisticDao {
 			List<TestInstanceStatistics> instanceStatistics = criteria.list();
 			
 			LOGGER.debug("fetch TestInstance Statistic  successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return instanceStatistics;
 		} catch (HibernateException e) {
 			LOGGER.error("fetch TestInstance Statistic failed", e);
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 

@@ -217,23 +217,26 @@
 			dataType : 'json',
 			contentType : 'application/json',
 			success : function(data) {
-				if(data.done == true)
-					{
+				if(data.done == true){
 					UP.renderRegSuccessHtm(data.msg)
 					$("#regsuccessMessModel").modal('show');
 					
-					}
-					else{UP.renderRegwarningHtm(data.msg)
-						$("#regMessWarningModel").modal('show');
-					}
-					$("#studRegisForm")[0].reset();
-				     $("#teacherRegisForm")[0].reset();
-					$("#parentRegisForm")[0].reset();
-					$("#contriRegisForm")[0].reset();
-					$("#studRegisForm").removeClass("was-validated");
-				     $("#teacherRegisForm").removeClass("was-validated");
-					$("#parentRegisForm").removeClass("was-validated");
-					$("#contriRegisForm").removeClass("was-validated");
+				}else{
+					UP.renderRegwarningHtm(data.msg)
+					$("#regMessWarningModel").modal('show');
+				}
+				
+				setTimeout(() => {
+				window.location.href = "login"; }, 5000);
+					
+//					$("#studRegisForm")[0].reset();
+//				     $("#teacherRegisForm")[0].reset();
+//					$("#parentRegisForm")[0].reset();
+//					$("#contriRegisForm")[0].reset();
+//					$("#studRegisForm").removeClass("was-validated");
+//				     $("#teacherRegisForm").removeClass("was-validated");
+//					$("#parentRegisForm").removeClass("was-validated");
+//					$("#contriRegisForm").removeClass("was-validated");
 					 
 			},
 			error : function() {
@@ -2383,16 +2386,20 @@ AH.getCities = function(url, methodType, stateid){
 			contentType : 'application/json',
 
 			success : function(data) {
-				
+				$("#Loading").css("display","none");
+				$("#Loading").remove();
 				if (data == null) {
 					showToast.show(data.msg, false);
 				} else {
+					$("#Loading").css("display","none");
+					$("#Loading").remove();
 					showToast.show(data.msg, true);
-					$("#Loading").css("display", "none");
 //					location.reload();
 				}
 			},
 			error : function() {
+				$("#Loading").css("display","none");
+				$("#Loading").remove();
 				alert("error");
 			}
 		});

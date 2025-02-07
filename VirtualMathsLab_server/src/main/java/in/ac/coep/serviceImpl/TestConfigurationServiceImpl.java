@@ -533,7 +533,7 @@ public class TestConfigurationServiceImpl implements TestConfigurationService {
 								QuestionGroup questionGroup = new QuestionGroup();
 								while(it.hasNext()){								
 									questionGroup = it.next();
-									System.out.println(questionGroup.getQuestionGroupId() + "_while_" + q);
+//									System.out.println(questionGroup.getQuestionGroupId() + "_while_" + q);
 									if (!varString.contains(questionGroup.getVarNo())) {
 										
 										varString.add(questionGroup.getVarNo());
@@ -723,7 +723,7 @@ public class TestConfigurationServiceImpl implements TestConfigurationService {
 										questionGroupsArr.put(questionGroupObj);
 
 									}else {
-										q--;//
+										q--;
 									}
 								}
 								//	System.out.println(varString.toString());
@@ -1219,13 +1219,19 @@ public class TestConfigurationServiceImpl implements TestConfigurationService {
 		// TODO Auto-generated method stub
 		Collections.shuffle(questionGroups);
 		List<QuestionGroup> questionGroups2 = new ArrayList<>();
+		ArrayList<String> varString = new ArrayList<String>();
 		int i = 0;
 		Iterator<QuestionGroup> iterator = questionGroups.iterator();
 
 		while (iterator.hasNext()) {
+			
 			QuestionGroup questionGroup = (QuestionGroup) iterator.next();
-			questionGroups2.add(questionGroup);
-			i++;
+			if (!varString.contains(questionGroup.getVarNo())) {
+				varString.add(questionGroup.getVarNo());
+				if(i < noOfQuestionGroup)
+				questionGroups2.add(questionGroup);
+				i++;
+			}
 		}
 		return questionGroups2;
 	}
@@ -2144,6 +2150,7 @@ public class TestConfigurationServiceImpl implements TestConfigurationService {
 					data.put("TISID", testInstanceState.getTestInstanceStateId());
 					data.put("STD", testInstanceState.getTest().getStandard().getName());
 					data.put("topObj", topObj);
+					data.put("topicObj", topObj);
 				
 					data.put("data", topicObj);
 					

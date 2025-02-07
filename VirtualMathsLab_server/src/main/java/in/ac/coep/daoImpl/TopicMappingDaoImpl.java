@@ -50,18 +50,18 @@ public class TopicMappingDaoImpl implements TopicMappingDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			Criteria criteria = session.createCriteria(TopicMapping.class);
 			criteria.add(Restrictions.eq("topic.topicId", topicId));
 			criteria.add(Restrictions.eq("status", "1")); // 1 represents parent
 			topicMapping = (TopicMapping) criteria.uniqueResult();
 			LOGGER.debug("Parent Topic get successful");
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return topicMapping;
 
@@ -70,11 +70,15 @@ public class TopicMappingDaoImpl implements TopicMappingDao{
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 
@@ -91,8 +95,8 @@ public class TopicMappingDaoImpl implements TopicMappingDao{
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 
 			DetachedCriteria detachedCriteria = DetachedCriteria.forClass(TopicMapping.class, "tm");
 			detachedCriteria.setFetchMode("tm.topic", FetchMode.JOIN);
@@ -102,10 +106,10 @@ public class TopicMappingDaoImpl implements TopicMappingDao{
 			detachedCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			childTopics = detachedCriteria.getExecutableCriteria(session).list();
 
-			session.flush();
-			session.clear();
+//			session.flush();
+//			session.clear();
 			tx.commit();
-			session.close();
+//			session.close();
 
 			return childTopics;
 
@@ -113,11 +117,15 @@ public class TopicMappingDaoImpl implements TopicMappingDao{
 			e.printStackTrace();
 			if (tx != null)
 				tx.rollback();
-			if (session != null && session.isOpen())
-				session.close();
+//			if (session != null && session.isOpen())
+//				session.close();
 
 			throw new Exception(e);
-		}
+		}finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 
 	}
 

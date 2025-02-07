@@ -589,19 +589,25 @@ public class TopicServiceImpl implements TopicService{
 					int j = 0;
 					
 					for (QuestionGroup questionGroup : questionGroups) {
-						 if (set.add(questionGroup.getVarNo())) {
+						 if (set.add(questionGroup.getVarNo() + " - " + topic)) {
 							 cnt++;
 					       }
 					}
 					if (cnt != 0) {
 							String varNo[] = new String[cnt];
+							String dod[] = new String[cnt];
+							JSONObject dt = new JSONObject();
 							for (QuestionGroup questionGroup : questionGroups) {
-								 if (set2.add(questionGroup.getVarNo())) {
+								 if (set2.add(questionGroup.getVarNo() + " - " + topic)) {
 										if (questionGroup.getVarNo() ==  null) {
 											varNo[j] = "100";
+											dod[j] = "100#" + questionGroup.getComplexityLevel().getName();
+											dt.put("100", questionGroup.getComplexityLevel().getName());
 											j++;
 										}else {
 											varNo[j] = questionGroup.getVarNo();
+											dod[j] = questionGroup.getVarNo()+ "#" + questionGroup.getComplexityLevel().getName();
+											dt.put("l"+questionGroup.getVarNo(), questionGroup.getComplexityLevel().getName());
 											j++;
 										}
 									 	
@@ -617,9 +623,12 @@ public class TopicServiceImpl implements TopicService{
 							      Arrays.sort(varNoArray);
 //							      Arrays.sort(varNoArrayWithTopicNo);
 							      object.put("VARNO", varNoArray );
+							      object.put("dod", dod);
+							      object.put("dt", dt);
 //							      object.put("VARNOWITHTNO", varNoArrayWithTopicNo );
 							}else {
 								 object.put("VARNO", varNo );
+							      object.put("dod", dod);
 							}
 								
 						object.put("TopicId", topic.getTopicId());

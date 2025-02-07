@@ -1,6 +1,8 @@
 (function () {
-  var newMathJax = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js';
-  var oldMathJax = 'cdn.mathjax.org/mathjax/latest/MathJax.js';
+//  var newMathJax = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js';
+	var newMathJax = 'resource/js/MathJax2.7.1.js';
+//  var oldMathJax = 'cdn.mathjax.org/mathjax/latest/MathJax.js';
+	var oldMathJax = 'resource/js//MathJax.js';
 
   var replaceScript = function (script, src) {
     //
@@ -34,6 +36,7 @@
 
   if (document.currentScript) {
     var script = document.currentScript;
+    console.log(script + " : " + script.src);
     replaceScript(script, script.src);
   } else {
     //

@@ -57,7 +57,7 @@ public class Test implements Serializable {
 	@Column
 	private String selectedTopics;
 	
-	@Column
+	@Column(length = 1000)
 	private String varNo;
 	
 	@Column

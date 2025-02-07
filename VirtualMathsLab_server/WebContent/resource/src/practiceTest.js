@@ -1,4 +1,4 @@
-(function(PT, TM, AM, MJ, AP, HM) {
+(function(PT, TM, AM, MJ, AP, HM, AH) {
 	
 //	PT.baseURL = "http://localhost:8080/VirtualMathsLab/";
 //	PT.baseURL = "https://portal.coepvlab.ac.in/VirtualMathsLab/"
@@ -63,6 +63,15 @@
 		var compLevel = parseInt(data.COMPLEVEL);
 		var testId = data.TID;
 //		alert(compLevel);
+
+		var childHtml = '<div class="overlay" id="Loading">'
+			 + '<div class="overlay__inner">'
+			 + '<div class="overlay__content"><span class="spinner"></span><br/><span class="loading">LOADING....</span></div>'
+			 + '</div>'
+			 + '</div>'
+			 
+			 $("#practiceTestDiv").append(childHtml);
+
 		$.ajax({
 			type : "GET",
 			url : com.coep.test.addProblem.baseURL
@@ -71,7 +80,10 @@
 			dataType : 'json',
 			contentType : 'application/json',
 			success : function(data) {
-				$("#main-div").css("padding-bottom:100px");
+				$("#Loading").css("display","none");
+				$("#Loading").remove();
+				$("#main-div").css("padding-bottom:100px"); 
+				if(HM.testCnt == 0){
 				if(data.done == true){
 					
 					var instrHtm = '';
@@ -170,6 +182,15 @@
 				}else{
 //					$("#main-div").html("<div class='col-xl-12 col-md-12 col-sm-12 alert alert-danger' style='text-align:center;'>No questions in the database to display....</div>");
 				}
+				}else{
+					var instrHtm = '';
+					instrHtm += '<div class=" StartTestBtn" hidden><a id="tmpClick" href="'+data.testURL+'" class="alink test-link" style="color: #fff;">Click here to start the test</a></div>'
+					
+					$("#main-div").html(instrHtm);
+					$("#practiceTestDiv").html(instrHtm);
+					
+					window.location = $('#tmpClick').attr('href');
+				}
 			},
 			error : function() {
 			}
@@ -224,7 +245,6 @@
 	
 	
 	PT.startpracticeTest = function(testData, firstName) {
-		console.log("practiceTestHeading" + testData);
 		
 		PT.TESTDATA = testData;
 		PT.TISID = testData.TISID;
@@ -249,6 +269,7 @@
 	
 	
 	PT.renderActualQuestionDiv = function(testData, topicId) {
+		HM.testCnt++;
 		$("#content").css({"margin-left":"0%"});
 		$("#sidebar .custom-menu .btn").addClass({"margin-left":"-8px"});
 		$("#sidebar").addClass("active");
@@ -882,7 +903,7 @@
 			$("#audioReference").hide();
 			$("#videoQuestionRef").hide();
 			
-			var imgHtml = '<p class="reffText">With reference to below Images answer the following question</p>'
+			var imgHtml = '<p class="reffText"></p>'
 //			+'<div id="imageSrc" class="">'// 
 			+'<img src="'+PT.baseURL +'media/getImage?mediaID='+testData.data["TOPIC" + topicId][j].MED+'&questionGroupId='+testData.data["TOPIC" + topicId][j].QGID+'" id="imgQues"  class="img-responsive" style="height: 100%;width: 100%;">' // class="ApproveQueImg" question images
 //			+'</div>'
@@ -1001,10 +1022,19 @@
 			
 				AlertComfirmYes = function()
 				{
+//					var childHtml = '<div class="overlay" id="Loading">'
+//					 + '<div class="overlay__inner">'
+//					 + '<div class="overlay__content"><span class="spinner"></span><br/><span class="loading">LOADING....</span></div>'
+//					 + '</div>'
+//					 + '</div>'
+//					 
+//					 $("#main-div").append(childHtml);
 					TM.onFinishTest();
 					AlertComfirmFlag = true;
 					
 					PT.saveCurrentTime();
+//					$("#Loading").css("display","none");
+//					$("#Loading").remove();
 					PT.submitTest(subTestFlag, key, status);
 					return AlertComfirmFlag;
 				}
@@ -1015,7 +1045,6 @@
 	PT.submitTest = function(subTestFlag, key, status) {
 		
 		var loader = '<div class="overlay" id="Loading">'
-//			+'<img src="resource/images/giphy.gif" class="laoderimg">'
 			 + '<div class="overlay__inner">'
 			 + '<div class="overlay__content"><span class="spinner"></span><br/><span class="loading">SUBMITTING....</span></div>'
 			 + '</div>'
@@ -1029,8 +1058,6 @@
 		
 		$('#submitBtn').one('click', function(event) {
 			event.preventDefault();
-			// do something
-//			$(this).prop('disabled', true);
 		});
 		$('#submitBtn').dblclick(function(e) {
 			e.preventDefault();
@@ -1159,7 +1186,7 @@
 		$("#pra-test-footer").hide();
 		$("#pra-test-main-div").html('');
 		
-		var candidateSummaryHtm = '<h1 style="font-size:22px;">CANDIDATE SUMMARY <span class="marathi-text" >( विद्यार्थीचा सारांश )</span></span><span style="float:right; background: #e0ebf5; padding: 3px; border-radius: 5px; color: #000408;"><a href="home"><i class="fa fa-home" aria-hidden="true"></i> HOME</a></span></h1><div class="row"><div id="message" class="col-sm-12 col-md-12 col-lg-12 col-xl-12 " style="margin-top: 9px; text-align: center;">'
+		var candidateSummaryHtm = '<h1 style="font-size:22px;">CANDIDATE SUMMARY <span class="marathi-text" >( विद्यार्थ्याचा सारांश )</span></span><span style="float:right; background: #e0ebf5; padding: 3px; border-radius: 5px; color: #000408;"><a href="home"><i class="fa fa-home" aria-hidden="true"></i> HOME</a></span></h1><div class="row"><div id="message" class="col-sm-12 col-md-12 col-lg-12 col-xl-12 " style="margin-top: 9px; text-align: center;">'
 				+ ' <div id="onSubmit" class="alert alert-success cust-margin" role="alert" style=" "><B>&nbsp;&nbsp;Congratulation!! you have completed the test.<br/><span class="marathi-text" >( अभिनंदन!! तुम्ही चाचणी परीक्षा पूर्ण केली आहे. )</span></B></div>'
 //				+ ' <div id="timeOut" class="alert alert-warning cust-margin" role="alert" hidden><span class="glyphicon glyphicon-remove-circle  alert-warning "></span><B>&nbsp;&nbsp;Your session has timed out and your answers has been saved successfully..</B></div>'
 				+ ' </div>' 
@@ -1416,9 +1443,9 @@
 												AlertMesConfirm += '<span  id="MathPreview">' + testData.data["TOPIC" + topicID][l].QGC 
 										 }else if (testData.data["TOPIC" + topicID][l].MEDTYP == 2) { // audio
 											 AlertMesConfirm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
-//						    					 +'<p>'
-//												 +' With reference to the follwing clip answer the  question'
-//												 +' </p>'
+						    					 +'<p>'
+												 + ' Related details/पूरक (संबंधित) माहिती'
+												 +' </p>'
 												 +' <audio controls class="ApproveQueAudio">'
 												 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+testData.data["TOPIC" + topicID][l].QGC+'" type="audio/mpeg" >'
 												 +' Your browser does not support the audio element.'
@@ -1427,9 +1454,9 @@
 									     }else if (testData.data["TOPIC" + topicID][l].MEDTYP == 3) { // video
 
 									    	 AlertMesConfirm +='<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle">'
-//							 						+ '<p>'
-//							 						+ ' With reference to the follwing clip answer the question'
-//							 						+ ' </p>'
+							 						+ '<p>'
+							 						+ ' Related details/पूरक (संबंधित) माहिती'
+							 						+ ' </p>'
 							 						+'  <video controls  class="ApproveQueVideo" >'
 							 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+testData.data["TOPIC" + topicID][l].QGC+'" type="video/mp4" >'
 							 						+ ' <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+testData.data["TOPIC" + topicID][l].QGC+'" type="video/ogg">'
@@ -1438,10 +1465,10 @@
 							 						+'</div>'
 							    			 
 										 }else if (testData.data["TOPIC" + topicID][l].MEDTYP == 4) { // Image
-//											 AlertMesConfirm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle" ><span class=""></span>'
-//								    				 +'<p>'
-//													 +' With reference to the follwing Image answer the question'
-//													 +' </p>'
+											 AlertMesConfirm += '<div class="col-xl-6 col-md-6 col-sm-12 ApproveDivStyle" ><span class=""></span>'
+								    				 +'<p>'
+													 + ' Related details/पूरक (संबंधित) माहिती'
+													 +' </p>'
 											 AlertMesConfirm +='<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+testData.data["TOPIC" + topicID][l].QGC+'"  class="ApproveQueImg" /></div>'
 										 }
 										
@@ -1519,14 +1546,14 @@
 			    				 
 			    				 AlertMesConfirm += '<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" ><div class="heading">Solution Media</div>'
 			    				 +'<div class="inners"><p>'
-								 +' With reference to the follwing Image answer the question'
+								 + ' Related details/पूरक (संबंधित) माहिती'
 								 +' </p>'
 			    				 +'<img src="'+ AP.baseURL +'media/get/getImage?mediaID='+testData.data["TOPIC" + topicID][l].QUES[m].QSOLMEDIA+'"  class="popup-img" /></div>'
 			    			 }else if(testData.data["TOPIC" + topicID][l].QUES[m].QSOLTYPE == "AUDIO"){
 			    				 AlertMesConfirm += '<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">'
 			    					 +'<div class="heading">Solution Media</div>'
 			    					 +'<div class="inners"><p>'
-									 +' With reference to the follwing clip answer the  question'
+									 + ' Related details/पूरक (संबंधित) माहिती'
 									 +' </p>'
 									 +' <audio controls>'
 									 +'  <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+testData.data["TOPIC" + topicID][l].QUES[m].QSOLMEDIA+'" type="audio/mpeg"  class="">'
@@ -1537,7 +1564,7 @@
 			    				 AlertMesConfirm +='<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">'
 			    					+'<div class="heading">Solution Media</div>'
 			 						+ '<div class="inners"><p>'
-			 						+ ' With reference to the follwing clip answer the question'
+			 						+ ' Related details/पूरक (संबंधित) माहिती'
 			 						+ ' </p>'
 			 						+'  <video controls  >'
 			 						+ '            <source src="'+ AP.baseURL +'media/get/getImage?mediaID='+testData.data["TOPIC" + topicID][l].QUES[m].QSOLMEDIA+'" type="video/mp4"  class"">'
@@ -1576,4 +1603,4 @@
 	}
 
 	
-})(com.coep.test.practiceTest, com.coep.test.practiceTestTimer, com.coep.test.AlertMessage, com.coep.test.mathJax, com.coep.test.addProblem, com.coep.test.home);
+})(com.coep.test.practiceTest, com.coep.test.practiceTestTimer, com.coep.test.AlertMessage, com.coep.test.mathJax, com.coep.test.addProblem, com.coep.test.home, com.coep.test.ajaxHandler);

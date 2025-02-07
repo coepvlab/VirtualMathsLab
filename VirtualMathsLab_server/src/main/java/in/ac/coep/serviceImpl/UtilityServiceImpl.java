@@ -7,10 +7,12 @@ import static org.apache.poi.ss.usermodel.Cell.CELL_TYPE_STRING;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,12 +30,14 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import in.ac.coep.dao.QuestionGroupDao;
 import in.ac.coep.dao.TopicDao;
 import in.ac.coep.dao.UserDao;
 import in.ac.coep.dao.UtilityServiceDao;
 import in.ac.coep.entity.Cities;
 import in.ac.coep.entity.ContributorInfo;
 import in.ac.coep.entity.ParentInfo;
+import in.ac.coep.entity.QGComplexityLevel;
 import in.ac.coep.entity.QuestionGroup;
 import in.ac.coep.entity.Roles;
 import in.ac.coep.entity.StudentInfo;
@@ -43,6 +47,7 @@ import in.ac.coep.entity.Topic;
 import in.ac.coep.entity.User;
 import in.ac.coep.service.MediaService;
 import in.ac.coep.service.QuestionGroupService;
+import in.ac.coep.service.TopicService;
 import in.ac.coep.service.UtilityService;
 import in.ac.coep.vo.AnswerTypeVO;
 import in.ac.coep.vo.AnswersVO;
@@ -75,6 +80,12 @@ public class UtilityServiceImpl implements UtilityService {
 	
 	@Autowired
 	private UtilityServiceDao utilityServiceDao;
+	
+	@Autowired
+	private QuestionGroupDao questionGroupDao;
+	
+	@Autowired
+	private TopicService topicService;
 	
 	@Override
 	public JSONObject getUserListForExcelDownload() throws Exception {
@@ -2897,5 +2908,165 @@ public class UtilityServiceImpl implements UtilityService {
 		return data;
 	}
 
+	@Override
+	public JSONObject updateDODlevel(String json) throws Exception {
+		// TODO Auto-generated method stub
+		JSONObject data = new JSONObject();
+		JSONObject data1 = new JSONObject(json);
+//		{"newDifficultyVal":2,"currentDifficultyVal":2,"variationVal":5,"topicVal":226,"verticalNum":3}
+		long topic = data1.getLong("topicVal");
+		String str = data1.getString("variationVal");
+		String varNo[] = new String[1];
+		
+		varNo[0] = String.valueOf(str);
+		
+		String tmp = data1.getString("currentDifficultyVal");
+		String[] items = tmp.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");
+
+		int[] difficultyLevel = new int[items.length];
+		difficultyLevel[0] = Integer.parseInt(items[0]);
+		
+		Object diffLevel[] = new Object[difficultyLevel.length];
+		for (int i = 0; i < difficultyLevel.length; i++) {
+			diffLevel[i] = difficultyLevel[i];
+        }
+		
+		List<QuestionGroup> questionGroupsList =  questionGroupDao.getAllQuestionGroupsByFilter("Approved", topic, varNo, diffLevel);
+		for(QuestionGroup qg : questionGroupsList) {
+			QGComplexityLevel qg1 = new QGComplexityLevel();
+			qg1.setQgComplexityLevelId(data1.getInt("newDifficultyVal"));
+			
+			qg.setComplexityLevel(qg1);
+			qg.setUpdatedTime(System.currentTimeMillis());
+			questionGroupDao.updateQG(qg);
+		}
+//		System.out.println("Total updated records : " + questionGroupsList.size());
+		
+		data.put("msg", questionGroupsList.size() + " records updated successfully");
+		return data;
+	}
+
+	@Override
+	public JSONObject getVarCountOfDOD(String json) throws Exception {
+		// TODO Auto-generated method stub
+		
+		JSONObject data = new JSONObject();
+		JSONObject jsnObj = new JSONObject(json);
+		
+		JSONArray tidArr = jsnObj.getJSONArray("tid");
+		JSONArray tnoArr = jsnObj.getJSONArray("tno");
+		
+		data = getVarNoByDod(tidArr);
+		return data;
+	}
+
+	private JSONObject getVarNoByDod(JSONArray tidArr) {
+		// TODO Auto-generated method stub
+		JSONObject data = new JSONObject();
+
+		long[] topicId = new long[tidArr.length()];
+
+		for (int i = 0; i < tidArr.length(); i++) {
+			topicId[i] = tidArr.getLong(i);
+		}
+
+		try {
+			Topic topic = null;
+			JSONArray jsonArray = new JSONArray();
+			boolean flag = false;
+			int cnt = 0;
+			for (int i = 0; i < topicId.length; i++) {
+
+				Set<String> set = new LinkedHashSet<String>();
+				Set<String> set2 = new LinkedHashSet<String>();
+
+				topic = topicDao.getTopicByTopicId(topicId[i]);
+
+				List<QuestionGroup> questionGroups = questionGroupDao.getAllQuestionGroupsByTopicIdAndStatus("Approved",
+						topic.getTopicId());
+
+				if (!questionGroups.isEmpty()) {
+					JSONObject object = new JSONObject();
+					JSONArray dod1 = new JSONArray();
+					JSONArray dod2 = new JSONArray();
+					JSONArray dod3 = new JSONArray();
+					JSONArray dod4 = new JSONArray();
+					JSONArray dod5 = new JSONArray();
+
+					for (QuestionGroup questionGroup : questionGroups) {
+						if (questionGroup.getVarNo() != null) {
+							if (set.add(questionGroup.getVarNo())) {
+								cnt++;
+							}
+						}
+					}
+					if (cnt != 0) {
+						String varNo[] = new String[cnt];
+
+						for (QuestionGroup questionGroup : questionGroups) {
+							if (set2.add(questionGroup.getVarNo())) {
+								if (questionGroup.getVarNo() != null) {
+
+									if (questionGroup.getComplexityLevel().getQgComplexityLevelId() == 1) {
+										dod1.put(questionGroup.getVarNo());
+									}
+
+									if (questionGroup.getComplexityLevel().getQgComplexityLevelId() == 2) {
+										dod2.put(questionGroup.getVarNo());
+									}
+
+									if (questionGroup.getComplexityLevel().getQgComplexityLevelId() == 3) {
+										dod3.put(questionGroup.getVarNo());
+									}
+
+									if (questionGroup.getComplexityLevel().getQgComplexityLevelId() == 4) {
+										dod4.put(questionGroup.getVarNo());
+									}
+
+									if (questionGroup.getComplexityLevel().getQgComplexityLevelId() == 5) {
+										dod5.put(questionGroup.getVarNo());
+									}
+								}
+							}
+						}
+
+						object.put("dod1", dod1);
+						object.put("dod2", dod2);
+						object.put("dod3", dod3);
+						object.put("dod4", dod4);
+						object.put("dod5", dod5);
+						object.put("varCount", varNo.length);
+						object.put("dod1Cnt", dod1.length());
+						object.put("dod2Cnt", dod2.length());
+						object.put("dod3Cnt", dod3.length());
+						object.put("dod4Cnt", dod4.length());
+						object.put("dod5Cnt", dod5.length());
+						object.put("tno", topic.getTopicNo());
+						object.put("tid", topic.getTopicId());
+						object.put("tnm", topic.getTopicName());
+						object.put("tnm1", topic.getTopicName1());
+						object.put("date", new Date());
+						
+						jsonArray.put(object);
+					}
+					
+					cnt = 0;
+					flag = true;
+				} else {
+					flag = false;
+				}
+			}
+
+			data.put("data", jsonArray); // not sorted
+			data.put("done", true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			data.put("done", false);
+			data.put("msg", "Something went wrong..");
+		}
+
+		return data;
+	}
+		
 	
 }

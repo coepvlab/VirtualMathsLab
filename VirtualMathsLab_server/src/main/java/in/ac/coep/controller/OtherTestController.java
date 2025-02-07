@@ -75,7 +75,7 @@ public class OtherTestController {
 	
 	
 	
-	@PreAuthorize("hasAnyRole('CONTRIBUTOR','MODERATOR')")
+	@PreAuthorize("hasAnyRole('CONTRIBUTOR','MODERATOR','STUDENT')")
 	@RequestMapping(method = RequestMethod.GET)
 	public String fetchTestQuestionGroupsForOtherTest(Authentication authentication, Model model, @RequestParam long testId, @RequestParam long testTypeId) {
 

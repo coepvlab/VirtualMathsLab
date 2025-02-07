@@ -91,42 +91,46 @@
 		var mname = $("#s_mname").val();
 		var lname = $("#s_lname").val();
 		var contact = $("#s_contact").val();
-		var whatsAppNo = $("#s_whatsAppNo").val();
+//		var whatsAppNo = $("#s_whatsAppNo").val();
 		var gen = $("#s_gender").val();
 		var pass = $("#s_pass").val();
-		var pincode = $("#s_pincode").val();
-		var cityName = $("#s_city").val();
-		var dob = new Date($("#s_dob").val());		
-		var dob_long = dob.getTime();
+//		var pincode = $("#s_pincode").val();
+//		var cityName = $("#s_city").val();
+//		var dob = new Date($("#s_dob").val());		
+//		var dob_long = dob.getTime();
 
-		var parEmail = $("#s_ParentEmail").val();
-		var schoolName = $("#s_schoolname").val();
-		var schoolType =  $("#s_schoolType option:selected").text();
-		var address = $("#s_schooladdress").val();
+//		var parEmail = $("#s_ParentEmail").val();
+//		var schoolName = $("#s_schoolname").val();
+//		var schoolType =  $("#s_schoolType option:selected").text();
+//		var address = $("#s_schooladdress").val();
 		var standard = $("#s_standard").val();
-		var medium = $("#s_medium").val();
+//		var medium = $("#s_medium").val();
 
 		regUserJson.emailId = email;
 		regUserJson.firstName = fname;
 		regUserJson.middleName = mname;
 		regUserJson.lastName = lname;
 		regUserJson.phoneNumber = parseInt(contact);
-		regUserJson.whatsAppNo = whatsAppNo;
+//		regUserJson.whatsAppNo = whatsAppNo;
 		regUserJson.gender = parseInt(gen);
 		regUserJson.password = pass;
-		regUserJson.pincode = parseInt(pincode);
-		regUserJson.cityId = parseInt(cityName);
-		regUserJson.stateId = 22;
-		regUserJson.dateOfBirth = dob_long;
+//		regUserJson.pincode = parseInt(pincode);
+//		regUserJson.cityId = parseInt(cityName);
+//		regUserJson.stateId = 22;
+//		regUserJson.dateOfBirth = dob_long;
 		regUserJson.userType = "Student";
 		
 
-		studJson.parEmailId = parEmail;
-		studJson.schoolName = schoolName;
-		studJson.schoolType = schoolType;
-		studJson.schoolAdd = address;
-		studJson.standard = standard;
-		studJson.mediumId = parseInt(medium);
+//		studJson.parEmailId = parEmail;
+//		studJson.schoolName = schoolName;
+//		studJson.schoolType = schoolType;
+//		studJson.schoolAdd = address;
+		if(standard != "Other"){
+			studJson.standard = standard;
+		}else{
+			studJson.standard = 0;
+		}
+//		studJson.mediumId = parseInt(medium);
 		
 		finalJson.user = regUserJson;
 		finalJson.stud = studJson;
@@ -333,6 +337,7 @@ UP.registerContributor = function() {
 		{
 			$("#CallAfterRegDiv").css("display","block");
 			 $("#registrationDiv").css("display","none");
+			 window.location.href = "login";
 		}
 	};
 	

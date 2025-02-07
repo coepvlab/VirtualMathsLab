@@ -13,21 +13,23 @@
 <link rel="stylesheet" href="resource/css/homePage.css" type="text/css">
 <link rel="stylesheet" href="resource/css/testConfig.css" type="text/css">
 
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/input/asciimath.js" charset="UTF-8"></script>
-<link rel="preconnect" href="https://fonts.gstatic.com">
+<%-- <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> --%>
+<%-- <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/input/asciimath.js" charset="UTF-8"></script> --%>
+<script src="resource/js/tex-mml-chtml.js"></script>
+<script src="resource/js/asciimath.js" charset="UTF-8"></script>
+<!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
 <link href="resource/css/googleFont.css" rel="stylesheet">
 
+<!-- <link rel="stylesheet" type="text/css" href="resource/css/jquery.dataTables.css"> -->
+<!--     <link rel="stylesheet" type="text/css" href="resource/css/buttons.dataTables.min.css">  -->
 <link rel="stylesheet" href="resource/css/dataTables.bootstrap4.min.css" type="text/css">
 <link rel="stylesheet" href="resource/css/buttons.bootstrap4.min.css" type="text/css">
 <!-- .........new css........ -->
 <link href="resource/css/toastr.css" rel="stylesheet"/>
+	  <script src="resource/js/jquery-3.5.min.js"></script>
 <link rel="stylesheet" href="resource/css/bootstrap4.5.2.min.css">
-  <script src="resource/js/jquery-3.5.min.js"></script>
   <script src="resource/js/popper.min.js"></script>
   <script src="resource/js/bootstrap-4.5.min.js"></script>
-
 
 <link href="resource/css/chosen.css" rel="stylesheet">
 <link href="resource/css/chosen.min.css" rel="stylesheet">
@@ -93,6 +95,7 @@
 	
 	#main-div {
 		margin-top: 1px;
+		margin-left: 25px;
 	}
 }
 
@@ -146,7 +149,6 @@
 }
 </style>
 </head>
-<!--  onload="getQuestionBankForApprovedNonApproved()" -->
 <body class="loading"  onload="noBack();"  onpageshow="if (event.persisted) noBack();" onunload="">
   
 <div class="BodyBGOpacity wrapper d-flex align-items-stretch">
@@ -171,13 +173,12 @@
 </div>
      
         <span style="font-size:18px; font-weight:bold; color:#cdd7d6;">${FN}</span><br/>
-<%--           <span  id="logoutlink" ><a  href="/VirtualMathsLab/logout" style="color: #cdd7d6;"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Sign out</a></span><br/> --%>
         <span  id="logoutlink" ><a  href='<c:url value="/j_spring_security_logout" />' style="color: #cdd7d6;"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Sign out</a></span><br/>
     </div>
    <span class="assignedRoles" ></span>
         
   </div>
-	        <ul class="list-unstyled components mb-5">
+	<ul class="list-unstyled components mb-5">
 	<s:authorize access="hasAnyRole('ADMIN','MODERATOR','TEACHER','CONTRIBUTOR')">
     <li >
       <a href="javascript:com.coep.test.addProblem.getLevelDetailsToAddQuestionGroup()" class="CloseNav">
@@ -189,14 +190,14 @@
     
        <s:authorize access="hasAnyRole('STUDENT')">
     <li >
-      <a href="javascript:com.coep.test.home.getAllTopicToHomePage()" class="CloseNav">
+      <a href="javascript:com.coep.test.home.getAllTopicToHomePage('no', '')" class="CloseNav">
                 <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
                 Home
             </a>
     </li>
     </s:authorize>
     
-        <s:authorize access="hasAnyRole('STUDENT','ADMIN','CONTRIBUTOR','MODERATOR')">
+        <s:authorize access="hasAnyRole('STUDENT')">
     <li >
       <a href="javascript:com.coep.test.testRecords.getAllTestRecords()" class="CloseNav">
                 <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
@@ -205,10 +206,11 @@
     </li>
     </s:authorize>
     
+    <s:authorize access="hasAnyRole('ADMIN','CONTRIBUTOR','MODERATOR')">
      <li id="excelmenu">
-       <s:authorize access="hasAnyRole('ADMIN','CONTRIBUTOR','MODERATOR')">
-	            <a href="#excelSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i> Excel Sheet</a>
-	            <ul class="collapse list-unstyled " id="excelSubmenu">
+       
+	         <a href="#excelSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i> Excel Sheet</a>
+	         <ul class="collapse list-unstyled " id="excelSubmenu">
                 
              <s:authorize access="hasAnyRole('ADMIN','CONTRIBUTOR','MODERATOR')">
 		    <li >
@@ -219,7 +221,7 @@
 		    </li>
 		    </s:authorize>    
                 
-            <s:authorize access="hasAnyRole('ADMIN','CONTRIBUTOR','MODERATOR')">
+            <s:authorize access="hasAnyRole('ADMIN')">
  		    <li > 
 		       <a href="javascript:com.coep.test.utilityFile.uploadQuesByExcelSheet(2)" class="CloseNav">
                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
@@ -228,136 +230,277 @@
  		    </li>
 		    </s:authorize>
 		    
-		    <s:authorize access="hasAnyRole('ADMIN','CONTRIBUTOR','MODERATOR')">
+		    <s:authorize access="hasAnyRole('ADMIN')">
 		    <li >
 		      <a href="javascript:com.coep.test.utilityFile.uploadQuesByExcelSheet(1)" class="CloseNav">
                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
                 Upload Excelsheet
             </a>
 		    </li>
-		    </s:authorize>
+		   </s:authorize>
       
-	            </ul>
-	             </s:authorize>
-	          </li>
-    
-	          <li id="homemenu">
-	             <s:authorize access="hasAnyRole('ADMIN','TEACHER','CONTRIBUTOR','MODERATOR')">
-	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i> User Questions</a>
-	            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <s:authorize access="hasAnyRole('ADMIN','TEACHER','CONTRIBUTOR','MODERATOR')">
+	</ul> 
+	</li>
+	</s:authorize>
+	         
+    <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
+    	<li id="Approvemenu">
+	            <a href="#ApproveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i>Moderate Question</a>
+	            <ul class="collapse list-unstyled" id="ApproveSubmenu">
+         <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
  		    <li > 
-		      <a href="javascript:com.coep.test.questionBank.getQuestionBankOfUser('Active')" class="CloseNav">
-		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
-		                Active Questions
+		      <a href="javascript:com.coep.test.questionBank.getTopicForQuestionsToApprove('Non-Approved')" class="CloseNav">
+		                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+		                Non Moderated Questions
 		            </a>
  		    </li>
-		    </s:authorize>
+		 </s:authorize>
 		    
-		    <s:authorize access="hasAnyRole('ADMIN','TEACHER','CONTRIBUTOR','MODERATOR')">
+		 <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
 		    <li >
-		      <a href="javascript:com.coep.test.questionBank.getQuestionBankOfUser('Archived')" class="CloseNav">
-		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
-		                Archived Questions
+		           <a href="javascript:com.coep.test.questionBank.getTopicForQuestionsToApprove('Approved')" class="CloseNav">     
+		                  <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+		                 Moderated Questions
 		            </a>
 		    </li>
-		    </s:authorize>
-      
-	            </ul>
-	          </li>
-			  </s:authorize>  
-			  
-			  
-			  <li id="pagemenu">
-			  <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i>All Questions</a>
-              <ul class="collapse list-unstyled" id="pageSubmenu">
-            
-                <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
- 		   	 <li > 
-		      <a href="javascript:com.coep.test.questionBank.getAllQuestionsFromQuesBank('Active')" class="CloseNav">
-		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i> 
-		                Active Questions
-		            </a>
- 		   	 </li> 
-		    </s:authorize>
-                <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
-			   	 <li >
-			      <a href="javascript:com.coep.test.questionBank.getAllQuestionsFromQuesBank('Archived')" class="CloseNav">
-			                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
-			                Archived Questions
+		 </s:authorize>
+	 </ul>
+	 </li>
+     </s:authorize>
+     		
+     <s:authorize access="hasAnyRole('ADMIN')">
+      <li id="ApproveModifymenu">
+	            <a href="#ApproveModifySubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i>Utilities</a>
+	            <ul class="collapse list-unstyled" id="ApproveModifySubmenu1">
+         <s:authorize access="hasAnyRole('ADMIN')">
+			    <li >
+			      <a href="javascript:com.coep.test.utilityFile.getTopicForDoDChange(0)" class="CloseNav">
+			                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+			                Change DoD
 			            </a>
-			   	 </li>
-    			</s:authorize>
-              </ul>
-	          </li>
-			  </s:authorize>  
-    
-	     <s:authorize access="hasAnyRole('ADMIN')">
+			    </li>
+		 </s:authorize>
+		    
+		 <s:authorize access="hasAnyRole('ADMIN')">
+			    <li >
+			      <a href="javascript:com.coep.test.utilityFile.getTopicForDoDChange(2)" class="CloseNav">
+			                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+			                DoD Count
+			            </a>
+			    </li>
+		 </s:authorize>
+		 
+		 <s:authorize access="hasAnyRole('ADMIN')">
+			    <li >
+			      <a href="javascript:com.coep.test.utilityFile.getTopicForDoDChange(1)" class="CloseNav">
+			                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+			                Configure Topic Test
+			            </a>
+			    </li>
+		 </s:authorize>	 
+		 
+		 <s:authorize access="hasAnyRole('ADMIN')">
 			    <li >
 			      <a href="javascript:com.coep.test.addTopic.getSubjectListToAddTopic()" class="CloseNav">
-			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
+			                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
 			                Add Topic
 			            </a>
 			    </li>
-			    </s:authorize>
+		</s:authorize>
+			    
+		<s:authorize access="hasAnyRole('ADMIN')">
+			    <li >
+			      <a href="javascript:com.coep.test.addTopic.getTopicListToAddParentTopics()" class="CloseNav">
+			                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+			                Assign Parent Topic
+			            </a>
+			    </li>
+	    </s:authorize>	    
 	
 		<s:authorize access="hasAnyRole('ADMIN')">
 			    <li >
 			      <a href="javascript:com.coep.test.utilityFile.changeTopicStatusFlag()" class="CloseNav">
-			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
+			                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
 			                Activate Topic
 			            </a>
 			    </li>
-			    </s:authorize>	    
-			    
-<%-- 			     <s:authorize access="hasAnyRole('ADMIN')"> --%>
-<!-- 			    <li > -->
-<!-- 			      <a href="javascript:com.coep.test.utilityFile.demoCall()" class="CloseNav"> -->
-<!-- 			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
-<!-- 			                Demo -->
-<!-- 			            </a> -->
-<!-- 			    </li> -->
-<%-- 			    </s:authorize> --%>
-
-		 <s:authorize access="hasAnyRole('ADMIN')">
-			    <li >
-			      <a href="javascript:com.coep.test.utilityFile.deleteArchiveQuestions()" class="CloseNav">
-			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
-			                Delete Archives
-			            </a>
-			    </li>
-	    </s:authorize>
+		</s:authorize>	
 			    
 			     <s:authorize access="hasAnyRole('ADMIN')">
-			    <li >
-			      <a href="javascript:com.coep.test.addTopic.getTopicListToAddParentTopics()" class="CloseNav">
-			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
-			                Assign Parent Topic
-			            </a>
-			    </li>
-	    </s:authorize>
-    
-    
-    
-        <s:authorize access="hasAnyRole('ADMIN','CONTRIBUTOR','MODERATOR')">
-		    <li >
-		      <a href="javascript:com.coep.test.testConfig.testConfiguration()" class="CloseNav">
-                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
-                Test Configuration
-            </a>
-		    </li>
-		    </s:authorize>
-    
-    
-     	 <s:authorize access="hasAnyRole('ADMIN','CONTRIBUTOR','MODERATOR')">
 		    <li >
 		      <a href="javascript:com.coep.test.testConfig.testLinkCreation()" class="CloseNav">
                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
                 Test Link Creation
             </a>
 		    </li>
-		    </s:authorize>
+		</s:authorize>
+      
+      	<s:authorize access="hasAnyRole('ADMIN')">
+		    <li >
+		      <a href="javascript:com.coep.test.userProfile.manageRoleOfUsers()" class="CloseNav">
+		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+		                Manage Role
+		            </a>
+		    </li>
+		</s:authorize>
+		    
+		<s:authorize access="hasAnyRole('ADMIN')">
+		    <li >
+		      <a href="javascript:com.coep.test.userProfile.checkRequestForContributorRole()" class="CloseNav">
+		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+		                Contributor Request
+		            </a>
+		    </li>
+		</s:authorize>
+		    
+		<s:authorize access="hasAnyRole('ADMIN')">
+		    <li >
+		      <a href="javascript:com.coep.test.userProfile.activateAccountByAdmin()" class="CloseNav">
+		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+		                Activate Account
+		            </a>
+		    </li>
+		</s:authorize>
+		    
+		<s:authorize access="hasAnyRole('ADMIN')">
+		    <li >
+		      <a href="javascript:com.coep.test.utilityFile.getAllUsersToWriteInExcel()" class="CloseNav">
+		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+		                User List
+		            </a>
+		    </li>
+		</s:authorize>
+		    
+		<s:authorize access="hasAnyRole('ADMIN')">
+		    <li >
+		      <a href="javascript:com.coep.test.addSubject.addSubject()" class="CloseNav">
+		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
+		                Add Subject
+		            </a>
+		    </li>
+		</s:authorize>
+	    </ul>
+	    </li>
+     	</s:authorize>		
+     		
+<%--     <s:authorize access="hasAnyRole('ADMIN','TEACHER','CONTRIBUTOR','MODERATOR')"> --%>
+<!-- 	          <li id="homemenu"> -->
+	             
+<!-- 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i> User Questions</a> -->
+<!-- 	            <ul class="collapse list-unstyled" id="homeSubmenu"> -->
+<%--                 <s:authorize access="hasAnyRole('ADMIN','TEACHER','CONTRIBUTOR','MODERATOR')"> --%>
+<!--  		    <li >  -->
+<!-- 		      <a href="javascript:com.coep.test.questionBank.getQuestionBankOfUser('Active')" class="CloseNav"> -->
+<!-- 		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i> -->
+<!-- 		                Active Questions -->
+<!-- 		            </a> -->
+<!--  		    </li> -->
+<%-- 		    </s:authorize> --%>
+		    
+<%-- 		    <s:authorize access="hasAnyRole('ADMIN','TEACHER','CONTRIBUTOR','MODERATOR')"> --%>
+<!-- 		    <li > -->
+<!-- 		      <a href="javascript:com.coep.test.questionBank.getQuestionBankOfUser('Archived')" class="CloseNav"> -->
+<!-- 		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i> -->
+<!-- 		                Archived Questions -->
+<!-- 		            </a> -->
+<!-- 		    </li> -->
+<%-- 		    </s:authorize> --%>
+      
+<!-- 	            </ul> -->
+			 
+<!-- 			  </li> -->
+<%-- 			 </s:authorize>   --%>
+			 
+<%-- 			<s:authorize access="hasAnyRole('ADMIN','MODERATOR')">    --%>
+<!-- 			  <li id="pagemenu"> -->
+			  
+<!--               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i>All Questions</a> -->
+<!--               <ul class="collapse list-unstyled" id="pageSubmenu"> -->
+            
+<%--                 <s:authorize access="hasAnyRole('ADMIN','MODERATOR')"> --%>
+<!--  		   	 <li >  -->
+<!-- 		      <a href="javascript:com.coep.test.questionBank.getAllQuestionsFromQuesBank('Active')" class="CloseNav"> -->
+<!-- 		                <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>  -->
+<!-- 		                Active Questions -->
+<!-- 		            </a> -->
+<!--  		   	 </li>  -->
+<%-- 		    </s:authorize> --%>
+<%--                 <s:authorize access="hasAnyRole('ADMIN','MODERATOR')"> --%>
+<!-- 			   	 <li > -->
+<!-- 			      <a href="javascript:com.coep.test.questionBank.getAllQuestionsFromQuesBank('Archived')" class="CloseNav"> -->
+<!-- 			                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i> -->
+<!-- 			                Archived Questions -->
+<!-- 			            </a> -->
+<!-- 			   	 </li> -->
+<%--     			</s:authorize> --%>
+<!--               </ul> -->
+<!--      </li> -->
+<%--      </s:authorize>   --%>
+     
+<%--     	 <s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!-- 			    <li > -->
+<!-- 			      <a href="javascript:com.coep.test.utilityFile.getTopicForDoDChange(0)" class="CloseNav"> -->
+<!-- 			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!-- 			                Change DoD -->
+<!-- 			            </a> -->
+<!-- 			    </li> -->
+<%-- 		 </s:authorize> --%>
+		 
+<%-- 		      <s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!-- 			    <li > -->
+<!-- 			      <a href="javascript:com.coep.test.utilityFile.getTopicForDoDChange(2)" class="CloseNav"> -->
+<!-- 			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!-- 			                DoD Count -->
+<!-- 			            </a> -->
+<!-- 			    </li> -->
+<%-- 		 </s:authorize> --%>
+		 
+		 
+			    
+<%-- 		  <s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!-- 			    <li > -->
+<!-- 			      <a href="javascript:com.coep.test.utilityFile.getTopicForDoDChange(1)" class="CloseNav"> -->
+<!-- 			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!-- 			                Configure Topic Test -->
+<!-- 			            </a> -->
+<!-- 			    </li> -->
+<%-- 		 </s:authorize>	     --%>
+    
+<%-- 	     <s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!-- 			    <li > -->
+<!-- 			      <a href="javascript:com.coep.test.addTopic.getSubjectListToAddTopic()" class="CloseNav"> -->
+<!-- 			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!-- 			                Add Topic -->
+<!-- 			            </a> -->
+<!-- 			    </li> -->
+<%-- 			    </s:authorize> --%>
+	
+<%-- 		<s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!-- 			    <li > -->
+<!-- 			      <a href="javascript:com.coep.test.utilityFile.changeTopicStatusFlag()" class="CloseNav"> -->
+<!-- 			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!-- 			                Activate Topic -->
+<!-- 			            </a> -->
+<!-- 			    </li> -->
+<%-- 			    </s:authorize>	     --%>
+
+<%-- 			     <s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!-- 			    <li > -->
+<!-- 			      <a href="javascript:com.coep.test.addTopic.getTopicListToAddParentTopics()" class="CloseNav"> -->
+<!-- 			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!-- 			                Assign Parent Topic -->
+<!-- 			            </a> -->
+<!-- 			    </li> -->
+<%-- 	    </s:authorize> --%>	
+
+<%--      	 <s:authorize access="hasAnyRole('ADMIN','CONTRIBUTOR','MODERATOR')"> --%>
+<!-- 		    <li > -->
+<!-- 		      <a href="javascript:com.coep.test.testConfig.testLinkCreation()" class="CloseNav"> -->
+<!--                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i> -->
+<!--                 Test Link Creation -->
+<!--             </a> -->
+<!-- 		    </li> -->
+<%-- 		    </s:authorize> --%>
 		    
 <%--     <s:authorize access="hasAnyRole('ADMIN')"> --%>
 <!--     <li > -->
@@ -377,138 +520,119 @@
 <!--     </li> -->
 <%--     </s:authorize> --%>
     
-    <s:authorize access="hasAnyRole('ADMIN')">
-    <li >
-      <a href="javascript:com.coep.test.userProfile.manageRoleOfUsers()" class="CloseNav">
-                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
-                Manage Role
-            </a>
-    </li>
-    </s:authorize>
+<%--     <s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!--     <li > -->
+<!--       <a href="javascript:com.coep.test.userProfile.manageRoleOfUsers()" class="CloseNav"> -->
+<!--                 <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!--                 Manage Role -->
+<!--             </a> -->
+<!--     </li> -->
+<%--     </s:authorize> --%>
+    
+<%--     <s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!--     <li > -->
+<!--       <a href="javascript:com.coep.test.userProfile.checkRequestForContributorRole()" class="CloseNav"> -->
+<!--                 <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!--                 Contributor Request -->
+<!--             </a> -->
+<!--     </li> -->
+<%--     </s:authorize> --%>
+    
+<%--     <s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!--     <li > -->
+<!--       <a href="javascript:com.coep.test.userProfile.activateAccountByAdmin()" class="CloseNav"> -->
+<!--                 <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!--                 Activate Account -->
+<!--             </a> -->
+<!--     </li> -->
+<%--     </s:authorize> --%>
+    
+<%--         <s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!--     <li > -->
+<!--       <a href="javascript:com.coep.test.utilityFile.getAllUsersToWriteInExcel()" class="CloseNav"> -->
+<!--                 <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!--                 User List -->
+<!--             </a> -->
+<!--     </li> -->
+<%--     </s:authorize> --%>
+    
+<%--     <s:authorize access="hasAnyRole('ADMIN')"> --%>
+<!--     <li > -->
+<!--       <a href="javascript:com.coep.test.addSubject.addSubject()" class="CloseNav"> -->
+<!--                 <i class="fa fa-cubes mr-3 text-muted fa-fw"></i> -->
+<!--                 Add Subject -->
+<!--             </a> -->
+<!--     </li> -->
+<%--     </s:authorize> --%>		    
+
+	<s:authorize access="hasAnyRole('ADMIN')">
+			    <li >
+			      <a href="javascript:com.coep.test.utilityFile.deleteArchiveQuestions()" class="CloseNav">
+			                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
+			                Delete Archives
+			            </a>
+			    </li>
+	</s:authorize>
     
     <s:authorize access="hasAnyRole('ADMIN')">
-    <li >
-      <a href="javascript:com.coep.test.userProfile.checkRequestForContributorRole()" class="CloseNav">
-                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
-                Contributor Request
-            </a>
-    </li>
-    </s:authorize>
-    
-    <s:authorize access="hasAnyRole('ADMIN')">
-    <li >
-      <a href="javascript:com.coep.test.userProfile.activateAccountByAdmin()" class="CloseNav">
-                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
-                Activate Account
-            </a>
-    </li>
-    </s:authorize>
-    
-        <s:authorize access="hasAnyRole('ADMIN')">
-    <li >
-      <a href="javascript:com.coep.test.utilityFile.getAllUsersToWriteInExcel()" class="CloseNav">
-                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
-                User List
-            </a>
-    </li>
-    </s:authorize>
-    
-    <s:authorize access="hasAnyRole('ADMIN')">
-    <li >
-      <a href="javascript:com.coep.test.addSubject.addSubject()" class="CloseNav">
-                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
-                Add Subject
-            </a>
-    </li>
-    </s:authorize>
-    
-     
-    
-    <li id="Approvemenu">
-	            <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
-	            <a href="#ApproveSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i>Moderate Question</a>
-	            <ul class="collapse list-unstyled" id="ApproveSubmenu">
-                <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
- 		    <li > 
-		      <a href="javascript:com.coep.test.questionBank.getTopicForQuestionsToApprove('Non-Approved')" class="CloseNav">
-		                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
-		                Non Moderated Questions
-		            </a>
- 		    </li>
-		    </s:authorize>
-		    
-		    <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
 		    <li >
-<!-- 		      <a href="javascript:com.coep.test.questionBank.getQuestionsToApprove('Approved')" class="CloseNav"> -->
-		           <a href="javascript:com.coep.test.questionBank.getTopicForQuestionsToApprove('Approved')" class="CloseNav">     
-		                  <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
-		                 Moderated Questions
-		            </a>
+		      <a href="javascript:com.coep.test.testConfig.testConfiguration()" class="CloseNav">
+                <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
+                Test Configuration
+            </a>
 		    </li>
-		    </s:authorize>
-      
-	            </ul>
-	          </li>
-     		</s:authorize>
-    <li >
+	</s:authorize>
     
 <!--     this is to change time for variation no -->
+	<s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
      <li id="ApproveModifymenu">
-	            <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
-	            <a href="#ApproveModifySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i>Variation Time Update</a>
-	            <ul class="collapse list-unstyled" id="ApproveModifySubmenu">
-                <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
+	            
+	     <a href="#ApproveModifySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes mr-3 text-muted fa-fw"></i>Variation Time Update</a>
+	     <ul class="collapse list-unstyled" id="ApproveModifySubmenu">
+         <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
  		    <li > 
 		      <a href="javascript:com.coep.test.questionBankModification.getQuestionsToApproveForModification('Non-Approved')" class="CloseNav">
 		                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
 		                Non Moderated Questions
 		            </a>
  		    </li>
-		    </s:authorize>
+		 </s:authorize>
 		    
-		    <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
+		 <s:authorize access="hasAnyRole('ADMIN','MODERATOR')">
 		    <li >
 		      <a href="javascript:com.coep.test.questionBankModification.getQuestionsToApproveForModification('Approved')" class="CloseNav">
 		                 <i class="fa fa-th-large mr-3 text-muted fa-fw"></i>
 		                 Moderated Questions
 		            </a>
 		    </li>
-		    </s:authorize>
-      
-	            </ul>
-	          </li>
-     		</s:authorize>
-    <li >
+		 </s:authorize>
+	</ul>
+	</li>
+    </s:authorize>
     
-    
+    <li>
       <a href="javascript:com.coep.test.userProfile.fetchUserProfile()" class="CloseNav">
                 <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
                 Profile
             </a>
     </li>
     
-     <li >
+    <li>
       <a href="javascript:com.coep.test.userProfile.ChangeUserPassword()" class="CloseNav" >
                 <i class="fa fa-cubes mr-3 text-muted fa-fw"></i>
                 Change Password
             </a>
     </li>
-
-	        </ul>
-
-	      </div>
-    	</nav>
+	</ul>
+	</div>
+</nav>
 <!-- End vertical navbar -->
-
-
-   
 
  <div id="content">
   <!-- Toggle button -->
  
             <div class="container-fluid">
                 <div class="row bodybgcolor">
-<!--                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12"> -->
                  
 			<div id="main-div" class="container-fluid base-padding">
 			<h1 style="text-align: center;">Welcome </h1>
@@ -519,8 +643,7 @@
 			 </div>
 			 </div>
 					 
-<!-- 					</div> -->
-                </div>
+             </div>
             </div>
            </div> 
 		 
@@ -539,7 +662,7 @@
 	<script src="resource/js/buttons.html5.min.js"></script>
 	<script src="resource/js/buttons.print.min.js"></script>
 	<script src="resource/js/buttons.colVis.min.js"></script>
-
+	
 	<script type="text/javascript" src="resource/js/jquery-ui.js"></script>
 	<script type="text/javascript" src="resource/js/custom.js"></script>
 
@@ -559,9 +682,7 @@
 	<script type="text/javascript" src="resource/src/addSubject.js"></script>
 	<script type="text/javascript" src="resource/src/home.js"></script>
 	<script type="text/javascript" src="resource/src/practiceTest.js"></script>
-	
 	<script type="text/javascript" src="resource/src/otherTest.js"></script>
-
 	<script type="text/javascript" src="resource/src/renderMathJax.js"></script>
 
 	<script type="text/javascript" src="resource/src/addTopic.js"></script>
@@ -570,22 +691,14 @@
 	<script type="text/javascript" src="resource/src/userProfile.js"></script>
 	<script type="text/javascript" src="resource/src/AlertMsg.js"></script>
 	<script type="text/javascript" src="resource/src/utilityFile.js"></script>
-
 	<script type="text/javascript" src="resource/src/questionBank.js"></script>
 	<script type="text/javascript" src="resource/src/questionBankModify.js"></script>
-
 	<script type="text/javascript" src="resource/js/showToast.js"></script>
-
 	<script type="text/javascript" src="resource/src/menu.js"></script>
-	
 	<script type="text/javascript" src="resource/src/uploadFile.js"></script>
-	
 	<script type="text/javascript" src="resource/src/randerQues.js"></script>
-	
 	<script type="text/javascript" src="resource/src/testConfig.js"></script>
-	
 	<script type="text/javascript" src="resource/src/testRecords.js"></script>
-
 	<!-- form validation -->
 	<script type="text/javascript" src="resource/js/formvalidation.min.js"></script>
 	<script type="text/javascript" src="resource/js/bootstrap-validation.min.js"></script>
@@ -595,38 +708,8 @@
 $("#main-div").ready(function(){
     //block will be loaded with element with id myid is ready in dom
     var roles = '<%=request.getAttribute("roles")%>';
-<%-- 		var itoStud = '<%=request.getAttribute("itoStud")%>'; --%>
 		
 		Rdata = JSON.parse(roles);
-		
-//     console.log(com.coep.test.questionBank.topicDataForApprovedQues);
-    
-//     if (Rdata.roles != "STUDENT") {
-//     	var status = "Approved"
-//     		$.ajax({
-//     			type : "GET",
-//     			url : com.coep.test.addProblem.baseURL
-//     			+ "questionGroups/api/get/topic/questGroups/"+status,
-//     			dataType : 'json',
-//     			contentType : 'application/json',
-//     			success : function(data) {
-    				
-//     				if (data.done == false) {
-// //    	 				$("#main-div").html("<div class='col-xl-12 col-md-12 col-sm-12 alert alert-danger' style='text-align:center;'>No "+status+" questions in the database to display..</div>");
-//     				}else{
-// //    	 				getTopicListDetails(data, selectedTopicId);
-//     					com.coep.test.questionBank.getTopicListDetailsFromHOME(data);
-//     				}
-    				
-//     			},
-//     			error : function() {
-//     			}
-
-//     		});
-// 	}else{
-// // 		alert("student");
-// 	}
-	
 		
 })
 
@@ -686,7 +769,6 @@ MediaFileUplaod = function(url, methodType, formData) {
 	return mediaId;
 }
 
-		<%-- var role = '<%=request.getAttribute("role")%>'; --%>
 		var url = '<%=request.getAttribute("URL")%>';
 		var roles = '<%=request.getAttribute("roles")%>';
 		var itoStud = '<%=request.getAttribute("itoStud")%>';
@@ -745,15 +827,12 @@ $('select').selectpicker();
 		      $("#Loading").css("display","block");
 		     // $('#excelSubmenu').hide();
 		  });
-		
-		
 
 })(jQuery);
 
 $( document ).ready(function() {
 	ManuONchange();
 });
-
 
   
 	$(window).on('resize', function(){
@@ -808,7 +887,6 @@ $( document ).ready(function() {
 	if($("#sidebar").hasClass("active"))
 		{
 		  $("#content").css({"margin-left":"0px"})
-		 // $("#sidebar .custom-menu .btn").css({"margin-left":"-38px"})
 		}
 			else
 			$("#content").css({"margin-left":"250px"})
@@ -820,7 +898,6 @@ $( document ).ready(function() {
 	  		else
 	  			{
 	  		$("#content").css({"margin-left":"0px"})
-	  	//	$("#sidebar .custom-menu .btn").css({"margin-left":"-38px"})
 	  			}
 	 }
 	}
@@ -854,7 +931,13 @@ if (data != null) {
 // 	alert(data);
 // setTimeout(function(){ window.open("test?testId="+data.testId,	"full",	"dependent=yes, location=no, fullscreen=yes, scrollbars=yes, titlebar=yes, width= "+ window.screen.width+ ", height= "+ window.screen.height);}, 200);
 if (data.testTypeId == 1) { // Practice Test Id
-	
+	var childHtml = '<div class="overlay" id="Loading">'
+		 + '<div class="overlay__inner">'
+		 + '<div class="overlay__content"><span class="spinner"></span><br/><span class="loading">LOADING....</span></div>'
+		 + '</div>'
+		 + '</div>'
+		 
+		 $("#main-div").append(childHtml);
 	setTimeout(function(){ window.open("test?testId="+data.testId,	"_self",	"dependent=no, location=no, fullscreen=yes, scrollbars=yes, titlebar=yes, width= "+ window.screen.width+ ", height= "+ window.screen.height);}, 10);
 }else if (data.testTypeId == 5) {// Other Test Id
 	
@@ -869,31 +952,28 @@ function noBack() {
      window.history.forward(); 
 }
 
-
 </script>
 
 <script >
 
-		toastr.options = {
-				  "closeButton": true,
-				  "debug": false,
-				  "newestOnTop": false,
-				  "progressBar": true,
-				  "positionClass": "toast-bottom-right",
-				  "preventDuplicates": false,
-				  "onclick": null,
-				  "showDuration": "300",
-				  "hideDuration": "1000",
-				  "timeOut": "5000",
-				  "extendedTimeOut": "1000",
-				  "showEasing": "swing",
-				  "hideEasing": "linear",
-				  "showMethod": "fadeIn",
-				  "hideMethod": "fadeOut"
-				}
 
-
-	
-	</script>
+	toastr.options = {
+		"closeButton" : true,
+		"debug" : false,
+		"newestOnTop" : false,
+		"progressBar" : true,
+		"positionClass" : "toast-bottom-right",
+		"preventDuplicates" : false,
+		"onclick" : null,
+		"showDuration" : "300",
+		"hideDuration" : "1000",
+		"timeOut" : "5000",
+		"extendedTimeOut" : "1000",
+		"showEasing" : "swing",
+		"hideEasing" : "linear",
+		"showMethod" : "fadeIn",
+		"hideMethod" : "fadeOut"
+	}
+</script>
 </body>
 </html>

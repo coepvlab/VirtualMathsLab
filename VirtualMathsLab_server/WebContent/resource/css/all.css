@@ -1,4 +1,12 @@
-.fa, .fab, .fal, .far, .fas {
+/*!
+ * Font Awesome Free 5.4.1 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+.fa,
+.fab,
+.fal,
+.far,
+.fas {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	display: inline-block;
@@ -99,13 +107,19 @@
 	float: right
 }
 
-.fa.fa-pull-left, .fab.fa-pull-left, .fal.fa-pull-left, .far.fa-pull-left,
-	.fas.fa-pull-left {
+.fa.fa-pull-left,
+.fab.fa-pull-left,
+.fal.fa-pull-left,
+.far.fa-pull-left,
+.fas.fa-pull-left {
 	margin-right: .3em
 }
 
-.fa.fa-pull-right, .fab.fa-pull-right, .fal.fa-pull-right, .far.fa-pull-right,
-	.fas.fa-pull-right {
+.fa.fa-pull-right,
+.fab.fa-pull-right,
+.fal.fa-pull-right,
+.far.fa-pull-right,
+.fas.fa-pull-right {
 	margin-left: .3em
 }
 
@@ -117,16 +131,16 @@
 	animation: fa-spin 1s infinite steps(8)
 }
 
-@
-keyframes fa-spin { 0%{
-	transform: rotate(0deg)
+@keyframes fa-spin {
+	0% {
+		transform: rotate(0deg)
+	}
+
+	to {
+		transform: rotate(1turn)
+	}
 }
 
-to {
-	transform: rotate(1turn)
-}
-
-}
 .fa-rotate-90 {
 	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
 	transform: rotate(90deg)
@@ -143,8 +157,7 @@ to {
 }
 
 .fa-flip-horizontal {
-	-ms-filter:
-		"progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
 	transform: scaleX(-1)
 }
 
@@ -152,17 +165,21 @@ to {
 	transform: scaleY(-1)
 }
 
-.fa-flip-horizontal.fa-flip-vertical, .fa-flip-vertical {
-	-ms-filter:
-		"progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)"
+.fa-flip-horizontal.fa-flip-vertical,
+.fa-flip-vertical {
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)"
 }
 
 .fa-flip-horizontal.fa-flip-vertical {
 	transform: scale(-1)
 }
 
-:root .fa-flip-horizontal, :root .fa-flip-vertical, :root .fa-rotate-90,
-	:root .fa-rotate-180, :root .fa-rotate-270 {
+:root .fa-flip-horizontal,
+:root .fa-flip-vertical,
+:root .fa-rotate-90,
+:root .fa-rotate-180,
+:root .fa-rotate-270 {
+	-webkit-filter: none;
 	filter: none
 }
 
@@ -172,10 +189,11 @@ to {
 	line-height: 2em;
 	position: relative;
 	vertical-align: middle;
-	width: 2.5em
+	width: 2em
 }
 
-.fa-stack-1x, .fa-stack-2x {
+.fa-stack-1x,
+.fa-stack-2x {
 	left: 0;
 	position: absolute;
 	text-align: center;
@@ -228,10 +246,6 @@ to {
 
 .fa-adn:before {
 	content: "\f170"
-}
-
-.fa-adobe:before {
-	content: "\f778"
 }
 
 .fa-adversal:before {
@@ -446,10 +460,6 @@ to {
 	content: "\f338"
 }
 
-.fa-artstation:before {
-	content: "\f77a"
-}
-
 .fa-assistive-listening-systems:before {
 	content: "\f2a2"
 }
@@ -468,10 +478,6 @@ to {
 
 .fa-atlas:before {
 	content: "\f558"
-}
-
-.fa-atlassian:before {
-	content: "\f77b"
 }
 
 .fa-atom:before {
@@ -504,14 +510,6 @@ to {
 
 .fa-aws:before {
 	content: "\f375"
-}
-
-.fa-baby:before {
-	content: "\f77c"
-}
-
-.fa-baby-carriage:before {
-	content: "\f77d"
 }
 
 .fa-backspace:before {
@@ -622,10 +620,6 @@ to {
 	content: "\f1e5"
 }
 
-.fa-biohazard:before {
-	content: "\f780"
-}
-
 .fa-birthday-cake:before {
 	content: "\f1fd"
 }
@@ -660,10 +654,6 @@ to {
 
 .fa-blind:before {
 	content: "\f29d"
-}
-
-.fa-blog:before {
-	content: "\f781"
 }
 
 .fa-blogger:before {
@@ -826,10 +816,6 @@ to {
 	content: "\f274"
 }
 
-.fa-calendar-day:before {
-	content: "\f783"
-}
-
 .fa-calendar-minus:before {
 	content: "\f272"
 }
@@ -842,10 +828,6 @@ to {
 	content: "\f273"
 }
 
-.fa-calendar-week:before {
-	content: "\f784"
-}
-
 .fa-camera:before {
 	content: "\f030"
 }
@@ -856,14 +838,6 @@ to {
 
 .fa-campground:before {
 	content: "\f6bb"
-}
-
-.fa-canadian-maple-leaf:before {
-	content: "\f785"
-}
-
-.fa-candy-cane:before {
-	content: "\f786"
 }
 
 .fa-cannabis:before {
@@ -926,20 +900,12 @@ to {
 	content: "\f0d8"
 }
 
-.fa-carrot:before {
-	content: "\f787"
-}
-
 .fa-cart-arrow-down:before {
 	content: "\f218"
 }
 
 .fa-cart-plus:before {
 	content: "\f217"
-}
-
-.fa-cash-register:before {
-	content: "\f788"
 }
 
 .fa-cat:before {
@@ -988,10 +954,6 @@ to {
 
 .fa-centercode:before {
 	content: "\f380"
-}
-
-.fa-centos:before {
-	content: "\f789"
 }
 
 .fa-certificate:before {
@@ -1166,32 +1128,12 @@ to {
 	content: "\f381"
 }
 
-.fa-cloud-meatball:before {
-	content: "\f73b"
-}
-
 .fa-cloud-moon:before {
 	content: "\f6c3"
 }
 
-.fa-cloud-moon-rain:before {
-	content: "\f73c"
-}
-
-.fa-cloud-rain:before {
-	content: "\f73d"
-}
-
-.fa-cloud-showers-heavy:before {
-	content: "\f740"
-}
-
 .fa-cloud-sun:before {
 	content: "\f6c4"
-}
-
-.fa-cloud-sun-rain:before {
-	content: "\f743"
 }
 
 .fa-cloud-upload-alt:before {
@@ -1290,16 +1232,8 @@ to {
 	content: "\f066"
 }
 
-.fa-compress-arrows-alt:before {
-	content: "\f78c"
-}
-
 .fa-concierge-bell:before {
 	content: "\f562"
-}
-
-.fa-confluence:before {
-	content: "\f78d"
 }
 
 .fa-connectdevelop:before {
@@ -1450,10 +1384,6 @@ to {
 	content: "\f38d"
 }
 
-.fa-d-and-d-beyond:before {
-	content: "\f6ca"
-}
-
 .fa-dashcube:before {
 	content: "\f210"
 }
@@ -1468,10 +1398,6 @@ to {
 
 .fa-delicious:before {
 	content: "\f1a5"
-}
-
-.fa-democrat:before {
-	content: "\f747"
 }
 
 .fa-deploydog:before {
@@ -1498,16 +1424,8 @@ to {
 	content: "\f655"
 }
 
-.fa-dhl:before {
-	content: "\f790"
-}
-
 .fa-diagnoses:before {
 	content: "\f470"
-}
-
-.fa-diaspora:before {
-	content: "\f791"
 }
 
 .fa-dice:before {
@@ -1678,14 +1596,6 @@ to {
 	content: "\f44b"
 }
 
-.fa-dumpster:before {
-	content: "\f793"
-}
-
-.fa-dumpster-fire:before {
-	content: "\f794"
-}
-
 .fa-dungeon:before {
 	content: "\f6d9"
 }
@@ -1772,10 +1682,6 @@ to {
 
 .fa-ethereum:before {
 	content: "\f42e"
-}
-
-.fa-ethernet:before {
-	content: "\f796"
 }
 
 .fa-etsy:before {
@@ -1874,24 +1780,12 @@ to {
 	content: "\f56b"
 }
 
-.fa-fedex:before {
-	content: "\f797"
-}
-
-.fa-fedora:before {
-	content: "\f798"
-}
-
 .fa-female:before {
 	content: "\f182"
 }
 
 .fa-fighter-jet:before {
 	content: "\f0fb"
-}
-
-.fa-figma:before {
-	content: "\f799"
 }
 
 .fa-file:before {
@@ -2010,10 +1904,6 @@ to {
 	content: "\f06d"
 }
 
-.fa-fire-alt:before {
-	content: "\f7e4"
-}
-
 .fa-fire-extinguisher:before {
 	content: "\f134"
 }
@@ -2052,10 +1942,6 @@ to {
 
 .fa-flag-checkered:before {
 	content: "\f11e"
-}
-
-.fa-flag-usa:before {
-	content: "\f74d"
 }
 
 .fa-flask:before {
@@ -2226,10 +2112,6 @@ to {
 	content: "\f06b"
 }
 
-.fa-gifts:before {
-	content: "\f79c"
-}
-
 .fa-git:before {
 	content: "\f1d3"
 }
@@ -2262,20 +2144,12 @@ to {
 	content: "\f426"
 }
 
-.fa-glass-cheers:before {
-	content: "\f79f"
-}
-
 .fa-glass-martini:before {
 	content: "\f000"
 }
 
 .fa-glass-martini-alt:before {
 	content: "\f57b"
-}
-
-.fa-glass-whiskey:before {
-	content: "\f7a0"
 }
 
 .fa-glasses:before {
@@ -2304,10 +2178,6 @@ to {
 
 .fa-globe-asia:before {
 	content: "\f57e"
-}
-
-.fa-globe-europe:before {
-	content: "\f7a2"
 }
 
 .fa-gofore:before {
@@ -2438,14 +2308,6 @@ to {
 	content: "\f58d"
 }
 
-.fa-grip-lines:before {
-	content: "\f7a4"
-}
-
-.fa-grip-lines-vertical:before {
-	content: "\f7a5"
-}
-
 .fa-grip-vertical:before {
 	content: "\f58e"
 }
@@ -2456,10 +2318,6 @@ to {
 
 .fa-grunt:before {
 	content: "\f3ad"
-}
-
-.fa-guitar:before {
-	content: "\f7a6"
 }
 
 .fa-gulp:before {
@@ -2598,10 +2456,6 @@ to {
 	content: "\f004"
 }
 
-.fa-heart-broken:before {
-	content: "\f7a9"
-}
-
 .fa-heartbeat:before {
 	content: "\f21e"
 }
@@ -2638,10 +2492,6 @@ to {
 	content: "\f453"
 }
 
-.fa-holly-berry:before {
-	content: "\f7aa"
-}
-
 .fa-home:before {
 	content: "\f015"
 }
@@ -2656,10 +2506,6 @@ to {
 
 .fa-horse:before {
 	content: "\f6f0"
-}
-
-.fa-horse-head:before {
-	content: "\f7ab"
 }
 
 .fa-hospital:before {
@@ -2726,10 +2572,6 @@ to {
 	content: "\f246"
 }
 
-.fa-icicles:before {
-	content: "\f7ad"
-}
-
 .fa-id-badge:before {
 	content: "\f2c1"
 }
@@ -2740,10 +2582,6 @@ to {
 
 .fa-id-card-alt:before {
 	content: "\f47f"
-}
-
-.fa-igloo:before {
-	content: "\f7ae"
 }
 
 .fa-image:before {
@@ -2786,16 +2624,8 @@ to {
 	content: "\f16d"
 }
 
-.fa-intercom:before {
-	content: "\f7af"
-}
-
 .fa-internet-explorer:before {
 	content: "\f26b"
-}
-
-.fa-invision:before {
-	content: "\f7b0"
 }
 
 .fa-ioxhost:before {
@@ -2828,10 +2658,6 @@ to {
 
 .fa-jenkins:before {
 	content: "\f3b6"
-}
-
-.fa-jira:before {
-	content: "\f7b1"
 }
 
 .fa-joget:before {
@@ -3234,20 +3060,12 @@ to {
 	content: "\f538"
 }
 
-.fa-mendeley:before {
-	content: "\f7b3"
-}
-
 .fa-menorah:before {
 	content: "\f676"
 }
 
 .fa-mercury:before {
 	content: "\f223"
-}
-
-.fa-meteor:before {
-	content: "\f753"
 }
 
 .fa-microchip:before {
@@ -3288,10 +3106,6 @@ to {
 
 .fa-minus-square:before {
 	content: "\f146"
-}
-
-.fa-mitten:before {
-	content: "\f7b5"
 }
 
 .fa-mix:before {
@@ -3372,10 +3186,6 @@ to {
 
 .fa-mouse-pointer:before {
 	content: "\f245"
-}
-
-.fa-mug-hot:before {
-	content: "\f7b6"
 }
 
 .fa-music:before {
@@ -3626,10 +3436,6 @@ to {
 	content: "\f3da"
 }
 
-.fa-person-booth:before {
-	content: "\f756"
-}
-
 .fa-phabricator:before {
 	content: "\f3db"
 }
@@ -3758,10 +3564,6 @@ to {
 	content: "\f2fe"
 }
 
-.fa-poo-storm:before {
-	content: "\f75a"
-}
-
 .fa-poop:before {
 	content: "\f619"
 }
@@ -3870,24 +3672,8 @@ to {
 	content: "\f4f7"
 }
 
-.fa-radiation:before {
-	content: "\f7b9"
-}
-
-.fa-radiation-alt:before {
-	content: "\f7ba"
-}
-
-.fa-rainbow:before {
-	content: "\f75b"
-}
-
 .fa-random:before {
 	content: "\f074"
-}
-
-.fa-raspberry-pi:before {
-	content: "\f7bb"
 }
 
 .fa-ravelry:before {
@@ -3896,10 +3682,6 @@ to {
 
 .fa-react:before {
 	content: "\f41b"
-}
-
-.fa-reacteurope:before {
-	content: "\f75d"
 }
 
 .fa-readme:before {
@@ -3934,10 +3716,6 @@ to {
 	content: "\f1a2"
 }
 
-.fa-redhat:before {
-	content: "\f7bc"
-}
-
 .fa-redo:before {
 	content: "\f01e"
 }
@@ -3948,6 +3726,10 @@ to {
 
 .fa-registered:before {
 	content: "\f25d"
+}
+
+.fa-rendact:before {
+	content: "\f3e4"
 }
 
 .fa-renren:before {
@@ -3966,20 +3748,12 @@ to {
 	content: "\f3e6"
 }
 
-.fa-republican:before {
-	content: "\f75e"
-}
-
 .fa-researchgate:before {
 	content: "\f4f8"
 }
 
 .fa-resolving:before {
 	content: "\f3e7"
-}
-
-.fa-restroom:before {
-	content: "\f7bd"
 }
 
 .fa-retweet:before {
@@ -4074,14 +3848,6 @@ to {
 	content: "\f41e"
 }
 
-.fa-satellite:before {
-	content: "\f7bf"
-}
-
-.fa-satellite-dish:before {
-	content: "\f7c0"
-}
-
 .fa-save:before {
 	content: "\f0c7"
 }
@@ -4104,10 +3870,6 @@ to {
 
 .fa-scroll:before {
 	content: "\f70e"
-}
-
-.fa-sd-card:before {
-	content: "\f7c2"
 }
 
 .fa-search:before {
@@ -4246,10 +4008,6 @@ to {
 	content: "\f5b7"
 }
 
-.fa-sim-card:before {
-	content: "\f7c4"
-}
-
 .fa-simplybuilt:before {
 	content: "\f215"
 }
@@ -4264,22 +4022,6 @@ to {
 
 .fa-sith:before {
 	content: "\f512"
-}
-
-.fa-skating:before {
-	content: "\f7c5"
-}
-
-.fa-sketch:before {
-	content: "\f7c6"
-}
-
-.fa-skiing:before {
-	content: "\f7c9"
-}
-
-.fa-skiing-nordic:before {
-	content: "\f7ca"
 }
 
 .fa-skull:before {
@@ -4310,10 +4052,6 @@ to {
 	content: "\f715"
 }
 
-.fa-sleigh:before {
-	content: "\f7cc"
-}
-
 .fa-sliders-h:before {
 	content: "\f1de"
 }
@@ -4334,20 +4072,12 @@ to {
 	content: "\f4da"
 }
 
-.fa-smog:before {
-	content: "\f75f"
-}
-
 .fa-smoking:before {
 	content: "\f48d"
 }
 
 .fa-smoking-ban:before {
 	content: "\f54d"
-}
-
-.fa-sms:before {
-	content: "\f7cd"
 }
 
 .fa-snapchat:before {
@@ -4362,20 +4092,8 @@ to {
 	content: "\f2ad"
 }
 
-.fa-snowboarding:before {
-	content: "\f7ce"
-}
-
 .fa-snowflake:before {
 	content: "\f2dc"
-}
-
-.fa-snowman:before {
-	content: "\f7d0"
-}
-
-.fa-snowplow:before {
-	content: "\f7d2"
 }
 
 .fa-socks:before {
@@ -4424,10 +4142,6 @@ to {
 
 .fa-soundcloud:before {
 	content: "\f1be"
-}
-
-.fa-sourcetree:before {
-	content: "\f7d3"
 }
 
 .fa-spa:before {
@@ -4646,10 +4360,6 @@ to {
 	content: "\f5c2"
 }
 
-.fa-suse:before {
-	content: "\f7d6"
-}
-
 .fa-swatchbook:before {
 	content: "\f5c3"
 }
@@ -4742,20 +4452,8 @@ to {
 	content: "\f3fe"
 }
 
-.fa-temperature-high:before {
-	content: "\f769"
-}
-
-.fa-temperature-low:before {
-	content: "\f76b"
-}
-
 .fa-tencent-weibo:before {
 	content: "\f1d5"
-}
-
-.fa-tenge:before {
-	content: "\f7d7"
 }
 
 .fa-terminal:before {
@@ -4822,10 +4520,6 @@ to {
 	content: "\f2c8"
 }
 
-.fa-think-peaks:before {
-	content: "\f731"
-}
-
 .fa-thumbs-down:before {
 	content: "\f165"
 }
@@ -4870,20 +4564,12 @@ to {
 	content: "\f205"
 }
 
-.fa-toilet:before {
-	content: "\f7d8"
-}
-
 .fa-toilet-paper:before {
 	content: "\f71e"
 }
 
 .fa-toolbox:before {
 	content: "\f552"
-}
-
-.fa-tools:before {
-	content: "\f7d9"
 }
 
 .fa-tooth:before {
@@ -4916,10 +4602,6 @@ to {
 
 .fa-train:before {
 	content: "\f238"
-}
-
-.fa-tram:before {
-	content: "\f7da"
 }
 
 .fa-transgender:before {
@@ -5014,10 +4696,6 @@ to {
 	content: "\f402"
 }
 
-.fa-ubuntu:before {
-	content: "\f7df"
-}
-
 .fa-uikit:before {
 	content: "\f403"
 }
@@ -5072,10 +4750,6 @@ to {
 
 .fa-upload:before {
 	content: "\f093"
-}
-
-.fa-ups:before {
-	content: "\f7e0"
 }
 
 .fa-usb:before {
@@ -5180,10 +4854,6 @@ to {
 
 .fa-users-cog:before {
 	content: "\f509"
-}
-
-.fa-usps:before {
-	content: "\f7e1"
 }
 
 .fa-ussunnah:before {
@@ -5298,14 +4968,6 @@ to {
 	content: "\f028"
 }
 
-.fa-vote-yea:before {
-	content: "\f772"
-}
-
-.fa-vr-cardboard:before {
-	content: "\f729"
-}
-
 .fa-vuejs:before {
 	content: "\f41f"
 }
@@ -5320,10 +4982,6 @@ to {
 
 .fa-warehouse:before {
 	content: "\f494"
-}
-
-.fa-water:before {
-	content: "\f773"
 }
 
 .fa-weebly:before {
@@ -5442,10 +5100,6 @@ to {
 	content: "\f298"
 }
 
-.fa-wpressr:before {
-	content: "\f3e4"
-}
-
 .fa-wrench:before {
 	content: "\f0ad"
 }
@@ -5480,10 +5134,6 @@ to {
 
 .fa-yandex-international:before {
 	content: "\f414"
-}
-
-.fa-yarn:before {
-	content: "\f7e3"
 }
 
 .fa-yelp:before {
@@ -5525,7 +5175,8 @@ to {
 	width: 1px
 }
 
-.sr-only-focusable:active, .sr-only-focusable:focus {
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
 	clip: auto;
 	height: auto;
 	margin: 0;
@@ -5539,11 +5190,7 @@ to {
 	font-style: normal;
 	font-weight: normal;
 	src: url(../webfonts/fa-brands-400.eot);
-	src: url(../webfonts/fa-brands-400.eot?#iefix)
-		format("embedded-opentype"), url(../webfonts/fa-brands-400.woff2)
-		format("woff2"), url(../webfonts/fa-brands-400.woff) format("woff"),
-		url(../webfonts/fa-brands-400.ttf) format("truetype"),
-		url(../webfonts/fa-brands-400.svg#fontawesome) format("svg")
+	src: url(../webfonts/fa-brands-400.eot?#iefix) format("embedded-opentype"), url(../webfonts/fa-brands-400.woff2) format("woff2"), url(../webfonts/fa-brands-400.woff) format("woff"), url(../webfonts/fa-brands-400.ttf) format("truetype"), url(../webfonts/fa-brands-400.svg#fontawesome) format("svg")
 }
 
 .fab {
@@ -5555,11 +5202,7 @@ to {
 	font-style: normal;
 	font-weight: 400;
 	src: url(../webfonts/fa-regular-400.eot);
-	src: url(../webfonts/fa-regular-400.eot?#iefix)
-		format("embedded-opentype"), url(../webfonts/fa-regular-400.woff2)
-		format("woff2"), url(../webfonts/fa-regular-400.woff) format("woff"),
-		url(../webfonts/fa-regular-400.ttf) format("truetype"),
-		url(../webfonts/fa-regular-400.svg#fontawesome) format("svg")
+	src: url(../webfonts/fa-regular-400.eot?#iefix) format("embedded-opentype"), url(../webfonts/fa-regular-400.woff2) format("woff2"), url(../webfonts/fa-regular-400.woff) format("woff"), url(../webfonts/fa-regular-400.ttf) format("truetype"), url(../webfonts/fa-regular-400.svg#fontawesome) format("svg")
 }
 
 .far {
@@ -5571,17 +5214,16 @@ to {
 	font-style: normal;
 	font-weight: 900;
 	src: url(../webfonts/fa-solid-900.eot);
-	src: url(../webfonts/fa-solid-900.eot?#iefix)
-		format("embedded-opentype"), url(../webfonts/fa-solid-900.woff2)
-		format("woff2"), url(../webfonts/fa-solid-900.woff) format("woff"),
-		url(../webfonts/fa-solid-900.ttf) format("truetype"),
-		url(../webfonts/fa-solid-900.svg#fontawesome) format("svg")
+	src: url(../webfonts/fa-solid-900.eot?#iefix) format("embedded-opentype"), url(../webfonts/fa-solid-900.woff2) format("woff2"), url(../webfonts/fa-solid-900.woff) format("woff"), url(../webfonts/fa-solid-900.ttf) format("truetype"), url(../webfonts/fa-solid-900.svg#fontawesome) format("svg")
 }
 
-.fa, .far, .fas {
+.fa,
+.far,
+.fas {
 	font-family: "Font Awesome 5 Free"
 }
 
-.fa, .fas {
+.fa,
+.fas {
 	font-weight: 900
 }
